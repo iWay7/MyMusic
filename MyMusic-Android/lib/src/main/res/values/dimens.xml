@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="dividerLineHeight">0.5dp</dimen>
+    <dimen name="dividerLineWidth">@dimen/dividerLineHeight</dimen>
+    <dimen name="dividerLineIndentHorizontal">15dp</dimen>
+    <dimen name="dividerLineIndentVertical">15dp</dimen>
+
+    <dimen name="titleBarHeight">48dp</dimen>
+    <dimen name="titleBarHeightHalf">24dp</dimen>
+    <dimen name="titleBarBackWidth">@dimen/titleBarHeight</dimen>
+    <dimen name="titleBarTextSize">18sp</dimen>
+    <dimen name="titleBarButtonTextSize">14sp</dimen>
+    <dimen name="titleBarButtonPadding">10dp</dimen>
+    <dimen name="titleBarImageWidth">@dimen/titleBarHeight</dimen>
+    <dimen name="titleBarDividerHeight">1px</dimen>
+
+    <dimen name="listItemSpace">8dp</dimen>
+    <dimen name="listItemHeight">52dp</dimen>
+    <dimen name="listItemDividerHeight">0.5dp</dimen>
+
+</resources>

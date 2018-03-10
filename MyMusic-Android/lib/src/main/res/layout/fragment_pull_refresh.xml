@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.helpers.ViewSwapper
+    android:id="@+id/pullRefreshRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:inAnimation="@anim/fade_in_300"
+    app:outAnimation="@anim/fade_out_300">
+
+    <include layout="@layout/group_loading"/>
+
+    <site.iway.helpers.PullRefreshLayout
+        android:id="@+id/pullRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:contentViewId="@+id/pullRefreshListView"
+        app:headerViewId="@+id/pullRefreshHeader">
+
+        <site.iway.helpers.PullRefreshHeader
+            android:id="@+id/pullRefreshHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <site.iway.helpers.ExtendedListView
+            android:id="@+id/pullRefreshListView"
+            style="@style/MyListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <site.iway.helpers.ViewSwapper
+            android:id="@+id/emptyOrErrorView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/group_empty"/>
+
+            <include layout="@layout/group_error"/>
+
+        </site.iway.helpers.ViewSwapper>
+
+    </site.iway.helpers.PullRefreshLayout>
+
+</site.iway.helpers.ViewSwapper>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.helpers.ExtendedLinearLayout
+    android:id="@+id/dialogRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="270dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_com_dialog_rc"
+    android:orientation="vertical">
+
+    <site.iway.helpers.ExtendedLinearLayout
+        android:id="@+id/messageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="120dp"
+        android:orientation="vertical"
+        android:paddingBottom="35dp"
+        android:paddingTop="35dp">
+
+        <site.iway.helpers.ExtendedTextView
+            android:id="@+id/descTopView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="#676767"
+            android:textSize="13sp"
+            tools:text="MESSAGE"/>
+
+        <site.iway.helpers.ExtendedTextView
+            android:id="@+id/messageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            tools:text="MESSAGE"/>
+
+        <site.iway.helpers.ExtendedTextView
+            android:id="@+id/descBottomView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="#676767"
+            android:textSize="13sp"
+            tools:text="MESSAGE"/>
+
+    </site.iway.helpers.ExtendedLinearLayout>
+
+    <include layout="@layout/divider_line_horizontal_fill"/>
+
+    <site.iway.helpers.ViewSwapper
+        android:id="@+id/typeSwitcher"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <site.iway.helpers.ExtendedLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/actionView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_com_dialog_rc_btn_b"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                tools:text="ACTION"/>
+
+        </site.iway.helpers.ExtendedLinearLayout>
+
+        <site.iway.helpers.ExtendedLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/actionLeftView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_com_dialog_rc_btn_bl"
+                android:gravity="center"
+                android:text="L ACTION"
+                android:textColor="#000000"
+                android:textSize="16sp"/>
+
+            <include layout="@layout/divider_line_vertical_fill"/>
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/actionRightView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_com_dialog_rc_btn_br"
+                android:gravity="center"
+                android:text="R ACTION"
+                android:textColor="#000000"
+                android:textSize="16sp"/>
+
+        </site.iway.helpers.ExtendedLinearLayout>
+
+        <site.iway.helpers.ExtendedLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@id/actionLeftView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_com_dialog_rc_btn_bl"
+                android:gravity="center"
+                android:text="L ACTION"
+                android:textColor="#000000"
+                android:textSize="16sp"/>
+
+            <include layout="@layout/divider_line_vertical_fill"/>
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/actionMiddleView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_com_dialog_rc_btn_bm"
+                android:gravity="center"
+                android:text="M ACTION"
+                android:textColor="#000000"
+                android:textSize="16sp"/>
+
+            <include layout="@layout/divider_line_vertical_fill"/>
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@id/actionRightView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_com_dialog_rc_btn_br"
+                android:gravity="center"
+                android:text="R ACTION"
+                android:textColor="#000000"
+                android:textSize="16sp"/>
+
+        </site.iway.helpers.ExtendedLinearLayout>
+
+    </site.iway.helpers.ViewSwapper>
+
+</site.iway.helpers.ExtendedLinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.helpers.ExtendedRelativeLayout
+    android:id="@+id/groupRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <site.iway.helpers.ExtendedImageView
+        android:id="@+id/emptyImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/emptyText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_empty"/>
+
+    <site.iway.helpers.ExtendedTextView
+        android:id="@id/emptyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="没有数据"
+        android:textColor="#676767"
+        android:textSize="15sp"/>
+
+</site.iway.helpers.ExtendedRelativeLayout>

@@ -1,0 +1,20 @@
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="site.iway.mymusic">
+
+    <application>
+
+        <activity
+            android:name="site.iway.mymusic.user.activities.LaunchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLaunch">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="dividerLineBgColor">#dadcdd</color>
+
+    <color name="titleBarBgColor">#d33a31</color>
+    <color name="titleBarTextColor">#ffffff</color>
+    <color name="titleBarButtonTextColor">#ffffff</color>
+    <color name="titleBarDividerColor">#dadcdd</color>
+
+    <color name="listItemDividerColor">#dadcdd</color>
+    
+</resources>

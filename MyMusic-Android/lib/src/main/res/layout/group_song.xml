@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.helpers.ExtendedLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_com_rect"
+    android:orientation="vertical"
+    android:paddingLeft="9dp">
+
+    <site.iway.helpers.ExtendedLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="left|center_vertical">
+
+        <site.iway.helpers.ExtendedLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tools:text="给我一首歌的时间"/>
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:textColor="#797a7b"
+                android:textSize="12sp"
+                tools:text="周杰伦"/>
+
+        </site.iway.helpers.ExtendedLinearLayout>
+
+        <site.iway.helpers.ExtendedImageView
+            android:id="@+id/addPlayNow"
+            android:layout_width="55dp"
+            android:padding="10dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_play_red"
+            android:scaleType="centerInside"
+            android:visibility="gone"/>
+
+        <site.iway.helpers.ViewSwapper
+            android:id="@+id/addToFav"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_song_add_fav"
+            app:displayedChild="1"
+            app:inAnimation="@anim/fade_in_300"
+            app:outAnimation="@anim/fade_out_300">
+
+            <site.iway.helpers.LoadingView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"/>
+
+            <site.iway.helpers.ExtendedImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_add"/>
+
+            <site.iway.helpers.ExtendedImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_remove"/>
+
+        </site.iway.helpers.ViewSwapper>
+
+    </site.iway.helpers.ExtendedLinearLayout>
+
+    <include layout="@layout/divider_line_horizontal_fill"/>
+
+</site.iway.helpers.ExtendedLinearLayout>

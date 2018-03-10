@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>GetSongInfoServlet</servlet-name>
+        <servlet-class>site.iway.mymusic.servlets.GetSongInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetSongInfoServlet</servlet-name>
+        <url-pattern>/GetSongInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetSongServlet</servlet-name>
+        <servlet-class>site.iway.mymusic.servlets.GetSongServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetSongServlet</servlet-name>
+        <url-pattern>/GetSong</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListSongsServlet</servlet-name>
+        <servlet-class>site.iway.mymusic.servlets.ListSongsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListSongsServlet</servlet-name>
+        <url-pattern>/ListSongs</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PlayListServlet</servlet-name>
+        <servlet-class>site.iway.mymusic.servlets.PlayListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PlayListServlet</servlet-name>
+        <url-pattern>/PlayList</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

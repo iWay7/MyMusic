@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_com_window</item>
+    </style>
+
+    <style name="AppThemeLaunch" parent="@style/AppTheme">
+        <item name="android:windowBackground">@drawable/bg_welcome</item>
+    </style>
+
+    <style name="AppThemeLaunchTV" parent="@style/AppTheme">
+        <item name="android:windowBackground">@drawable/bg_welcome_tv</item>
+    </style>
+
+    <style name="AppThemeWithAnim" parent="@style/AppTheme">
+        <item name="android:windowAnimationStyle">@style/ActivityAnimationFriendly</item>
+    </style>
+
+    <style name="AppThemeDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+    <style name="ActivityAnimationSlide" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in_300</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_left_out_300</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_left_in_300</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out_300</item>
+    </style>
+
+    <style name="ActivityAnimationFriendly" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in_300</item>
+        <item name="android:activityOpenExitAnimation">@anim/fade_zoom_out_300</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fade_zoom_in_300</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out_300</item>
+    </style>
+
+    <style name="DialogAnimationSlideBottom" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/slide_bottom_in_300</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom_out_300</item>
+    </style>
+
+    <style name="DialogAnimationFadeZoom" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/fade_zoom_in_300</item>
+        <item name="android:windowExitAnimation">@anim/fade_zoom_out_300</item>
+    </style>
+
+    <style name="MyButton" parent="@android:style/Widget.Button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_com_button</item>
+    </style>
+
+    <style name="MyButtonSmall" parent="@android:style/Widget.Button">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_com_button</item>
+    </style>
+
+    <style name="MyEditText" parent="@android:style/Widget.EditText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textColorHint">#c8c8c8</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+
+    <style name="MyListView" parent="@android:style/Widget.ListView">
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:divider">@null</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:listSelector">#00000000</item>
+        <item name="android:overScrollHeader">#00000000</item>
+        <item name="android:overScrollFooter">#00000000</item>
+        <item name="android:overScrollMode">ifContentScrolls</item>
+        <item name="android:headerDividersEnabled">true</item>
+        <item name="android:footerDividersEnabled">true</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="MyGridView" parent="@android:style/Widget.GridView">
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:listSelector">#00000000</item>
+        <item name="android:overScrollHeader">#00000000</item>
+        <item name="android:overScrollFooter">#00000000</item>
+        <item name="android:overScrollMode">ifContentScrolls</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="MyScrollView" parent="@android:style/Widget.ScrollView">
+        <item name="android:fadingEdge">none</item>
+        <item name="android:overScrollMode">ifContentScrolls</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="MyViewPager" parent="@android:style/Widget.ScrollView">
+        <item name="android:fadingEdge">none</item>
+        <item name="android:overScrollMode">ifContentScrolls</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+</resources>

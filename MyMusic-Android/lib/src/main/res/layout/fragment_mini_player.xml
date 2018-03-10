@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.helpers.ExtendedLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#efffffff"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/divider_line_horizontal_fill"/>
+
+    <site.iway.helpers.ExtendedLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal">
+
+        <site.iway.helpers.BitmapView
+            android:id="@+id/songCover"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:emptyDrawable="@drawable/bg_mini_player_image_empty"
+            app:errorDrawable="@drawable/bg_mini_player_image_empty"
+            app:finishAnimation="@anim/fade_in_300"
+            app:scaleType="centerCrop"
+            app:useDefaultFilter="true"/>
+
+        <site.iway.helpers.ExtendedLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/songName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/songCover"
+                android:singleLine="true"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                tools:text="Let It Go"/>
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/songArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/songCover"
+                android:singleLine="true"
+                android:textColor="#7d7d7d"
+                android:textSize="14sp"
+                tools:text="Idina Menzel"/>
+
+        </site.iway.helpers.ExtendedLinearLayout>
+
+        <site.iway.helpers.ExtendedImageView
+            android:id="@+id/previous"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_previous"
+            app:touchDownAnimation="@anim/button_press"
+            app:touchUpAnimation="@anim/button_release"/>
+
+        <site.iway.helpers.ExtendedFrameLayout
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <site.iway.helpers.ExtendedImageView
+                android:id="@+id/playStop"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_play"/>
+
+            <site.iway.helpers.CircleProgressBar
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:circleDiameter="50dp"
+                app:progressBackColor="#4d4d4d"
+                app:progressFrontColor="#d33a31"
+                app:progressWidth="2dp"/>
+
+        </site.iway.helpers.ExtendedFrameLayout>
+
+        <site.iway.helpers.ExtendedImageView
+            android:id="@+id/next"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_next"
+            app:touchDownAnimation="@anim/button_press"
+            app:touchUpAnimation="@anim/button_release"/>
+
+    </site.iway.helpers.ExtendedLinearLayout>
+
+</site.iway.helpers.ExtendedLinearLayout>

@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="MyMusic:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyMusic_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="MyMusic/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="MyMusic" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/lib/log4j-1.2.16.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/gson-2.7.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

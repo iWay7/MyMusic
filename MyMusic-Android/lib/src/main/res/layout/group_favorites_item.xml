@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.helpers.ExtendedLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_com_rect"
+    android:orientation="vertical"
+    android:paddingLeft="9dp">
+
+    <site.iway.helpers.ExtendedLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="left|center_vertical">
+
+        <site.iway.helpers.ExtendedImageView
+            android:id="@+id/playingIndicator"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/icon_playing"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <site.iway.helpers.ExtendedLinearLayout
+            android:id="@+id/songInfoContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical">
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textSize="16sp"
+                tools:text="Yestoday once more"/>
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/splitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textSize="10sp"
+                tools:text=" - "/>
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textSize="14sp"
+                tools:text="Karpengters"/>
+
+        </site.iway.helpers.ExtendedLinearLayout>
+
+        <include layout="@layout/divider_pad_horizontal"/>
+
+        <site.iway.helpers.ExtendedImageView
+            android:id="@+id/itemSelection"
+            android:layout_width="@dimen/titleBarImageWidth"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_song_select_selected"
+            android:visibility="visible"/>
+
+    </site.iway.helpers.ExtendedLinearLayout>
+
+    <include layout="@layout/divider_line_horizontal_fill"/>
+
+</site.iway.helpers.ExtendedLinearLayout>

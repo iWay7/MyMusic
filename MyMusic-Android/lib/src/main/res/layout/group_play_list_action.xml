@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.helpers.ExtendedLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playListAction"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center_horizontal"
+    android:layout_marginBottom="80.5dp"
+    android:background="#efffffff"
+    android:gravity="left|center_horizontal"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <include layout="@layout/divider_line_horizontal_fill"/>
+
+    <site.iway.helpers.ExtendedLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:gravity="left|center_vertical">
+
+        <site.iway.helpers.ExtendedImageView
+            android:id="@+id/selectAllImage"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:padding="6.5dp"
+            android:src="@drawable/icon_song_select_normal"
+            app:filterClickSpan="500"/>
+
+        <site.iway.helpers.ExtendedTextView
+            android:id="@+id/selectAllText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingRight="14dp"
+            android:text="全选"
+            android:textColor="#777777"
+            android:textSize="16sp"
+            app:filterClickSpan="500"/>
+
+        <include layout="@layout/divider_pad_horizontal"/>
+
+        <include layout="@layout/divider_line_vertical_indent"/>
+
+        <site.iway.helpers.ExtendedTextView
+            android:id="@+id/deleteSelectedItems"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_play_list_action"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="#777777"
+            android:textSize="16sp"
+            app:filterClickSpan="500"/>
+
+        <include layout="@layout/divider_line_vertical_indent"/>
+
+        <site.iway.helpers.ExtendedTextView
+            android:id="@+id/finishActions"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_play_list_action"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="#d33a31"
+            android:textSize="16sp"
+            app:filterClickSpan="500"/>
+
+    </site.iway.helpers.ExtendedLinearLayout>
+
+
+</site.iway.helpers.ExtendedLinearLayout>

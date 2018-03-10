@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PlayProgressView">
+        <attr name="progressBgDrawable" format="reference"/>
+        <attr name="progressFgDrawable" format="reference"/>
+        <attr name="progressIndicatorDrawable" format="reference"/>
+        <attr name="progressDrawableHeight" format="dimension"/>
+        <attr name="progressIndicatorWidth" format="dimension"/>
+        <attr name="progressIndicatorHeight" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="LRCView">
+        <attr name="lrcTextSize" format="dimension"/>
+        <attr name="lrcTextLineSpacing" format="dimension"/>
+        <attr name="lrcLineSpacing" format="dimension"/>
+        <attr name="lrcColorNormal" format="color"/>
+        <attr name="lrcColorHighLight" format="color"/>
+        <attr name="lrcEmptyText" format="string"/>
+        <attr name="lrcEdgeFadingPercent" format="float"/>
+    </declare-styleable>
+
+</resources>

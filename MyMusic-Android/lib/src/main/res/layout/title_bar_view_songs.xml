@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.helpers.ExtendedFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/titleBarRoot"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/titleBarHeight">
+
+    <site.iway.helpers.ExtendedView
+        android:id="@+id/titleBarBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/titleBarBgColor"/>
+
+    <site.iway.helpers.ExtendedImageView
+        android:id="@+id/titleBarBack"
+        android:layout_width="@dimen/titleBarBackWidth"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_title_bar_back"
+        app:drawablePressAlpha="@integer/titleBarButtonPressAlpha"
+        app:filterClickSpan="500"/>
+
+    <site.iway.helpers.ExtendedEditText
+        android:id="@+id/searchEditor"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="32dp"
+        android:layout_marginLeft="@dimen/titleBarBackWidth"
+        android:layout_marginRight="@dimen/titleBarImageWidth"
+        android:background="@drawable/bg_search_bar"
+        android:hint="歌手、歌名，支持拼音首字母大小写"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:singleLine="true"
+        android:textColor="#333333"
+        android:textColorHint="#7d7d7d"
+        android:textSize="14sp"/>
+
+    <site.iway.helpers.ExtendedImageView
+        android:id="@+id/titleBarImage"
+        android:layout_width="@dimen/titleBarImageWidth"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|center_vertical"
+        android:scaleType="centerInside"
+        app:drawablePressAlpha="128"
+        app:filterClickSpan="500"/>
+
+    <site.iway.helpers.ExtendedView
+        android:id="@+id/titleBarSplitter"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleBarDividerHeight"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@color/titleBarDividerColor"/>
+
+</site.iway.helpers.ExtendedFrameLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="titleBarTextMaxEms">8</integer>
+    <integer name="titleBarTextPressAlpha">128</integer>
+    <integer name="titleBarImagePressAlpha">128</integer>
+    <integer name="titleBarButtonPressAlpha">128</integer>
+
+</resources>

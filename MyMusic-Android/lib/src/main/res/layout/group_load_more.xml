@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.helpers.ExtendedFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <site.iway.helpers.ViewSwapper
+        android:id="@+id/pageFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        app:inAnimation="@anim/fade_in_300"
+        app:outAnimation="@anim/fade_out_300">
+
+        <site.iway.helpers.ExtendedLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <site.iway.helpers.LoadingView
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/loadingView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="正在加载数据..."
+                android:textColor="#9c9c9c"
+                android:textSize="14sp"/>
+
+        </site.iway.helpers.ExtendedLinearLayout>
+
+        <site.iway.helpers.ExtendedFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/errorView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="加载失败，点击重新加载"
+                android:textColor="#9c9c9c"
+                android:textSize="14sp"/>
+
+        </site.iway.helpers.ExtendedFrameLayout>
+
+        <site.iway.helpers.ExtendedFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <site.iway.helpers.ExtendedTextView
+                android:id="@+id/emptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="没有更多数据了..."
+                android:textColor="#9c9c9c"
+                android:textSize="14sp"/>
+
+        </site.iway.helpers.ExtendedFrameLayout>
+
+    </site.iway.helpers.ViewSwapper>
+
+</site.iway.helpers.ExtendedFrameLayout>
