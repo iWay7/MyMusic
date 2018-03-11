@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion '26.0.3'
     defaultConfig {
-        applicationId "site.iway.mymusic"
+        applicationId "site.iway.mymusic_phone"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

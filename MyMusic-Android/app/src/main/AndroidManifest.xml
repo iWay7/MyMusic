@@ -1,6 +1,6 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="site.iway.mymusic">
+    package="site.iway.mymusic_phone">
 
     <application>
 

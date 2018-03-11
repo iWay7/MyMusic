@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion '26.0.3'
     defaultConfig {
-        applicationId "site.iway.mymusic"
+        applicationId "site.iway.mymusic_tv"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
@@ -24,6 +24,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar'], dir: 'jarLibs')
     implementation project(':lib')
 }
