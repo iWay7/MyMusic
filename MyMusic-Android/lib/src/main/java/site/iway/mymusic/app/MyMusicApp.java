@@ -2,20 +2,19 @@ package site.iway.mymusic.app;
 
 import android.app.Application;
 
-import site.iway.helpers.ActionTimer;
-import site.iway.helpers.BitmapCache;
-import site.iway.helpers.BuildConfig;
-import site.iway.helpers.DeviceHelper;
-import site.iway.helpers.UIThread;
-import site.iway.helpers.UnitHelper;
-import site.iway.mymusic.net.RPCClient;
+import site.iway.androidhelpers.ActionTimer;
+import site.iway.androidhelpers.BitmapCache;
+import site.iway.androidhelpers.BuildConfig;
+import site.iway.androidhelpers.DeviceHelper;
+import site.iway.androidhelpers.RPCEngine;
+import site.iway.androidhelpers.UIThread;
+import site.iway.androidhelpers.UnitHelper;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.LyricCache;
 import site.iway.mymusic.utils.MusicCache;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Settings;
 import site.iway.mymusic.utils.Toaster;
-import site.iway.mymusic.utils.UIRunner;
 
 /**
  * Created by iWay on 2017/12/25.
@@ -40,10 +39,10 @@ public class MyMusicApp extends Application {
         BitmapCache.initialize(this);
         ActionTimer.initialize(this);
         UIThread.initialize();
+        RPCEngine.initialize(2);
 
-        Settings.initialize(this, Constants.FILE_NAME_SETTINGS, "sPBocrqJKgBiSag3");
+        Settings.initialize(getFilesDir() + "/" + Constants.FILE_NAME_SETTINGS, "sPBocrqJKgBiSag3");
         Toaster.initialize(this);
-        RPCClient.initialize(this);
         MusicCache.initialize(this);
         LyricCache.initialize(this);
         Player.initialize(this);

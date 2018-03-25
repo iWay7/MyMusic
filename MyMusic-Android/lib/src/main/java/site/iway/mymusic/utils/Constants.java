@@ -14,13 +14,13 @@ public final class Constants {
 
     public static final String SERVICE_URL_BASE = "http://home.iway.site:8888/mm/";
 
-    public static final int EV_PLAYER_LIST_UPDATED = 0;
-    public static final int EV_PLAYER_MODE_CHANGED = 1;
-    public static final int EV_PLAYER_START_PLAY = 2;
-    public static final int EV_PLAYER_PAUSED_PLAY = 3;
-    public static final int EV_PLAYER_FINISHED_PLAY = 4;
-    public static final int EV_PLAYER_PLAY_ERROR = 5;
-    public static final int EV_PLAY_LIST_VIEW = 6;
-    public static final int EV_PLAY_LIST_REFRESH = 7;
+    public static final String EV_PLAYER_LIST_UPDATED = "0";
+    public static final String EV_PLAYER_MODE_CHANGED = "1";
+    public static final String EV_PLAYER_START_PLAY = "2";
+    public static final String EV_PLAYER_PAUSED_PLAY = "3";
+    public static final String EV_PLAYER_FINISHED_PLAY = "4";
+    public static final String EV_PLAYER_PLAY_ERROR = "5";
+    public static final String EV_PLAY_LIST_VIEW = "6";
+    public static final String EV_PLAY_LIST_REFRESH = "7";
 
 }

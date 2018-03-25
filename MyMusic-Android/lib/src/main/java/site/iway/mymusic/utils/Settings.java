@@ -2,7 +2,7 @@ package site.iway.mymusic.utils;
 
 import java.util.UUID;
 
-import site.iway.helpers.PrefsStatic;
+import site.iway.javahelpers.PrefsStatic;
 
 public class Settings extends PrefsStatic {
 

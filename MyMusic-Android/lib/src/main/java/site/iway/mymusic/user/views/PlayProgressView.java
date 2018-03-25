@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 
-import site.iway.helpers.MathHelper;
+import site.iway.javahelpers.MathHelper;
 import site.iway.mymusic.R;
 
 /**

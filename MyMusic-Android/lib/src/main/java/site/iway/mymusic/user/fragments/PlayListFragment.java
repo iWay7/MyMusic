@@ -21,18 +21,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import site.iway.helpers.ExtendedImageView;
-import site.iway.helpers.ExtendedLinearLayout;
-import site.iway.helpers.ExtendedListView;
-import site.iway.helpers.ExtendedTextView;
-import site.iway.helpers.ExtendedView;
-import site.iway.helpers.OnScrollChangedListener;
-import site.iway.helpers.UnitHelper;
-import site.iway.helpers.WindowHelper;
+import site.iway.androidhelpers.ExtendedImageView;
+import site.iway.androidhelpers.ExtendedLinearLayout;
+import site.iway.androidhelpers.ExtendedListView;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.ExtendedView;
+import site.iway.androidhelpers.OnScrollChangedListener;
+import site.iway.androidhelpers.UnitHelper;
+import site.iway.androidhelpers.WindowHelper;
 import site.iway.mymusic.R;
-import site.iway.mymusic.net.RPCClient;
+import site.iway.mymusic.net.req.MMReq;
 import site.iway.mymusic.net.req.PlayListReq;
-import site.iway.mymusic.net.req.base.MMReq;
 import site.iway.mymusic.net.res.PlayListRes;
 import site.iway.mymusic.user.activities.ViewSongsActivity;
 import site.iway.mymusic.user.dialogs.ActionDialog;
@@ -212,7 +211,7 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
     }
 
     @Override
-    public void onEvent(int event, Object data) {
+    public void onEvent(String event, Object data) {
         super.onEvent(event, data);
         switch (event) {
             case Constants.EV_PLAYER_START_PLAY:
@@ -261,7 +260,7 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
                                 stringBuilder.append(string);
                             }
                             playListReq.fileNames = stringBuilder.substring(1);
-                            RPCClient.doRequest(playListReq, null);
+                            playListReq.start();
                             Player player = Player.getInstance();
                             player.removePlayListItems(copiedSelectedItems);
                             mPlayListAdapter.removeItemsFromSelected();

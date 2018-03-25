@@ -6,8 +6,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import site.iway.helpers.ExtendedTextView;
-import site.iway.helpers.ViewSwapper;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.ViewSwapper;
 import site.iway.mymusic.R;
 
 /**

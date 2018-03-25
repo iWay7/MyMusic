@@ -24,18 +24,18 @@ import android.widget.FrameLayout;
 import java.util.LinkedList;
 import java.util.List;
 
-import site.iway.helpers.EventPoster;
-import site.iway.helpers.EventPoster.EventListener;
-import site.iway.helpers.ExtendedImageView;
-import site.iway.helpers.ExtendedTextView;
-import site.iway.helpers.ExtendedView;
-import site.iway.helpers.UnitHelper;
+import site.iway.androidhelpers.ExtendedImageView;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.ExtendedView;
+import site.iway.androidhelpers.UIThread;
+import site.iway.androidhelpers.UIThread.UIEventHandler;
+import site.iway.androidhelpers.UnitHelper;
 import site.iway.mymusic.R;
 
 /**
  * Created by iWay on 8/3/15.
  */
-public abstract class BaseActivity extends FragmentActivity implements EventListener {
+public abstract class BaseActivity extends FragmentActivity implements UIEventHandler {
 
     public static final String CLOSE_ANIMATION_ENTER = "CLOSE_ANIMATION_ENTER";
     public static final String CLOSE_ANIMATION_EXIT = "CLOSE_ANIMATION_EXIT";
@@ -77,7 +77,7 @@ public abstract class BaseActivity extends FragmentActivity implements EventList
         mDialogs = new LinkedList<>();
         mMainThread = Thread.currentThread();
         mUserInteractEnabled = true;
-        EventPoster.register(this);
+        UIThread.register(this);
     }
 
     @Override
@@ -238,7 +238,7 @@ public abstract class BaseActivity extends FragmentActivity implements EventList
 
     protected void onClose() {
         dismissAllDialogs();
-        EventPoster.unregister(this);
+        UIThread.unregister(this);
     }
 
     @Override
@@ -275,7 +275,7 @@ public abstract class BaseActivity extends FragmentActivity implements EventList
     }
 
     @Override
-    public void onEvent(int event, Object data) {
+    public void onEvent(String event, Object data) {
         // nothing
     }
 

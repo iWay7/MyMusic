@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void onEvent(int event, Object data) {
+    public void onEvent(String event, Object data) {
         super.onEvent(event, data);
         switch (event) {
             case Constants.EV_PLAY_LIST_VIEW:

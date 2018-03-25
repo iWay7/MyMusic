@@ -5,7 +5,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.WindowInsets;
 
-import site.iway.helpers.ExtendedLinearLayout;
+import site.iway.androidhelpers.ExtendedLinearLayout;
 
 /**
  * Created by iWay on 2017/12/31.

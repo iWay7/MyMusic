@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<site.iway.helpers.ExtendedFrameLayout
+<site.iway.androidhelpers.ExtendedFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,13 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/titleBarHeight">
 
-    <site.iway.helpers.ExtendedView
+    <site.iway.androidhelpers.ExtendedView
         android:id="@+id/titleBarBg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/titleBarBgColor"/>
 
-    <site.iway.helpers.ExtendedImageView
+    <site.iway.androidhelpers.ExtendedImageView
         android:id="@+id/titleBarBack"
         android:layout_width="@dimen/titleBarBackWidth"
         android:layout_height="match_parent"
@@ -22,7 +22,7 @@
         app:drawablePressAlpha="@integer/titleBarButtonPressAlpha"
         app:filterClickSpan="500"/>
 
-    <site.iway.helpers.ExtendedTextView
+    <site.iway.androidhelpers.ExtendedTextView
         android:id="@+id/titleBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         app:textPressAlpha="@integer/titleBarTextPressAlpha"
         tools:text="标题"/>
 
-    <site.iway.helpers.ExtendedImageView
+    <site.iway.androidhelpers.ExtendedImageView
         android:id="@+id/titleBarImage"
         android:layout_width="@dimen/titleBarImageWidth"
         android:layout_height="match_parent"
@@ -45,11 +45,11 @@
         app:drawablePressAlpha="128"
         app:filterClickSpan="500"/>
 
-    <site.iway.helpers.ExtendedView
+    <site.iway.androidhelpers.ExtendedView
         android:id="@+id/titleBarSplitter"
         android:layout_width="match_parent"
         android:layout_height="@dimen/titleBarDividerHeight"
         android:layout_gravity="bottom|center_horizontal"
         android:background="@color/titleBarDividerColor"/>
 
-</site.iway.helpers.ExtendedFrameLayout>
+</site.iway.androidhelpers.ExtendedFrameLayout>

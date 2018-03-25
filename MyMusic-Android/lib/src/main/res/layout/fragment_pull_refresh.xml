@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<site.iway.helpers.ViewSwapper
+<site.iway.androidhelpers.ViewSwapper
     android:id="@+id/pullRefreshRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,25 +10,25 @@
 
     <include layout="@layout/group_loading"/>
 
-    <site.iway.helpers.PullRefreshLayout
+    <site.iway.androidhelpers.PullRefreshLayout
         android:id="@+id/pullRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:contentViewId="@+id/pullRefreshListView"
         app:headerViewId="@+id/pullRefreshHeader">
 
-        <site.iway.helpers.PullRefreshHeader
+        <site.iway.androidhelpers.PullRefreshHeader
             android:id="@+id/pullRefreshHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <site.iway.helpers.ExtendedListView
+        <site.iway.androidhelpers.ExtendedListView
             android:id="@+id/pullRefreshListView"
             style="@style/MyListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <site.iway.helpers.ViewSwapper
+        <site.iway.androidhelpers.ViewSwapper
             android:id="@+id/emptyOrErrorView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -37,8 +37,8 @@
 
             <include layout="@layout/group_error"/>
 
-        </site.iway.helpers.ViewSwapper>
+        </site.iway.androidhelpers.ViewSwapper>
 
-    </site.iway.helpers.PullRefreshLayout>
+    </site.iway.androidhelpers.PullRefreshLayout>
 
-</site.iway.helpers.ViewSwapper>
+</site.iway.androidhelpers.ViewSwapper>

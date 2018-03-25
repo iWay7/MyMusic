@@ -6,9 +6,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import site.iway.helpers.ArrayHelper;
-import site.iway.helpers.HttpFileDownloader;
-import site.iway.helpers.URLCodec;
+import site.iway.javahelpers.HttpFileDownloader;
+import site.iway.javahelpers.URLCodec;
 
 /**
  * Created by iWay on 2017/12/28.
@@ -63,7 +62,7 @@ public class MusicCache {
     }
 
     public String getUrl(String musicFileName) {
-        return "http://home.iway.site:8888/mymusic/GetFile?fileName=" + URLCodec.encode(musicFileName);
+        return "http://home.iway.site:8888/mm/GetSong?fileName=" + URLCodec.encode(musicFileName);
     }
 
     public void download(final String musicFileName) {

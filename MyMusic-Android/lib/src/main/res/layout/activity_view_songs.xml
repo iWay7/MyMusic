@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <site.iway.helpers.ExtendedView
+    <site.iway.androidhelpers.ExtendedView
         android:id="@+id/titlePad"
         android:layout_width="match_parent"
         android:layout_height="18dp"
@@ -14,18 +14,18 @@
 
     <include layout="@layout/title_bar_view_songs"/>
 
-    <site.iway.helpers.ExtendedFrameLayout
+    <site.iway.androidhelpers.ExtendedFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff">
 
-        <site.iway.helpers.ExtendedListView
+        <site.iway.androidhelpers.ExtendedListView
             android:id="@+id/listView"
             style="@style/MyListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <site.iway.helpers.ExtendedTextView
+        <site.iway.androidhelpers.ExtendedTextView
             android:id="@+id/emptyView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,12 +35,12 @@
             android:textSize="16dp"
             android:visibility="gone"/>
 
-        <site.iway.helpers.LoadingView
+        <site.iway.androidhelpers.LoadingView
             android:id="@+id/loadingView"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_gravity="center"/>
 
-    </site.iway.helpers.ExtendedFrameLayout>
+    </site.iway.androidhelpers.ExtendedFrameLayout>
 
 </site.iway.mymusic.user.views.FitSysWindowsLinearLayout>

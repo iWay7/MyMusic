@@ -11,22 +11,21 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 
-import site.iway.helpers.ExtendedListView;
-import site.iway.helpers.ExtendedTextView;
-import site.iway.helpers.PullRefreshLayout;
-import site.iway.helpers.PullRefreshLayout.OnRefreshListener;
-import site.iway.helpers.RPCInfo;
-import site.iway.helpers.RPCListener;
-import site.iway.helpers.ViewSwapper;
+import site.iway.androidhelpers.ExtendedListView;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.PullRefreshLayout;
+import site.iway.androidhelpers.PullRefreshLayout.OnRefreshListener;
+import site.iway.androidhelpers.ViewSwapper;
 import site.iway.mymusic.R;
-import site.iway.mymusic.net.RPCClient;
-import site.iway.mymusic.net.req.base.MMReq;
-import site.iway.mymusic.net.res.base.BasicRes;
+import site.iway.mymusic.net.RPCBaseReq;
+import site.iway.mymusic.net.RPCCallback;
+import site.iway.mymusic.net.req.MMReq;
+import site.iway.mymusic.net.res.MMRes;
 
 /**
  * Created by iWay on 2015/12/9.
  */
-public abstract class PullRefreshFragment extends BaseFragment implements OnRefreshListener, RPCListener, OnItemClickListener, OnScrollListener {
+public abstract class PullRefreshFragment extends BaseFragment implements OnRefreshListener, RPCCallback, OnItemClickListener, OnScrollListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,11 +46,11 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         return true;
     }
 
-    protected RPCInfo mRPCLoadData;
+    protected RPCBaseReq mRPCLoadData;
 
     protected void loadAdapterDataByRPCRequest() {
-        MMReq req = createLoadAdapterDataRPCRequest();
-        mRPCLoadData = RPCClient.doRequest(req, this);
+        mRPCLoadData = createLoadAdapterDataRPCRequest();
+        mRPCLoadData.start(this);
     }
 
     protected abstract void setAdapterDataFromRPCResponse(Object data);
@@ -201,20 +200,20 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
     @Override
     public void onRefresh(PullRefreshLayout pullRefreshLayout) {
         if (mRPCLoadData != null)
-            mRPCLoadData.requestCancel();
+            mRPCLoadData.cancel();
         if (loadMoreIsEnabled())
             loadMoreCancel();
         loadAdapterDataByRPCRequest();
     }
 
-    private void onLoadAdapterDataRPCOK(RPCInfo rpcInfo, Object data) {
+    private void onLoadAdapterDataRPCOK(RPCBaseReq req) {
         onLoadFinish();
-        BasicRes res = (BasicRes) data;
-        if (res.resultCode == BasicRes.OK) {
+        MMRes res = (MMRes) req.response;
+        if (res.resultCode == MMRes.OK) {
             setEmptyViewAsEmpty();
             setAdapterDataFromRPCResponse(res);
             if (loadMoreIsEnabled()) {
-                if (!loadMoreHasMoreData(rpcInfo, data)) {
+                if (!loadMoreHasMoreData(req)) {
                     loadMoreNoMore();
                 } else {
                     mCanLoadMore = true;
@@ -225,7 +224,7 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         }
     }
 
-    private void onLoadAdapterDataRPCER(RPCInfo rpcInfo, Exception e) {
+    private void onLoadAdapterDataRPCER(RPCBaseReq req) {
         onLoadFinish();
         setEmptyViewAsErrorNetwork();
     }
@@ -261,18 +260,18 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
     }
 
     protected int mLoadMorePage = 1;
-    protected RPCInfo mRPCLoadMore;
+    protected RPCBaseReq mRPCLoadMore;
     protected boolean mCanLoadMore;
 
     protected MMReq loadMoreCreateRequest(int pageIndexFromOne) {
         throw new RuntimeException("If load more is enabled, this method should be implemented");
     }
 
-    protected boolean loadMoreHasMoreData(RPCInfo rpcInfo, Object data) {
+    protected boolean loadMoreHasMoreData(RPCBaseReq req) {
         throw new RuntimeException("If load more is enabled, this method should be implemented");
     }
 
-    protected void loadMoreAddDataToAdapter(RPCInfo rpcInfo, Object data) {
+    protected void loadMoreAddDataToAdapter(RPCBaseReq req) {
         throw new RuntimeException("If load more is enabled, this method should be implemented");
     }
 
@@ -285,14 +284,14 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         }
         loadMoreLoading();
         mLoadMorePage += nextPage ? 1 : 0;
-        MMReq req = loadMoreCreateRequest(mLoadMorePage);
-        mRPCLoadMore = RPCClient.doRequest(req, this);
+        mRPCLoadMore = loadMoreCreateRequest(mLoadMorePage);
+        mRPCLoadMore.start(this);
     }
 
     protected void loadMoreCancel() {
         mLoadMorePage = 1;
         if (mRPCLoadMore != null) {
-            mRPCLoadMore.requestCancel();
+            mRPCLoadMore.cancel();
             mRPCLoadMore = null;
         }
         mRPCLoadMore = null;
@@ -312,38 +311,38 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         mLoadMorePageFlipper.setDisplayedChild(1);
     }
 
-    protected void loadMoreOnRPCOK(RPCInfo rpcInfo, Object data) {
-        BasicRes basicRes = (BasicRes) data;
-        if (basicRes.resultCode == BasicRes.OK) {
-            if (!loadMoreHasMoreData(rpcInfo, data)) {
+    protected void loadMoreOnRPCOK(RPCBaseReq req) {
+        MMRes basicRes = (MMRes) req.response;
+        if (basicRes.resultCode == MMRes.OK) {
+            if (!loadMoreHasMoreData(req)) {
                 loadMoreNoMore();
                 mCanLoadMore = false;
             }
-            loadMoreAddDataToAdapter(rpcInfo, data);
+            loadMoreAddDataToAdapter(req);
             mRPCLoadMore = null;
         } else {
             loadMoreError();
         }
     }
 
-    protected void loadMoreOnRPCER(RPCInfo rpcInfo, Object data) {
+    protected void loadMoreOnRPCER(RPCBaseReq req) {
         loadMoreError();
     }
 
     @Override
-    public void onRequestOK(RPCInfo rpcInfo, Object data) {
-        if (rpcInfo == mRPCLoadData)
-            onLoadAdapterDataRPCOK(rpcInfo, data);
-        if (rpcInfo == mRPCLoadMore)
-            loadMoreOnRPCOK(rpcInfo, data);
+    public void onRequestOK(RPCBaseReq req) {
+        if (req == mRPCLoadData)
+            onLoadAdapterDataRPCOK(req);
+        if (req == mRPCLoadMore)
+            loadMoreOnRPCOK(req);
     }
 
     @Override
-    public void onRequestER(RPCInfo rpcInfo, Exception e) {
-        if (rpcInfo == mRPCLoadData)
-            onLoadAdapterDataRPCER(rpcInfo, e);
-        if (rpcInfo == mRPCLoadMore)
-            loadMoreOnRPCER(rpcInfo, e);
+    public void onRequestER(RPCBaseReq req) {
+        if (req == mRPCLoadData)
+            onLoadAdapterDataRPCER(req);
+        if (req == mRPCLoadMore)
+            loadMoreOnRPCER(req);
     }
 
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<site.iway.helpers.ExtendedFrameLayout
+<site.iway.androidhelpers.ExtendedFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <site.iway.helpers.ExtendedViewPager
+    <site.iway.androidhelpers.ExtendedViewPager
         android:id="@+id/viewPager"
         style="@style/MyViewPager"
         android:layout_width="match_parent"
@@ -19,4 +19,4 @@
         android:layout_gravity="bottom|center_horizontal"
         tools:layout="@layout/fragment_mini_player"/>
 
-</site.iway.helpers.ExtendedFrameLayout>
+</site.iway.androidhelpers.ExtendedFrameLayout>

@@ -1,6 +1,7 @@
 package site.iway.mymusic.net.req;
 
-import site.iway.mymusic.net.req.base.MMReq;
+import com.google.gson.annotations.Expose;
+
 import site.iway.mymusic.net.res.GetSongInfoRes;
 
 /**
@@ -10,10 +11,12 @@ import site.iway.mymusic.net.res.GetSongInfoRes;
 public class GetSongInfoReq extends MMReq {
 
     public GetSongInfoReq() {
-        requestUrl += "GetSongInfo";
+        url += "GetSongInfo";
         responseClass = GetSongInfoRes.class;
     }
 
+    @Expose
     public String query;
 
+    public Object tag;
 }

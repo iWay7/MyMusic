@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import site.iway.helpers.HttpFileDownloader;
-import site.iway.helpers.TextRW;
+import site.iway.javahelpers.HttpFileDownloader;
+import site.iway.javahelpers.TextRW;
 
 /**
  * Created by iWay on 2017/12/28.

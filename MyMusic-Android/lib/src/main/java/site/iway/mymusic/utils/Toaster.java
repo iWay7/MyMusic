@@ -5,9 +5,9 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import site.iway.helpers.ExtendedTextView;
-import site.iway.helpers.UIThread;
-import site.iway.helpers.UnitHelper;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.UIThread;
+import site.iway.androidhelpers.UnitHelper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.user.activities.BaseActivity;
 

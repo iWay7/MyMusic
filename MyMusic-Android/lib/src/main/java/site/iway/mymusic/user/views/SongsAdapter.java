@@ -13,14 +13,13 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import site.iway.helpers.ExtendedBaseAdapter;
-import site.iway.helpers.ExtendedImageView;
-import site.iway.helpers.ExtendedTextView;
-import site.iway.helpers.RPCInfo;
-import site.iway.helpers.RPCListener;
-import site.iway.helpers.ViewSwapper;
+import site.iway.androidhelpers.ExtendedBaseAdapter;
+import site.iway.androidhelpers.ExtendedImageView;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.ViewSwapper;
 import site.iway.mymusic.R;
-import site.iway.mymusic.net.RPCClient;
+import site.iway.mymusic.net.RPCBaseReq;
+import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.req.PlayListReq;
 import site.iway.mymusic.net.res.PlayListRes;
 import site.iway.mymusic.utils.Player;
@@ -89,18 +88,20 @@ public class SongsAdapter extends ExtendedBaseAdapter<String> {
                     playListReq.action = PlayListReq.ACTION_ADD;
                     playListReq.fileNames = fileName;
                     playListReq.minDelayTime = 500;
+                    playListReq.tag = v.getTag();
                     sProcessingItems.add(fileName);
-                    RPCInfo rpcInfo = RPCClient.doRequest(playListReq, new RPCListener() {
+                    playListReq.start(new RPCCallback() {
                         @Override
-                        public void onRequestOK(RPCInfo rpcInfo, Object data) {
-                            PlayListRes playListRes = (PlayListRes) data;
+                        public void onRequestOK(RPCBaseReq req) {
+                            PlayListReq playListReq = (PlayListReq) req;
+                            PlayListRes playListRes = (PlayListRes) req.response;
                             if (playListRes.resultCode == PlayListRes.OK) {
                                 mFavSongs.add(fileName);
                                 mSongsChanged = true;
                             }
                             sProcessingItems.remove(fileName);
                             notifyDataSetChanged();
-                            if((Boolean) rpcInfo.getTag()) {
+                            if ((Boolean) playListReq.tag) {
                                 Player player = Player.getInstance();
                                 player.addToPlayList(fileName);
                                 player.playFile(fileName);
@@ -108,12 +109,11 @@ public class SongsAdapter extends ExtendedBaseAdapter<String> {
                         }
 
                         @Override
-                        public void onRequestER(RPCInfo rpcInfo, Exception e) {
+                        public void onRequestER(RPCBaseReq req) {
                             sProcessingItems.remove(fileName);
                             notifyDataSetChanged();
                         }
                     });
-                    rpcInfo.setTag(v.getTag());
                     notifyDataSetChanged();
                 }
             };
@@ -137,10 +137,10 @@ public class SongsAdapter extends ExtendedBaseAdapter<String> {
                     playListReq.fileNames = fileName;
                     playListReq.minDelayTime = 500;
                     sProcessingItems.add(fileName);
-                    RPCClient.doRequest(playListReq, new RPCListener() {
+                    playListReq.start(new RPCCallback() {
                         @Override
-                        public void onRequestOK(RPCInfo rpcInfo, Object data) {
-                            PlayListRes playListRes = (PlayListRes) data;
+                        public void onRequestOK(RPCBaseReq req) {
+                            PlayListRes playListRes = (PlayListRes) req.response;
                             if (playListRes.resultCode == PlayListRes.OK) {
                                 mFavSongs.remove(fileName);
                                 mSongsChanged = true;
@@ -150,7 +150,7 @@ public class SongsAdapter extends ExtendedBaseAdapter<String> {
                         }
 
                         @Override
-                        public void onRequestER(RPCInfo rpcInfo, Exception e) {
+                        public void onRequestER(RPCBaseReq req) {
                             sProcessingItems.remove(fileName);
                             notifyDataSetChanged();
                         }

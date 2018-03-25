@@ -5,7 +5,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/39ce4055689b4b766478265a8c661f4165f26dc3/common-1.0.0-sources.jar!/" />
+      <root url="jar://E:/Gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/39ce4055689b4b766478265a8c661f4165f26dc3/common-1.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

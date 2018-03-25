@@ -8,14 +8,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import site.iway.helpers.EventPoster;
-import site.iway.helpers.EventPoster.EventListener;
+import site.iway.androidhelpers.UIThread;
+import site.iway.androidhelpers.UIThread.UIEventHandler;
 import site.iway.mymusic.user.activities.BaseActivity;
 
 /**
  * Created by iWay on 8/4/15.
  */
-public abstract class BaseFragment extends Fragment implements EventListener {
+public abstract class BaseFragment extends Fragment implements UIEventHandler {
 
     protected BaseActivity mActivity;
     protected Resources mResources;
@@ -37,18 +37,18 @@ public abstract class BaseFragment extends Fragment implements EventListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        EventPoster.register(this);
+        UIThread.register(this);
         mRootView = view;
     }
 
     @Override
-    public void onEvent(int event, Object data) {
+    public void onEvent(String event, Object data) {
         // nothing
     }
 
     @Override
     public void onDestroyView() {
-        EventPoster.unregister(this);
+        UIThread.unregister(this);
         super.onDestroyView();
     }
 

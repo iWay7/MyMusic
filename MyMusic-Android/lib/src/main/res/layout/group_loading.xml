@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<site.iway.helpers.ExtendedRelativeLayout
+<site.iway.androidhelpers.ExtendedRelativeLayout
     android:id="@+id/groupRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <site.iway.helpers.LoadingView
+    <site.iway.androidhelpers.LoadingView
         android:id="@+id/loadingProgress"
         android:layout_width="28dp"
         android:layout_height="28dp"
@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"/>
 
-    <site.iway.helpers.ExtendedTextView
+    <site.iway.androidhelpers.ExtendedTextView
         android:id="@id/loadingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,4 +22,4 @@
         android:textColor="#676767"
         android:textSize="15sp"/>
 
-</site.iway.helpers.ExtendedRelativeLayout>
+</site.iway.androidhelpers.ExtendedRelativeLayout>

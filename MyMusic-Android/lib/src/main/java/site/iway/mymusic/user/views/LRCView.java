@@ -18,9 +18,8 @@ import android.os.Build.VERSION_CODES;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 
-import site.iway.helpers.UnitHelper;
+import site.iway.androidhelpers.UnitHelper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.utils.LyricManager;
 import site.iway.mymusic.utils.LyricManager.LyricLine;

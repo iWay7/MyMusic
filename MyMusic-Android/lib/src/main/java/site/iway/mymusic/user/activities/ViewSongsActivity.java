@@ -12,16 +12,15 @@ import android.view.animation.Animation.AnimationListener;
 
 import java.util.List;
 
-import site.iway.helpers.ExtendedEditText;
-import site.iway.helpers.ExtendedListView;
-import site.iway.helpers.ExtendedTextView;
-import site.iway.helpers.ExtendedView;
-import site.iway.helpers.LoadingView;
-import site.iway.helpers.RPCInfo;
-import site.iway.helpers.RPCListener;
-import site.iway.helpers.WindowHelper;
+import site.iway.androidhelpers.ExtendedEditText;
+import site.iway.androidhelpers.ExtendedListView;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.ExtendedView;
+import site.iway.androidhelpers.LoadingView;
+import site.iway.androidhelpers.WindowHelper;
 import site.iway.mymusic.R;
-import site.iway.mymusic.net.RPCClient;
+import site.iway.mymusic.net.RPCBaseReq;
+import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.req.ListSongsReq;
 import site.iway.mymusic.net.res.ListSongsRes;
 import site.iway.mymusic.user.views.SongsAdapter;
@@ -31,7 +30,7 @@ import site.iway.mymusic.utils.Toaster;
  * Created by iWay on 2017/12/25.
  */
 
-public class ViewSongsActivity extends BaseActivity implements OnClickListener, RPCListener {
+public class ViewSongsActivity extends BaseActivity implements OnClickListener, RPCCallback {
 
     private ExtendedView mTitlePad;
     private ExtendedListView mListView;
@@ -73,7 +72,7 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
         mListView.setAdapter(mSongsAdapter);
     }
 
-    private RPCInfo mRPCLoadFiles;
+    private ListSongsReq mListSongsReq;
 
     private void showLoading() {
         mLoadingView.setVisibility(View.VISIBLE);
@@ -165,38 +164,38 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
     }
 
     private void loadFiles(String filter) {
-        if (mRPCLoadFiles != null) {
-            mRPCLoadFiles.requestCancel();
-            mRPCLoadFiles = null;
+        if (mListSongsReq != null) {
+            mListSongsReq.cancel();
+            mListSongsReq = null;
         }
         showLoading();
-        ListSongsReq listSongsReq = new ListSongsReq();
-        listSongsReq.filter = filter;
-        listSongsReq.minDelayTime = 300;
-        mRPCLoadFiles = RPCClient.doRequest(listSongsReq, this);
+        mListSongsReq = new ListSongsReq();
+        mListSongsReq.filter = filter;
+        mListSongsReq.minDelayTime = 300;
+        mListSongsReq.start(this);
     }
 
     @Override
-    public void onRequestOK(RPCInfo rpcInfo, Object data) {
-        if (rpcInfo == mRPCLoadFiles) {
-            ListSongsReq listSongsReq = (ListSongsReq) rpcInfo.getRequest();
-            ListSongsRes listSongsRes = (ListSongsRes) data;
+    public void onRequestOK(RPCBaseReq req) {
+        if (req == mListSongsReq) {
+            ListSongsReq listSongsReq = (ListSongsReq) req;
+            ListSongsRes listSongsRes = (ListSongsRes) req.response;
             hideLoading();
             if (listSongsRes.resultCode == ListSongsRes.OK) {
                 showList(listSongsRes.fileNames, listSongsRes.playList, listSongsReq.filter);
             } else {
                 Toaster.show("搜索错误，请重试！");
             }
-            mRPCLoadFiles = null;
+            mListSongsReq = null;
         }
     }
 
     @Override
-    public void onRequestER(RPCInfo rpcInfo, Exception e) {
-        if (rpcInfo == mRPCLoadFiles) {
+    public void onRequestER(RPCBaseReq req) {
+        if (req == mListSongsReq) {
             hideLoading();
             Toaster.show("网络错误，请重试！");
-            mRPCLoadFiles = null;
+            mListSongsReq = null;
         }
     }
 

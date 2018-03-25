@@ -1,10 +1,12 @@
-package site.iway.mymusic.net.res.base;
+package site.iway.mymusic.net.res;
+
+import java.io.Serializable;
 
 /**
- * Created by iWay on 2017/7/18.
+ * Created by iWay on 2018/3/25.
  */
 
-public class BasicRes extends RPCRes {
+public class MMRes implements Serializable {
 
     public static final int UNKNOWN = -1;
     public static final String UNKNOWN_STRING = "结果未知";

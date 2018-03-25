@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import site.iway.helpers.EventPoster;
+import site.iway.androidhelpers.UIThread;
 
 /**
  * Created by iWay on 2017/12/27.
@@ -43,12 +43,12 @@ public class Player implements OnCompletionListener, OnErrorListener {
         if (mPlayList == null) {
             mPlayList = new ArrayList<>();
         }
-        EventPoster.post(Constants.EV_PLAYER_LIST_UPDATED, mPlayList);
+        UIThread.event(Constants.EV_PLAYER_LIST_UPDATED, mPlayList);
     }
 
     public void addToPlayList(String item) {
         mPlayList.add(item);
-        EventPoster.post(Constants.EV_PLAYER_LIST_UPDATED, mPlayList);
+        UIThread.event(Constants.EV_PLAYER_LIST_UPDATED, mPlayList);
     }
 
     public void removePlayListItems(List<String> items) {
@@ -98,7 +98,7 @@ public class Player implements OnCompletionListener, OnErrorListener {
         if (mPlayMode != playMode) {
             mPlayMode = playMode;
             Settings.setPlayerPlayMode(mPlayMode);
-            EventPoster.post(Constants.EV_PLAYER_MODE_CHANGED, mPlayMode);
+            UIThread.event(Constants.EV_PLAYER_MODE_CHANGED, mPlayMode);
         }
     }
 
@@ -140,7 +140,7 @@ public class Player implements OnCompletionListener, OnErrorListener {
                 mMediaPlayer.prepare();
                 mMediaPlayer.start();
             }
-            EventPoster.post(Constants.EV_PLAYER_START_PLAY, mPlayingFile);
+            UIThread.event(Constants.EV_PLAYER_START_PLAY, mPlayingFile);
             return true;
         } catch (Exception e) {
             return false;
@@ -169,7 +169,7 @@ public class Player implements OnCompletionListener, OnErrorListener {
         try {
             if (isPlayingFile()) {
                 mMediaPlayer.start();
-                EventPoster.post(Constants.EV_PLAYER_START_PLAY, mPlayingFile);
+                UIThread.event(Constants.EV_PLAYER_START_PLAY, mPlayingFile);
                 return true;
             } else {
                 return next();
@@ -186,7 +186,7 @@ public class Player implements OnCompletionListener, OnErrorListener {
     public boolean pause() {
         try {
             mMediaPlayer.pause();
-            EventPoster.post(Constants.EV_PLAYER_PAUSED_PLAY, mPlayingFile);
+            UIThread.event(Constants.EV_PLAYER_PAUSED_PLAY, mPlayingFile);
             return true;
         } catch (Exception e) {
             return false;
@@ -223,13 +223,13 @@ public class Player implements OnCompletionListener, OnErrorListener {
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        EventPoster.post(Constants.EV_PLAYER_FINISHED_PLAY, mPlayingFile);
+        UIThread.event(Constants.EV_PLAYER_FINISHED_PLAY, mPlayingFile);
         next();
     }
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
-        EventPoster.post(Constants.EV_PLAYER_PLAY_ERROR, mPlayingFile);
+        UIThread.event(Constants.EV_PLAYER_PLAY_ERROR, mPlayingFile);
         return true;
     }
 

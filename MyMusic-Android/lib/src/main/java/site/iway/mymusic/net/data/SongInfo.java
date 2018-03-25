@@ -1,8 +1,6 @@
 package site.iway.mymusic.net.data;
 
-import site.iway.mymusic.net.data.base.RPCData;
-
-public class SongInfo extends RPCData {
+public class SongInfo extends MMData {
 
     public String imgLink;
     public String lrcTitle;

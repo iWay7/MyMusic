@@ -12,22 +12,21 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 
-import site.iway.helpers.BitmapFilter;
-import site.iway.helpers.BitmapHelper;
-import site.iway.helpers.BitmapView;
-import site.iway.helpers.EventPoster;
-import site.iway.helpers.ExtendedFrameLayout;
-import site.iway.helpers.ExtendedImageView;
-import site.iway.helpers.ExtendedTextView;
-import site.iway.helpers.ExtendedView;
-import site.iway.helpers.RPCInfo;
-import site.iway.helpers.RPCListener;
-import site.iway.helpers.Scale;
-import site.iway.helpers.UITimer;
-import site.iway.helpers.ViewSwapper;
-import site.iway.helpers.WindowHelper;
+import site.iway.androidhelpers.BitmapFilter;
+import site.iway.androidhelpers.BitmapHelper;
+import site.iway.androidhelpers.BitmapView;
+import site.iway.androidhelpers.ExtendedFrameLayout;
+import site.iway.androidhelpers.ExtendedImageView;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.ExtendedView;
+import site.iway.androidhelpers.UIThread;
+import site.iway.androidhelpers.UITimer;
+import site.iway.androidhelpers.ViewSwapper;
+import site.iway.androidhelpers.WindowHelper;
+import site.iway.javahelpers.Scale;
 import site.iway.mymusic.R;
-import site.iway.mymusic.net.RPCClient;
+import site.iway.mymusic.net.RPCBaseReq;
+import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.data.SongInfo;
 import site.iway.mymusic.net.req.GetSongInfoReq;
 import site.iway.mymusic.net.res.GetSongInfoRes;
@@ -46,7 +45,7 @@ import site.iway.mymusic.utils.Song;
  * Created by iWay on 2017/12/25.
  */
 
-public class PlayingFragment extends BaseFragment implements RPCListener, OnClickListener, OnRequestPlayProgressListener, OnLongClickListener {
+public class PlayingFragment extends BaseFragment implements RPCCallback, OnClickListener, OnRequestPlayProgressListener, OnLongClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -164,17 +163,18 @@ public class PlayingFragment extends BaseFragment implements RPCListener, OnClic
         mUITimer.start(false);
     }
 
-    private RPCInfo mLastFetchSongInfo;
+    private GetSongInfoReq mLastFetchSongInfo;
 
     private void loadImage(Song song) {
         if (mLastFetchSongInfo != null) {
-            mLastFetchSongInfo.requestCancel();
+            mLastFetchSongInfo.cancel();
             mLastFetchSongInfo = null;
         }
-        GetSongInfoReq getSongInfoReq = new GetSongInfoReq();
-        getSongInfoReq.query = song.artist + " " + song.name;
-        mLastFetchSongInfo = RPCClient.doRequest(getSongInfoReq, this);
-        mLastFetchSongInfo.setTag(song);
+        mLastFetchSongInfo = new GetSongInfoReq();
+        mLastFetchSongInfo.query = song.artist + " " + song.name;
+        mLastFetchSongInfo.tag = song;
+        mLastFetchSongInfo.start(this);
+
     }
 
     private BitmapFilter mBitmapFilter = new BitmapFilter() {
@@ -193,10 +193,10 @@ public class PlayingFragment extends BaseFragment implements RPCListener, OnClic
     private LyricManager mLyricManager;
 
     @Override
-    public void onRequestOK(RPCInfo rpcInfo, Object data) {
-        if (rpcInfo == mLastFetchSongInfo) {
-            GetSongInfoReq getSongInfoReq = (GetSongInfoReq) rpcInfo.getRequest();
-            GetSongInfoRes getSongInfoRes = (GetSongInfoRes) data;
+    public void onRequestOK(RPCBaseReq req) {
+        if (req == mLastFetchSongInfo) {
+            GetSongInfoReq getSongInfoReq = (GetSongInfoReq) req;
+            GetSongInfoRes getSongInfoRes = (GetSongInfoRes) req.response;
             String imageLink = null;
             String lrcLink = null;
             if (getSongInfoRes.list != null) {
@@ -215,7 +215,7 @@ public class PlayingFragment extends BaseFragment implements RPCListener, OnClic
             mBackground.loadFromURLSource(imageLink, mBitmapFilter);
             mSongArt.loadFromURLSource(imageLink);
             if (!TextUtils.isEmpty(lrcLink)) {
-                Song song = (Song) rpcInfo.getTag();
+                Song song = (Song) getSongInfoReq.tag;
                 LyricCache lyricCache = LyricCache.getInstance();
                 if (!lyricCache.exists(song)) {
                     lyricCache.download(song, lrcLink);
@@ -225,8 +225,8 @@ public class PlayingFragment extends BaseFragment implements RPCListener, OnClic
     }
 
     @Override
-    public void onRequestER(RPCInfo rpcInfo, Exception e) {
-        if (rpcInfo == mLastFetchSongInfo) {
+    public void onRequestER(RPCBaseReq req) {
+        if (req == mLastFetchSongInfo) {
             // nothing
         }
     }
@@ -335,7 +335,7 @@ public class PlayingFragment extends BaseFragment implements RPCListener, OnClic
     };
 
     @Override
-    public void onEvent(int event, Object data) {
+    public void onEvent(String event, Object data) {
         super.onEvent(event, data);
         switch (event) {
             case Constants.EV_PLAYER_START_PLAY:
@@ -357,7 +357,7 @@ public class PlayingFragment extends BaseFragment implements RPCListener, OnClic
     @Override
     public void onClick(View v) {
         if (v == mTitleBarBack) {
-            EventPoster.post(Constants.EV_PLAY_LIST_VIEW);
+            UIThread.event(Constants.EV_PLAY_LIST_VIEW);
         } else if (v == mTitleBarImage) {
             Intent intent = new Intent(mActivity, ViewSongsActivity.class);
             startActivityForResult(intent, REQUEST_CODE_VIEW_SONGS);
@@ -409,7 +409,7 @@ public class PlayingFragment extends BaseFragment implements RPCListener, OnClic
         switch (requestCode) {
             case REQUEST_CODE_VIEW_SONGS:
                 if (resultCode == ViewSongsActivity.RESULT_OK) {
-                    EventPoster.post(Constants.EV_PLAY_LIST_REFRESH);
+                    UIThread.event(Constants.EV_PLAY_LIST_REFRESH);
                 }
                 break;
         }

@@ -1,1 +1,1 @@
-include ':app', ':lib', ':app-tv'
+include ':app', ':lib'

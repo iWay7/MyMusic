@@ -7,15 +7,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import site.iway.helpers.BitmapView;
-import site.iway.helpers.CircleProgressBar;
-import site.iway.helpers.ExtendedImageView;
-import site.iway.helpers.ExtendedTextView;
-import site.iway.helpers.RPCInfo;
-import site.iway.helpers.RPCListener;
-import site.iway.helpers.UITimer;
+import site.iway.androidhelpers.BitmapView;
+import site.iway.androidhelpers.CircleProgressBar;
+import site.iway.androidhelpers.ExtendedImageView;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.UITimer;
 import site.iway.mymusic.R;
-import site.iway.mymusic.net.RPCClient;
+import site.iway.mymusic.net.RPCBaseReq;
+import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.data.SongInfo;
 import site.iway.mymusic.net.req.GetSongInfoReq;
 import site.iway.mymusic.net.res.GetSongInfoRes;
@@ -27,7 +26,7 @@ import site.iway.mymusic.utils.Song;
  * Created by iWay on 2017/12/26.
  */
 
-public class MiniPlayerFragment extends BaseFragment implements RPCListener, OnClickListener {
+public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -101,22 +100,22 @@ public class MiniPlayerFragment extends BaseFragment implements RPCListener, OnC
         }
     };
 
-    private RPCInfo mLastFetchSongInfo;
+    private GetSongInfoReq mLastFetchSongInfo;
 
     private void loadImage(Song song) {
         if (mLastFetchSongInfo != null) {
-            mLastFetchSongInfo.requestCancel();
+            mLastFetchSongInfo.cancel();
             mLastFetchSongInfo = null;
         }
-        GetSongInfoReq getSongInfoReq = new GetSongInfoReq();
-        getSongInfoReq.query = song.artist + " " + song.name;
-        mLastFetchSongInfo = RPCClient.doRequest(getSongInfoReq, this);
+        mLastFetchSongInfo = new GetSongInfoReq();
+        mLastFetchSongInfo.query = song.artist + " " + song.name;
+        mLastFetchSongInfo.start(this);
     }
 
     @Override
-    public void onRequestOK(RPCInfo rpcInfo, Object data) {
-        if (rpcInfo == mLastFetchSongInfo) {
-            GetSongInfoRes getSongInfoRes = (GetSongInfoRes) data;
+    public void onRequestOK(RPCBaseReq req) {
+        if (req == mLastFetchSongInfo) {
+            GetSongInfoRes getSongInfoRes = (GetSongInfoRes) req.response;
             String imageLink = null;
             if (getSongInfoRes.list != null) {
                 for (SongInfo songInfo : getSongInfoRes.list) {
@@ -131,14 +130,14 @@ public class MiniPlayerFragment extends BaseFragment implements RPCListener, OnC
     }
 
     @Override
-    public void onRequestER(RPCInfo rpcInfo, Exception e) {
-        if (rpcInfo == mLastFetchSongInfo) {
+    public void onRequestER(RPCBaseReq req) {
+        if (req == mLastFetchSongInfo) {
             // nothing
         }
     }
 
     @Override
-    public void onEvent(int event, Object data) {
+    public void onEvent(String event, Object data) {
         super.onEvent(event, data);
         switch (event) {
             case Constants.EV_PLAYER_START_PLAY:

@@ -13,6 +13,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Exce" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="BookmarkManager">
@@ -20,8 +21,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="362d2ed0-0240-41de-b004-f2702e0517dc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_github_iWay7_Helpers_1_0_9.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_github_iWay7_Helpers_1_0_3.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_github_iWay7_AndroidHelpers_1_0_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCBaseReq.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCCallback.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/MMReq.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/MMRes.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_github_iWay7_Helpers_1_0_9.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_0_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app-tv/build.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app-tv/proguard-rules.pro" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app-tv/src/main/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app-tv/src/main/java/site/iway/mymusic/user/activities/LaunchActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCClient.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/GetReq.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/HttpReq.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/MMReq.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/PostReq.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/RPCReq.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/base/BasicRes.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/base/RPCRes.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ChangeLRCActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/TVActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListTVFragment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/activity_tv.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_arch_core_common_1_0_0_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_arch_core_common_1_0_0_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_common_1_0_0_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_common_1_0_0_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_runtime_1_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_runtime_1_0_0.xml" />
@@ -32,15 +55,70 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_fragment_26_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_fragment_26_1_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_media_compat_26_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_media_compat_26_1_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_26_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_26_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_0_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_0_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_zxing_core_3_2_1_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_zxing_core_3_2_1_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app-tv/build.gradle" afterPath="$PROJECT_DIR$/app-tv/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app-tv/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app-tv/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/build.gradle" afterPath="$PROJECT_DIR$/lib/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/lib/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/app/MyMusicApp.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/app/MyMusicApp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/SongInfo.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/SongInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/GetSongInfoReq.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/GetSongInfoReq.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/ListSongsReq.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/ListSongsReq.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/PlayListReq.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/PlayListReq.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/GetSongInfoRes.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/GetSongInfoRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/ListSongsRes.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/ListSongsRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/PlayListRes.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/PlayListRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/BaseActivity.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/BaseActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/MainActivity.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ViewSongsActivity.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ViewSongsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/ActionDialog.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/ActionDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/BaseDialog.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/BaseDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/BaseFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/BaseFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/MiniPlayerFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/MiniPlayerFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PullRefreshFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PullRefreshFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/FitSysWindowsLinearLayout.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/FitSysWindowsLinearLayout.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/LRCView.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/LRCView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayListAdapter.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayListAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayProgressView.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayProgressView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/SongsAdapter.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/SongsAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Constants.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricCache.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricCache.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/MusicCache.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/MusicCache.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Player.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Settings.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Settings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Toaster.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Toaster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/activity_view_songs.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/activity_view_songs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/dialog_action.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/dialog_action.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_horizontal_fill.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_horizontal_fill.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_horizontal_indent.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_horizontal_indent.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_vertical_fill.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_vertical_fill.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_vertical_indent.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_vertical_indent.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_pad_horizontal.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_pad_horizontal.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_pad_vertical.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_pad_vertical.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_mini_player.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_mini_player.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_play_list.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_play_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_playing.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_playing.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_pull_refresh.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_pull_refresh.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_empty.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_empty.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_error.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_error.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_fav_list_footer.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_fav_list_footer.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_favorites_item.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_favorites_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_load_more.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_load_more.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_loading.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_loading.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_play_list_action.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_play_list_action.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_song.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_song.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_back_and_btn.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_back_and_btn.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_back_and_img.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_back_and_img.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_view_songs.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_view_songs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MyMusic-Server/.idea/misc.xml" afterPath="$PROJECT_DIR$/../MyMusic-Server/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MyMusic-Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../MyMusic-Server/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/base/RPCData.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/MMData.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,7 +136,20 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="MyMusic-Android" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+            </PATH>
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -80,8 +171,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PlayerService</find>
-      <find>mLayout</find>
       <find>canvas.</find>
       <find>span</find>
       <find>getFont</find>
@@ -101,9 +190,25 @@
       <find>dispatchDra</find>
       <find>Spannable</find>
       <find>onMeas</find>
+      <find>s</find>
+      <find>site</find>
+      <find>site.</find>
+      <find>site.iw</find>
+      <find>site.iway</find>
+      <find>site.iway.</find>
+      <find>site.iway.he</find>
+      <find>site.iway.help</find>
+      <find>site.iway.helper</find>
+      <find>site.iway.helpers</find>
+      <find>musicCache.getUrl(musicFileName)</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>site.iway.androidhelpers</replace>
+    </replaceStrings>
     <dirStrings>
       <dir>D:\Documents\Projects\MyMusic\MyMusic-Android\lib\src\main\res\drawable-v24</dir>
+      <dir>E:\Projects\MyMusic\MyMusic-Android\lib\src\main\res\layout</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -138,10 +243,6 @@
               <ExternalProjectPojo>
                 <option name="name" value=":app" />
                 <option name="path" value="$PROJECT_DIR$/app" />
-              </ExternalProjectPojo>
-              <ExternalProjectPojo>
-                <option name="name" value=":app-tv" />
-                <option name="path" value="$PROJECT_DIR$/app-tv" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
                 <option name="name" value=":lib" />
@@ -3325,59 +3426,65 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/MiniPlayerFragment.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/drawable/bg_play_progress.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/drawable/bg_play_progress_bg.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/drawable/icon_play_progress_indicator.xml" />
-        <option value="$PROJECT_DIR$/lib/build/intermediates/bundles/debug/res/drawable/bg_play_progress_fg.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/drawable/bg_play_progress_fg.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/app/MyMusicApp.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayProgressView.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Song.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricCache.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/drawable/icon_song_selected_normal.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/group_favorites_item.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/fragment_play_list.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/group_fav_list_footer.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/drawable/bg_play_list_action.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_vertical_indent.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/group_play_list_action.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/ActionDialog.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayListAdapter.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/keyboard.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/SearchKeyboard.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/group_search_keyboard.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/MyLinearLayout.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/FitSysWindowLinearLayout.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/FitSysWindowsLinearLayout.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ViewSongsActivity.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/activity_view_songs.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/drawable/icon_play_red.xml" />
         <option value="$PROJECT_DIR$/lib/src/main/res/layout/group_song.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Player.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/SongsAdapter.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListFragment.java" />
         <option value="$PROJECT_DIR$/lib/src/main/res/drawable/bg_lyric_gradient.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Constants.java" />
         <option value="$PROJECT_DIR$/lib/build/intermediates/bundles/debug/res/layout/activity_tv.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/activity_tv.xml" />
         <option value="$PROJECT_DIR$/lib/src/main/res/values/attrs.xml" />
         <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCClient.java" />
         <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/WordWrapHelper.java" />
         <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricManager.java" />
         <option value="$PROJECT_DIR$/lib/src/main/res/layout/fragment_playing.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/LRCView.java" />
-        <option value="$PROJECT_DIR$/lib/build.gradle" />
         <option value="$PROJECT_DIR$/app-tv/build.gradle" />
         <option value="$PROJECT_DIR$/app-tv/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/lib/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/lib/src/main/res/layout/activity_tv.xml" />
+        <option value="$PROJECT_DIR$/lib/src/main/res/layout/activity_view_songs.xml" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/BaseDialog.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Settings.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/app/MyMusicApp.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCCallback.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCBaseReq.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/MMRes.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/PlayListRes.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/ListSongsRes.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/GetSongInfoRes.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/SongInfo.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/MMData.java" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/ActionDialog.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ViewSongsActivity.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/ListSongsReq.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/PlayListReq.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/SongsAdapter.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayListAdapter.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PullRefreshFragment.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/BaseFragment.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/GetSongInfoReq.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Constants.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayProgressView.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/MiniPlayerFragment.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Player.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/LRCView.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/FitSysWindowsLinearLayout.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/BaseActivity.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricCache.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Toaster.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListFragment.java" />
+        <option value="$PROJECT_DIR$/lib/build.gradle" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/MMReq.java" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/MusicCache.java" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -3401,7 +3508,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -3410,7 +3517,17 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app-tv" />
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMusic-Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3420,13 +3537,112 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mymusic" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMusic-Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mymusic" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMusic-Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mymusic" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMusic-Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mymusic" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMusic-Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mymusic" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3441,19 +3657,22 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="Nexus_5X_API_26" />
+    <property name="device.picker.selection" value="9845e0a3" />
     <property name="VectorAssetImportPath" value="D:\" />
     <property name="android.project.structure.last.selected" value="app-tv" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/lib/src/main/res/drawable-xxhdpi" />
     <property name="android.profiler.active" value="true" />
     <property name="SearchEverywhereHistoryKey" value="al&#9;FILE&#9;file://D:/Documents/Projects/MyMusic/MyMusic-Android/lib/src/main/res/layout/divider_line_horizontal_fill.xml" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -3552,7 +3771,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520772337056" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980663546" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3600,7 +3819,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520772337056" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980663546" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3632,6 +3851,27 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -3762,7 +4002,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520772337071" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980663547" />
       </method>
     </configuration>
     <configuration default="false" name="app-tv" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -3811,31 +4051,13 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520772337071" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980663547" />
       </method>
     </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Android App.app" />
       <item index="1" class="java.lang.String" itemvalue="Android App.app-tv" />
     </list>
-    <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -3851,8 +4073,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1514382241766</updated>
+      <workItem from="1521950350147" duration="19000" />
     </task>
+    <task id="LOCAL-00001" summary="Fix a compile error.">
+      <created>1520772376099</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1520772376099</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="19000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3866,38 +4100,45 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17750533" sideWeight="0.5167931" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5083612" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50812566" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39869988" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25053304" sideWeight="0.5121163" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5083612" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5083612" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25053304" sideWeight="0.4878837" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17750533" sideWeight="0.48320693" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -3906,327 +4147,124 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+    <MESSAGE value="Fix a compile error." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix a compile error." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="68" />
+      <option name="time" value="75" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="app">
+        <watch expression="musicCache.getUrl(musicFileName)" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://E:/Android/Sdk/sources/android-25/android/graphics/Paint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="2431" column="77" lean-forward="false" selection-start-line="2431" selection-start-column="77" selection-end-line="2431" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/graphics/Paint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="1095" column="20" lean-forward="false" selection-start-line="1095" selection-start-column="20" selection-end-line="1095" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/graphics/Shader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="55" column="24" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/graphics/Xfermode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="31" column="39" lean-forward="true" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/view/ViewGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="251" column="28" lean-forward="false" selection-start-line="251" selection-start-column="17" selection-end-line="251" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/graphics/PorterDuff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="243" column="14" lean-forward="false" selection-start-line="243" selection-start-column="8" selection-end-line="243" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/graphics/PorterDuffXfermode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="30" column="11" lean-forward="false" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/res/drawable/bg_lyric_gradient.xml" />
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/graphics/Canvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="381" column="6" lean-forward="false" selection-start-line="381" selection-start-column="6" selection-end-line="381" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/os/Build.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="661" column="32" lean-forward="false" selection-start-line="661" selection-start-column="32" selection-end-line="661" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/graphics/LinearGradient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="86" column="11" lean-forward="false" selection-start-line="86" selection-start-column="11" selection-end-line="86" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="41" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/res/layout/dialog_action.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="27" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/build/intermediates/bundles/debug/res/layout/activity_tv.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="103" column="45" lean-forward="false" selection-start-line="103" selection-start-column="45" selection-end-line="103" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/res/values/attrs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/java/lang/Math.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="390" column="57" lean-forward="false" selection-start-line="390" selection-start-column="41" selection-end-line="390" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/widget/TextView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1922">
-          <caret line="8163" column="48" lean-forward="false" selection-start-line="8163" selection-start-column="48" selection-end-line="8163" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/res/layout/activity_tv.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayProgressView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-745">
-          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/app/MyMusicApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="37" column="75" lean-forward="false" selection-start-line="37" selection-start-column="75" selection-end-line="37" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/WordWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/BaseDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2759">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ChangeLRCActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/TVActivity.java">
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="56" column="45" lean-forward="true" selection-start-line="56" selection-start-column="45" selection-end-line="57" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/res/layout/fragment_playing.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/GsonCreator.java" />
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/UIRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/animation/ObjectAnimator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="816" column="16" lean-forward="false" selection-start-line="816" selection-start-column="16" selection-end-line="816" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/animation/ValueAnimator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="1184" column="17" lean-forward="false" selection-start-line="1184" selection-start-column="17" selection-end-line="1184" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Android/Sdk/sources/android-26/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2075">
-          <caret line="13555" column="16" lean-forward="false" selection-start-line="13555" selection-start-column="16" selection-end-line="13555" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/LRCView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="132" column="41" lean-forward="true" selection-start-line="132" selection-start-column="41" selection-end-line="132" selection-end-column="41" />
+        <state relative-caret-position="374">
+          <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="72" column="4" lean-forward="false" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+        <state relative-caret-position="299">
+          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="46" column="9" lean-forward="false" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/MusicCache.java">
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/MMReq.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/MiniPlayerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="36" column="14" lean-forward="false" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4964">
-          <caret line="332" column="23" lean-forward="false" selection-start-line="332" selection-start-column="23" selection-end-line="332" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListTVFragment.java">
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/base/BasicRes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="16" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PullRefreshFragment.java">
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/base/RPCRes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        <state relative-caret-position="119">
+          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app-tv/src/main/java/site/iway/mymusic/user/activities/LaunchActivity.java">
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/MMRes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <caret line="8" column="43" lean-forward="false" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/PlayListRes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/ListSongsRes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/GetSongInfoRes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/MMData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/SongInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -4239,49 +4277,350 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app-tv/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="39" lean-forward="false" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/AndroidManifest.xml">
       <provider editor-type-id="android-manifest">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="58" lean-forward="false" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+        <state relative-caret-position="289">
+          <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-manifest">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app-tv/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="34">
+          <caret line="2" column="38" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/TVActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/BaseDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/ActionDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ViewSongsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="182" column="64" lean-forward="false" selection-start-line="182" selection-start-column="64" selection-end-line="182" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/SongsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="837">
+          <caret line="139" column="51" lean-forward="false" selection-start-line="139" selection-start-column="51" selection-end-line="139" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding>
+            <element signature="e#916#917#0" expanded="true" />
+            <element signature="e#946#947#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListTVFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PullRefreshFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="905">
+          <caret line="344" column="33" lean-forward="false" selection-start-line="344" selection-start-column="33" selection-end-line="344" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#11067#11068#0" expanded="true" />
+            <element signature="e#11098#11099#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/Gradle/caches/transforms-1/files-1.1/AndroidHelpers-1.0.2.aar/00bd8e945524647e3dc460df12f28e92/jars/classes.jar!/site/iway/androidhelpers/RPCEngine.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="79" column="16" lean-forward="false" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+          <folding>
+            <element signature="e#2354#2355#0" expanded="true" />
+            <element signature="e#2389#2390#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/Gradle/caches/transforms-1/files-1.1/AndroidHelpers-1.0.2.aar/00bd8e945524647e3dc460df12f28e92/jars/classes.jar!/site/iway/androidhelpers/RPCReq.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+          <folding>
+            <element signature="e#365#366#0" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/app/MyMusicApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="41" column="32" lean-forward="false" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/BaseFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="47" lean-forward="false" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="57" lean-forward="false" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="413" column="35" lean-forward="false" selection-start-line="413" selection-start-column="35" selection-end-line="413" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7630#8101#0" expanded="true" />
+            <element signature="e#8100#8101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayProgressView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1179">
+          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/MiniPlayerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="136" column="22" lean-forward="false" selection-start-line="136" selection-start-column="22" selection-end-line="136" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/LRCView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-91">
+          <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/FitSysWindowsLinearLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="87" column="19" lean-forward="false" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="80" column="16" lean-forward="false" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Toaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="41" lean-forward="false" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCBaseReq.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2414">
+          <caret line="145" column="9" lean-forward="true" selection-start-line="145" selection-start-column="9" selection-end-line="145" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/GetSongInfoReq.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/ListSongsReq.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/PlayListReq.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="22" lean-forward="false" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="50" lean-forward="false" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1350">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/MusicCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="65" column="53" lean-forward="false" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/MMReq.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="171" column="27" lean-forward="false" selection-start-line="171" selection-start-column="27" selection-end-line="171" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="681">
+          <caret line="143" column="24" lean-forward="false" selection-start-line="143" selection-start-column="12" selection-end-line="143" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<site.iway.helpers.ExtendedLinearLayout
+<site.iway.androidhelpers.ExtendedLinearLayout
     android:id="@+id/dialogRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +8,7 @@
     android:background="@drawable/bg_com_dialog_rc"
     android:orientation="vertical">
 
-    <site.iway.helpers.ExtendedLinearLayout
+    <site.iway.androidhelpers.ExtendedLinearLayout
         android:id="@+id/messageContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:paddingBottom="35dp"
         android:paddingTop="35dp">
 
-        <site.iway.helpers.ExtendedTextView
+        <site.iway.androidhelpers.ExtendedTextView
             android:id="@+id/descTopView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:textSize="13sp"
             tools:text="MESSAGE"/>
 
-        <site.iway.helpers.ExtendedTextView
+        <site.iway.androidhelpers.ExtendedTextView
             android:id="@+id/messageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:textSize="16sp"
             tools:text="MESSAGE"/>
 
-        <site.iway.helpers.ExtendedTextView
+        <site.iway.androidhelpers.ExtendedTextView
             android:id="@+id/descBottomView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,21 +53,21 @@
             android:textSize="13sp"
             tools:text="MESSAGE"/>
 
-    </site.iway.helpers.ExtendedLinearLayout>
+    </site.iway.androidhelpers.ExtendedLinearLayout>
 
     <include layout="@layout/divider_line_horizontal_fill"/>
 
-    <site.iway.helpers.ViewSwapper
+    <site.iway.androidhelpers.ViewSwapper
         android:id="@+id/typeSwitcher"
         android:layout_width="match_parent"
         android:layout_height="44dp">
 
-        <site.iway.helpers.ExtendedLinearLayout
+        <site.iway.androidhelpers.ExtendedLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <site.iway.helpers.ExtendedTextView
+            <site.iway.androidhelpers.ExtendedTextView
                 android:id="@+id/actionView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -78,14 +78,14 @@
                 android:textSize="16sp"
                 tools:text="ACTION"/>
 
-        </site.iway.helpers.ExtendedLinearLayout>
+        </site.iway.androidhelpers.ExtendedLinearLayout>
 
-        <site.iway.helpers.ExtendedLinearLayout
+        <site.iway.androidhelpers.ExtendedLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <site.iway.helpers.ExtendedTextView
+            <site.iway.androidhelpers.ExtendedTextView
                 android:id="@+id/actionLeftView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -98,7 +98,7 @@
 
             <include layout="@layout/divider_line_vertical_fill"/>
 
-            <site.iway.helpers.ExtendedTextView
+            <site.iway.androidhelpers.ExtendedTextView
                 android:id="@+id/actionRightView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -109,14 +109,14 @@
                 android:textColor="#000000"
                 android:textSize="16sp"/>
 
-        </site.iway.helpers.ExtendedLinearLayout>
+        </site.iway.androidhelpers.ExtendedLinearLayout>
 
-        <site.iway.helpers.ExtendedLinearLayout
+        <site.iway.androidhelpers.ExtendedLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <site.iway.helpers.ExtendedTextView
+            <site.iway.androidhelpers.ExtendedTextView
                 android:id="@id/actionLeftView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -129,7 +129,7 @@
 
             <include layout="@layout/divider_line_vertical_fill"/>
 
-            <site.iway.helpers.ExtendedTextView
+            <site.iway.androidhelpers.ExtendedTextView
                 android:id="@+id/actionMiddleView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -142,7 +142,7 @@
 
             <include layout="@layout/divider_line_vertical_fill"/>
 
-            <site.iway.helpers.ExtendedTextView
+            <site.iway.androidhelpers.ExtendedTextView
                 android:id="@id/actionRightView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -153,8 +153,8 @@
                 android:textColor="#000000"
                 android:textSize="16sp"/>
 
-        </site.iway.helpers.ExtendedLinearLayout>
+        </site.iway.androidhelpers.ExtendedLinearLayout>
 
-    </site.iway.helpers.ViewSwapper>
+    </site.iway.androidhelpers.ViewSwapper>
 
-</site.iway.helpers.ExtendedLinearLayout>
+</site.iway.androidhelpers.ExtendedLinearLayout>

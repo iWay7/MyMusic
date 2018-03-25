@@ -13,10 +13,10 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import site.iway.helpers.ExtendedBaseAdapter;
-import site.iway.helpers.ExtendedImageView;
-import site.iway.helpers.ExtendedLinearLayout;
-import site.iway.helpers.ExtendedTextView;
+import site.iway.androidhelpers.ExtendedBaseAdapter;
+import site.iway.androidhelpers.ExtendedImageView;
+import site.iway.androidhelpers.ExtendedLinearLayout;
+import site.iway.androidhelpers.ExtendedTextView;
 import site.iway.mymusic.R;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Song;

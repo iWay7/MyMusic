@@ -10,8 +10,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 
-import site.iway.helpers.EmptyDialog;
-import site.iway.helpers.UnitHelper;
+import site.iway.androidhelpers.EmptyDialog;
+import site.iway.androidhelpers.UnitHelper;
 import site.iway.mymusic.user.activities.BaseActivity;
 
 /**
