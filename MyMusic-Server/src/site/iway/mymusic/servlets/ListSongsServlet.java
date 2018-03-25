@@ -1,10 +1,10 @@
 package site.iway.mymusic.servlets;
 
+import site.iway.javahelpers.HanziPinyinHelper;
+import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.config.Environment;
 import site.iway.mymusic.protocol.data.Song;
 import site.iway.mymusic.protocol.res.ListSongsRes;
-import site.iway.mymusic.utilities.HanziPinyinHelper;
-import site.iway.mymusic.utilities.StringHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +14,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ListSongsServlet extends PlayListServlet {
+
+    static {
+        HanziPinyinHelper.initialize();
+    }
 
     private String toPinYinPrefix(String string) {
         StringBuilder result = new StringBuilder();

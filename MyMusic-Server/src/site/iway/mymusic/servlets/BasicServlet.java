@@ -1,8 +1,8 @@
 package site.iway.mymusic.servlets;
 
 import com.google.gson.Gson;
+import site.iway.javahelpers.StreamReader;
 import site.iway.mymusic.protocol.res.RPCRes;
-import site.iway.mymusic.utilities.StreamReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -21,104 +21,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="362d2ed0-0240-41de-b004-f2702e0517dc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_github_iWay7_AndroidHelpers_1_0_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCBaseReq.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCCallback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/MMReq.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/MMRes.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_github_iWay7_Helpers_1_0_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_0_jar.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app-tv/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app-tv/proguard-rules.pro" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app-tv/src/main/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app-tv/src/main/java/site/iway/mymusic/user/activities/LaunchActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/RPCClient.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/GetReq.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/HttpReq.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/MMReq.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/PostReq.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/base/RPCReq.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/base/BasicRes.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/base/RPCRes.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ChangeLRCActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/TVActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListTVFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/activity_tv.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_arch_core_common_1_0_0_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_arch_core_common_1_0_0_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_common_1_0_0_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_common_1_0_0_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_runtime_1_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_runtime_1_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_annotations_26_1_0_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_annotations_26_1_0_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_compat_26_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_compat_26_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_ui_26_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_ui_26_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_utils_26_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_utils_26_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_fragment_26_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_fragment_26_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_media_compat_26_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_media_compat_26_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_26_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_26_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_zxing_core_3_2_1_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_zxing_core_3_2_1_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/build.gradle" afterPath="$PROJECT_DIR$/lib/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/lib/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/app/MyMusicApp.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/app/MyMusicApp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/SongInfo.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/SongInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/GetSongInfoReq.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/GetSongInfoReq.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/ListSongsReq.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/ListSongsReq.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/PlayListReq.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/req/PlayListReq.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/GetSongInfoRes.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/GetSongInfoRes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/ListSongsRes.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/ListSongsRes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/PlayListRes.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/res/PlayListRes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/BaseActivity.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/BaseActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/MainActivity.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ViewSongsActivity.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/activities/ViewSongsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/ActionDialog.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/ActionDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/BaseDialog.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/dialogs/BaseDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/BaseFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/BaseFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/MiniPlayerFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/MiniPlayerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PullRefreshFragment.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/fragments/PullRefreshFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/FitSysWindowsLinearLayout.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/FitSysWindowsLinearLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/LRCView.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/LRCView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayListAdapter.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayProgressView.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/PlayProgressView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/SongsAdapter.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/user/views/SongsAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Constants.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricCache.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/LyricCache.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/MusicCache.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/MusicCache.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Player.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Settings.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Settings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Toaster.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/utils/Toaster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/activity_view_songs.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/activity_view_songs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/dialog_action.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/dialog_action.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_horizontal_fill.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_horizontal_fill.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_horizontal_indent.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_horizontal_indent.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_vertical_fill.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_vertical_fill.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_vertical_indent.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_line_vertical_indent.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_pad_horizontal.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_pad_horizontal.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/divider_pad_vertical.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/divider_pad_vertical.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_mini_player.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_mini_player.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_play_list.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_play_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_playing.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_playing.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_pull_refresh.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/fragment_pull_refresh.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_empty.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_empty.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_error.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_error.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_fav_list_footer.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_fav_list_footer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_favorites_item.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_favorites_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_load_more.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_load_more.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_loading.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_loading.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_play_list_action.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_play_list_action.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/group_song.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/group_song.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_back_and_btn.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_back_and_btn.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_back_and_img.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_back_and_img.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_view_songs.xml" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/title_bar_view_songs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MyMusic-Server/.idea/misc.xml" afterPath="$PROJECT_DIR$/../MyMusic-Server/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MyMusic-Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../MyMusic-Server/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/base/RPCData.java" afterPath="$PROJECT_DIR$/lib/src/main/java/site/iway/mymusic/net/data/MMData.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -3771,7 +3674,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980663546" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980750674" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3819,7 +3722,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980663546" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980750674" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -4002,7 +3905,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980663547" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980750675" />
       </method>
     </configuration>
     <configuration default="false" name="app-tv" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -4051,7 +3954,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980663547" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521980750675" />
       </method>
     </configuration>
     <list size="2">
@@ -4082,7 +3985,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520772376099</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Change library and network engine.">
+      <created>1521980724244</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1521980724244</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -4116,11 +4026,11 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17750533" sideWeight="0.48320693" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17750533" sideWeight="0.48320693" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4148,7 +4058,8 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Fix a compile error." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix a compile error." />
+    <MESSAGE value="Change library and network engine." />
+    <option name="LAST_COMMIT_MESSAGE" value="Change library and network engine." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -4338,7 +4249,7 @@
         <state relative-caret-position="408">
           <caret line="182" column="64" lean-forward="false" selection-start-line="182" selection-start-column="64" selection-end-line="182" selection-end-column="64" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4437,9 +4348,9 @@
         <state relative-caret-position="548">
           <caret line="413" column="35" lean-forward="false" selection-start-line="413" selection-start-column="35" selection-end-line="413" selection-end-column="35" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7630#8101#0" expanded="true" />
-            <element signature="e#8100#8101#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#7544#8015#0" expanded="true" />
+            <element signature="e#8014#8015#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -4457,7 +4368,7 @@
         <state relative-caret-position="72">
           <caret line="136" column="22" lean-forward="false" selection-start-line="136" selection-start-column="22" selection-end-line="136" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4493,7 +4404,7 @@
         <state relative-caret-position="189">
           <caret line="80" column="16" lean-forward="false" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4589,7 +4500,7 @@
         <state relative-caret-position="295">
           <caret line="65" column="53" lean-forward="false" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -1,10 +1,10 @@
 package site.iway.mymusic.servlets;
 
+import site.iway.javahelpers.StringHelper;
+import site.iway.javahelpers.TextRW;
 import site.iway.mymusic.config.Environment;
 import site.iway.mymusic.protocol.res.PlayListRes;
 import site.iway.mymusic.protocol.res.RPCRes;
-import site.iway.mymusic.utilities.StringHelper;
-import site.iway.mymusic.utilities.TextReadWrite;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ public class PlayListServlet extends BasicServlet {
         File playListFile = new File(Environment.PLAY_LIST);
         if (playListFile.exists()) {
             FileInputStream inputStream = new FileInputStream(playListFile);
-            List<String> lines = TextReadWrite.readAllLines(inputStream, CHARSET);
+            List<String> lines = TextRW.readAllLines(inputStream, CHARSET);
             fileNames.addAll(lines);
             inputStream.close();
         }
@@ -33,7 +33,7 @@ public class PlayListServlet extends BasicServlet {
     protected void writePlayList(List<String> fileNames) throws IOException {
         File playListFile = new File(Environment.PLAY_LIST);
         FileOutputStream outputStream = new FileOutputStream(playListFile);
-        TextReadWrite.writeAllLines(outputStream, CHARSET, fileNames);
+        TextRW.writeAllLines(outputStream, CHARSET, fileNames);
         outputStream.close();
     }
 
