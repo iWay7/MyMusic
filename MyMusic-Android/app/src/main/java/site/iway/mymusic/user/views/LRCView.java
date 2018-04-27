@@ -21,8 +21,8 @@ import android.view.View;
 
 import site.iway.androidhelpers.UnitHelper;
 import site.iway.mymusic.R;
-import site.iway.mymusic.utils.LyricManager;
 import site.iway.mymusic.utils.LyricManager.LyricLine;
+import site.iway.mymusic.utils.LyricManager;
 
 /**
  * Created by iWay on 2017/12/25.
