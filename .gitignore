@@ -1,8 +1,8 @@
-MyMusic-Android/.gradle
-MyMusic-Android/.idea
-MyMusic-Android/MyMusic-Android.iml
-MyMusic-Android/local.properties
-MyMusic-Android/app/build
-MyMusic-Android/app/app.iml
-MyMusic-Server/out/.idea
-MyMusic-Server/out
+/MyMusic-Android/.gradle
+/MyMusic-Android/.idea
+/MyMusic-Android/MyMusic-Android.iml
+/MyMusic-Android/local.properties
+/MyMusic-Android/app/build
+/MyMusic-Android/app/app.iml
+/MyMusic-Server/.idea
+/MyMusic-Server/out

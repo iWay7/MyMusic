@@ -30,7 +30,6 @@ import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.data.SongInfo;
 import site.iway.mymusic.net.req.GetSongInfoReq;
 import site.iway.mymusic.net.res.GetSongInfoRes;
-import site.iway.mymusic.utils.LyricManager.LyricLine;
 import site.iway.mymusic.user.activities.ViewSongsActivity;
 import site.iway.mymusic.user.views.LRCView;
 import site.iway.mymusic.user.views.PlayProgressView;
@@ -38,6 +37,7 @@ import site.iway.mymusic.user.views.PlayProgressView.OnRequestPlayProgressListen
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.LyricCache;
 import site.iway.mymusic.utils.LyricManager;
+import site.iway.mymusic.utils.LyricManager.LyricLine;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Song;
 
@@ -213,7 +213,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
                 }
             }
             mBackground.loadFromURLSource(imageLink, mBitmapFilter);
-            mSongArt.loadFromURLSource(imageLink);
+            mSongArt.loadFromURLSource(imageLink == null ? null : imageLink.replace("90", "512"));
             if (!TextUtils.isEmpty(lrcLink)) {
                 Song song = (Song) getSongInfoReq.tag;
                 LyricCache lyricCache = LyricCache.getInstance();

@@ -16,7 +16,7 @@ import site.iway.androidhelpers.UIThread;
  * Created by iWay on 2017/12/27.
  */
 
-public class Player implements OnCompletionListener, OnErrorListener {
+public class Player {
 
     public static final int MODE_LOOP_LIST = 0;
     public static final int MODE_LOOP_SINGLE = 1;
@@ -32,8 +32,8 @@ public class Player implements OnCompletionListener, OnErrorListener {
     public Player(Context context) {
         mContext = context;
         mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setOnCompletionListener(this);
-        mMediaPlayer.setOnErrorListener(this);
+        mMediaPlayer.setOnCompletionListener(mOnCompletionListener);
+        mMediaPlayer.setOnErrorListener(mOnErrorListener);
         mPlayList = new ArrayList<>();
         mPlayMode = Settings.getPlayerPlayMode();
     }
@@ -221,17 +221,21 @@ public class Player implements OnCompletionListener, OnErrorListener {
         mMediaPlayer.seekTo(msec);
     }
 
-    @Override
-    public void onCompletion(MediaPlayer mp) {
-        UIThread.event(Constants.EV_PLAYER_FINISHED_PLAY, mPlayingFile);
-        next();
-    }
+    private OnCompletionListener mOnCompletionListener = new OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            UIThread.event(Constants.EV_PLAYER_FINISHED_PLAY, mPlayingFile);
+            next();
+        }
+    };
 
-    @Override
-    public boolean onError(MediaPlayer mp, int what, int extra) {
-        UIThread.event(Constants.EV_PLAYER_PLAY_ERROR, mPlayingFile);
-        return true;
-    }
+    private OnErrorListener mOnErrorListener = new OnErrorListener() {
+        @Override
+        public boolean onError(MediaPlayer mp, int what, int extra) {
+            UIThread.event(Constants.EV_PLAYER_PLAY_ERROR, mPlayingFile);
+            return true;
+        }
+    };
 
     private static Player sInstance;
 
