@@ -9,12 +9,8 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82630297-f538-4bed-95ed-033d7cada6aa" name="Default" comment="修改图片尺寸。">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
+    <list default="true" id="82630297-f538-4bed-95ed-033d7cada6aa" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/site/iway/mymusic/user/fragments/PlayingFragment.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/site/iway/mymusic/utils/Player.java" afterPath="$PROJECT_DIR$/app/src/main/java/site/iway/mymusic/utils/Player.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -2377,6 +2373,14 @@
       <option name="presentableId" value="Default" />
       <updated>1525839249411</updated>
     </task>
+    <task id="LOCAL-00001" summary="修改图片尺寸。">
+      <created>1526018357351</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1526018357351</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2423,6 +2427,8 @@
     </ignored-roots>
     <MESSAGE value="修改图片尺寸。" />
     <option name="LAST_COMMIT_MESSAGE" value="修改图片尺寸。" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
