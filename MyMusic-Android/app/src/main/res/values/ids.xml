@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="contentViewPriority" type="id" />
+    <item name="contentViewAddTime" type="id" />
+
+</resources>

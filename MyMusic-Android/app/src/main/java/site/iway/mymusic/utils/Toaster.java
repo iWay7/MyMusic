@@ -46,7 +46,7 @@ public class Toaster {
                     toast.show();
                 } else {
                     if (BaseActivity.sRunningInstance != null) {
-                        BaseActivity.sRunningInstance.showWeakHint(message);
+                        BaseActivity.sRunningInstance.simulateToast(message);
                     }
                 }
             }

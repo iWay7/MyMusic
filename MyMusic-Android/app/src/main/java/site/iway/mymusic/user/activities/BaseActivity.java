@@ -21,6 +21,9 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.FrameLayout;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,8 +45,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
 
     public static BaseActivity sRunningInstance;
 
-    protected ViewGroup mContainer;
-    protected View mContentView;
+    protected ViewGroup mContentViewContainer;
     protected View mTitleBarRoot;
     protected ExtendedTextView mTitleBarText;
     protected ExtendedView mTitleBarBg;
@@ -60,7 +62,6 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     protected AssetManager mAssetManager;
     protected boolean mCloseAnimEnabled;
     protected List<Dialog> mDialogs;
-    protected Thread mMainThread;
     protected boolean mUserInteractEnabled;
 
     @Override
@@ -75,8 +76,8 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         mAssetManager = getAssets();
         mCloseAnimEnabled = true;
         mDialogs = new LinkedList<>();
-        mMainThread = Thread.currentThread();
         mUserInteractEnabled = true;
+        mContentViewContainer = findViewById(android.R.id.content);
         UIThread.register(this);
     }
 
@@ -86,12 +87,60 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         sRunningInstance = this;
     }
 
-    private void setViews() {
-        mContainer = findViewById(android.R.id.content);
-        int rootViewCount = mContainer.getChildCount();
-        if (rootViewCount > 0) {
-            mContentView = mContainer.getChildAt(0);
+    private static final int CONTENT_VIEW_PRIORITY_BASE = 0;
+    private static final int CONTENT_VIEW_PRIORITY_NORMAL = 1;
+    private static final int CONTENT_VIEW_PRIORITY_FLOATING_OBJECT = 126;
+    private static final int CONTENT_VIEW_PRIORITY_SIMULATED_DIALOG = 127;
+    private static final int CONTENT_VIEW_PRIORITY_SIMULATED_TOAST = 128;
+
+    private void addContentViewInternal(View view, int priority) {
+        view.setTag(R.id.contentViewPriority, priority);
+        view.setTag(R.id.contentViewAddTime, System.nanoTime());
+        if (priority == CONTENT_VIEW_PRIORITY_BASE) {
+            int childCount = mContentViewContainer.getChildCount();
+            if (childCount > 0) {
+                View firstContentView = mContentViewContainer.getChildAt(0);
+                int firstContentViewPriority = (int) firstContentView.getTag(R.id.contentViewPriority);
+                if (firstContentViewPriority == CONTENT_VIEW_PRIORITY_BASE) {
+                    mContentViewContainer.removeViewAt(0);
+                }
+            }
+            mContentViewContainer.addView(view, 0);
+        } else {
+            List<View> childViews = new ArrayList<>();
+            int childCount = mContentViewContainer.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                childViews.add(mContentViewContainer.getChildAt(i));
+            }
+            Collections.sort(childViews, new Comparator<View>() {
+                @Override
+                public int compare(View view1, View view2) {
+                    int p1 = (int) view1.getTag(R.id.contentViewPriority);
+                    int p2 = (int) view2.getTag(R.id.contentViewPriority);
+                    long t1 = (int) view1.getTag(R.id.contentViewAddTime);
+                    long t2 = (int) view2.getTag(R.id.contentViewAddTime);
+                    if (p1 < p2) {
+                        return -1;
+                    } else if (p1 > p2) {
+                        return 1;
+                    } else {
+                        if (t1 < t2) {
+                            return -1;
+                        } else if (t1 > t2) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                }
+            });
+            for (int i = 0; i < childCount; i++) {
+                childViews.get(i).bringToFront();
+            }
         }
+    }
+
+    private void setTitleBarViews() {
         mTitleBarRoot = findViewById(R.id.titleBarRoot);
         mTitleBarText = (ExtendedTextView) findViewById(R.id.titleBarText);
         mTitleBarBg = (ExtendedView) findViewById(R.id.titleBarBg);
@@ -103,27 +152,48 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
 
     @Override
     public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
-        setViews();
+        View view = mLayoutInflater.inflate(layoutResID, mContentViewContainer, false);
+        addContentViewInternal(view, CONTENT_VIEW_PRIORITY_BASE);
+        setTitleBarViews();
     }
 
     @Override
     public void setContentView(View view) {
-        super.setContentView(view);
-        setViews();
+        addContentViewInternal(view, CONTENT_VIEW_PRIORITY_BASE);
+        setTitleBarViews();
     }
 
     @Override
     public void setContentView(View view, LayoutParams params) {
-        super.setContentView(view, params);
-        setViews();
+        view.setLayoutParams(params);
+        addContentViewInternal(view, CONTENT_VIEW_PRIORITY_BASE);
+        setTitleBarViews();
     }
 
-    public void showWeakHint(String message, final long timeout) {
+    public void addContentView(int layoutResID) {
+        View view = mLayoutInflater.inflate(layoutResID, mContentViewContainer, false);
+        addContentViewInternal(view, CONTENT_VIEW_PRIORITY_NORMAL);
+    }
+
+    public void addContentView(View view) {
+        addContentViewInternal(view, CONTENT_VIEW_PRIORITY_NORMAL);
+    }
+
+    @Override
+    public void addContentView(View view, LayoutParams params) {
+        view.setLayoutParams(params);
+        addContentViewInternal(view, CONTENT_VIEW_PRIORITY_NORMAL);
+    }
+
+
+    public void removeContentView(View view) {
+        mContentViewContainer.removeView(view);
+    }
+
+    public void simulateToast(String message, final long timeout) {
         if (isFinishing()) {
             return;
         }
-        final ViewGroup contentViewContainer = mContainer;
         final ExtendedTextView toastView = new ExtendedTextView(this);
         toastView.setBackgroundResource(R.drawable.bg_com_toast);
         toastView.setGravity(Gravity.CENTER);
@@ -142,7 +212,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         );
         flp.gravity = Gravity.CENTER;
         toastView.setLayoutParams(flp);
-        contentViewContainer.addView(toastView);
+        addContentViewInternal(toastView, CONTENT_VIEW_PRIORITY_SIMULATED_TOAST);
         AlphaAnimation animation = new AlphaAnimation(0, 1);
         animation.setDuration(500);
         animation.setRepeatCount(1);
@@ -155,7 +225,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                contentViewContainer.removeView(toastView);
+                removeContentView(toastView);
             }
 
             @Override
@@ -166,8 +236,8 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         toastView.startAnimation(animation);
     }
 
-    public void showWeakHint(String message) {
-        showWeakHint(message, 2000);
+    public void simulateToast(String message) {
+        simulateToast(message, 2000);
     }
 
     public void setCloseAnimEnabled(boolean closeAnimEnabled) {
@@ -234,19 +304,8 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         mDialogs.clear();
     }
 
-    private boolean mOnCloseCalled;
-
-    protected void onClose() {
-        dismissAllDialogs();
-        UIThread.unregister(this);
-    }
-
     @Override
-    public final void finish() {
-        if (!mOnCloseCalled) {
-            onClose();
-            mOnCloseCalled = true;
-        }
+    public void finish() {
         super.finish();
         int closeAnimEnter = mIntent.getIntExtra(CLOSE_ANIMATION_ENTER, 0);
         int closeAnimExit = mIntent.getIntExtra(CLOSE_ANIMATION_EXIT, 0);
@@ -255,22 +314,20 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         }
     }
 
-    public final void finish(int result) {
+    public void finish(int result) {
         setResult(result);
         finish();
     }
 
-    public final void finish(int result, Intent data) {
+    public void finish(int result, Intent data) {
         setResult(result, data);
         finish();
     }
 
     @Override
     protected final void onDestroy() {
-        if (!mOnCloseCalled) {
-            onClose();
-            mOnCloseCalled = true;
-        }
+        UIThread.unregister(this);
+        dismissAllDialogs();
         super.onDestroy();
     }
 
