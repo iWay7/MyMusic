@@ -27,28 +27,28 @@ public class Toaster {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                if (NotificationManagerCompat.from(sContext).areNotificationsEnabled()) {
-                    ExtendedTextView toastView = new ExtendedTextView(sContext);
-                    toastView.setBackgroundResource(R.drawable.bg_com_toast);
-                    toastView.setGravity(Gravity.CENTER);
-                    toastView.setMinWidth(UnitHelper.dipToPxInt(180));
-                    int paddingLeft = UnitHelper.dipToPxInt(20);
-                    int paddingRight = paddingLeft;
-                    int paddingTop = UnitHelper.dipToPxInt(16);
-                    int paddingBottom = paddingTop;
-                    toastView.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
-                    toastView.setTextColor(0xffffffff);
-                    toastView.setTextSize(14);
-                    toastView.setText(message);
-                    Toast toast = new Toast(sContext);
-                    toast.setView(toastView);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                } else {
+//                if (NotificationManagerCompat.from(sContext).areNotificationsEnabled()) {
+//                    ExtendedTextView toastView = new ExtendedTextView(sContext);
+//                    toastView.setBackgroundResource(R.drawable.bg_com_toast);
+//                    toastView.setGravity(Gravity.CENTER);
+//                    toastView.setMinWidth(UnitHelper.dipToPxInt(180));
+//                    int paddingLeft = UnitHelper.dipToPxInt(20);
+//                    int paddingRight = paddingLeft;
+//                    int paddingTop = UnitHelper.dipToPxInt(16);
+//                    int paddingBottom = paddingTop;
+//                    toastView.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+//                    toastView.setTextColor(0xffffffff);
+//                    toastView.setTextSize(14);
+//                    toastView.setText(message);
+//                    Toast toast = new Toast(sContext);
+//                    toast.setView(toastView);
+//                    toast.setGravity(Gravity.CENTER, 0, 0);
+//                    toast.show();
+//                } else {
                     if (BaseActivity.sRunningInstance != null) {
                         BaseActivity.sRunningInstance.simulateToast(message);
                     }
-                }
+//                }
             }
         };
         UIThread.run(runnable);

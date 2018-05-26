@@ -107,6 +107,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
             }
             mContentViewContainer.addView(view, 0);
         } else {
+            mContentViewContainer.addView(view);
             List<View> childViews = new ArrayList<>();
             int childCount = mContentViewContainer.getChildCount();
             for (int i = 0; i < childCount; i++) {
@@ -117,8 +118,8 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
                 public int compare(View view1, View view2) {
                     int p1 = (int) view1.getTag(R.id.contentViewPriority);
                     int p2 = (int) view2.getTag(R.id.contentViewPriority);
-                    long t1 = (int) view1.getTag(R.id.contentViewAddTime);
-                    long t2 = (int) view2.getTag(R.id.contentViewAddTime);
+                    long t1 = (long) view1.getTag(R.id.contentViewAddTime);
+                    long t2 = (long) view2.getTag(R.id.contentViewAddTime);
                     if (p1 < p2) {
                         return -1;
                     } else if (p1 > p2) {
@@ -184,7 +185,6 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         view.setLayoutParams(params);
         addContentViewInternal(view, CONTENT_VIEW_PRIORITY_NORMAL);
     }
-
 
     public void removeContentView(View view) {
         mContentViewContainer.removeView(view);
