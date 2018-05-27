@@ -12,7 +12,6 @@ import android.view.WindowManager;
 
 import site.iway.androidhelpers.EmptyDialog;
 import site.iway.androidhelpers.UnitHelper;
-import site.iway.mymusic.user.activities.BaseActivity;
 
 /**
  * Created by iWay on 8/8/15.
@@ -23,8 +22,6 @@ public class BaseDialog extends EmptyDialog {
         public void onUserAction(int action, Object data);
     }
 
-    protected ViewGroup mContainer;
-    protected View mContentView;
     protected Context mContext;
     protected Handler mHandler;
     protected LayoutInflater mLayoutInflater;
@@ -55,16 +52,6 @@ public class BaseDialog extends EmptyDialog {
         layoutParams.y = UnitHelper.dipToPxInt(mWindowYOffsetDp);
     }
 
-    private void registerInstance() {
-        BaseActivity parent = (BaseActivity) mContext;
-        parent.registerDialog(this);
-    }
-
-    private boolean unregisterInstance() {
-        BaseActivity parent = (BaseActivity) mContext;
-        return parent.unregisterDialog(this);
-    }
-
     public BaseDialog(Context context) {
         super(context);
         mContext = context;
@@ -84,33 +71,6 @@ public class BaseDialog extends EmptyDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setWindow();
-        registerInstance();
-    }
-
-    private void setViews() {
-        mContainer = findViewById(android.R.id.content);
-        int rootViewCount = mContainer.getChildCount();
-        if (rootViewCount > 0) {
-            mContentView = mContainer.getChildAt(0);
-        }
-    }
-
-    @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
-        setViews();
-    }
-
-    @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        setViews();
-    }
-
-    @Override
-    public void setContentView(View view, LayoutParams params) {
-        super.setContentView(view, params);
-        setViews();
     }
 
     protected void onUserAction(int action, Object data) {
@@ -144,20 +104,16 @@ public class BaseDialog extends EmptyDialog {
 
     @Override
     public void dismiss() {
-        if (unregisterInstance()) {
-            beforeDismiss();
-            super.dismiss();
-            afterDismiss();
-        }
+        beforeDismiss();
+        super.dismiss();
+        afterDismiss();
     }
 
     public void dismiss(int action, Object data) {
-        if (unregisterInstance()) {
-            beforeDismiss();
-            onUserAction(action, data);
-            super.dismiss();
-            afterDismiss();
-        }
+        beforeDismiss();
+        onUserAction(action, data);
+        super.dismiss();
+        afterDismiss();
     }
 
 }
