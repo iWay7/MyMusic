@@ -21,8 +21,8 @@ import site.iway.androidhelpers.WindowHelper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
-import site.iway.mymusic.net.req.ListSongsReq;
-import site.iway.mymusic.net.res.ListSongsRes;
+import site.iway.mymusic.net.mymusic.models.ListSongsReq;
+import site.iway.mymusic.net.mymusic.models.ListSongsRes;
 import site.iway.mymusic.user.views.SongsAdapter;
 import site.iway.mymusic.utils.Toaster;
 
@@ -32,7 +32,6 @@ import site.iway.mymusic.utils.Toaster;
 
 public class ViewSongsActivity extends BaseActivity implements OnClickListener, RPCCallback {
 
-    private ExtendedView mTitlePad;
     private ExtendedListView mListView;
     private ExtendedTextView mEmptyView;
     private LoadingView mLoadingView;
@@ -41,7 +40,6 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
     private SongsAdapter mSongsAdapter;
 
     private void setViews() {
-        mTitlePad = (ExtendedView) findViewById(R.id.titlePad);
         mListView = (ExtendedListView) findViewById(R.id.listView);
         mEmptyView = (ExtendedTextView) findViewById(R.id.emptyView);
         mLoadingView = (LoadingView) findViewById(R.id.loadingView);

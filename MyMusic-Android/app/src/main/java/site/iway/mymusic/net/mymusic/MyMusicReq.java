@@ -1,4 +1,4 @@
-package site.iway.mymusic.net.req;
+package site.iway.mymusic.net.mymusic;
 
 import java.net.HttpURLConnection;
 
@@ -9,9 +9,9 @@ import site.iway.mymusic.utils.Constants;
  * Created by iWay on 2018/3/25.
  */
 
-public class MMReq extends RPCBaseReq {
+public class MyMusicReq extends RPCBaseReq {
 
-    public MMReq() {
+    public MyMusicReq() {
         url = Constants.SERVICE_URL_BASE;
     }
 

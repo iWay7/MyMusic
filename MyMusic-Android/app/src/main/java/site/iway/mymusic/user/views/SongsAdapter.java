@@ -20,8 +20,8 @@ import site.iway.androidhelpers.ViewSwapper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
-import site.iway.mymusic.net.req.PlayListReq;
-import site.iway.mymusic.net.res.PlayListRes;
+import site.iway.mymusic.net.mymusic.models.PlayListReq;
+import site.iway.mymusic.net.mymusic.models.PlayListRes;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Song;
 

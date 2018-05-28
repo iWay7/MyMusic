@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.androidhelpers.ExtendedLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialogRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <site.iway.androidhelpers.ExtendedView
+        android:layout_width="1024dp"
+        android:layout_height="0dp" />
+
+    <site.iway.androidhelpers.ExtendedLinearLayout
+        android:id="@+id/actionContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_com_rect"
+        android:orientation="vertical" />
+
+    <site.iway.androidhelpers.ExtendedTextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_com_rect"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+</site.iway.androidhelpers.ExtendedLinearLayout>

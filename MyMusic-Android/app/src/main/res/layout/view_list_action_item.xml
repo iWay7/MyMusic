@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.androidhelpers.ExtendedLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <site.iway.androidhelpers.ExtendedTextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:textColor="#FF333333"
+        android:textSize="15sp"
+        tools:text="卡券红包" />
+
+    <include layout="@layout/divider_pad_horizontal" />
+
+    <site.iway.androidhelpers.ExtendedTextView
+        android:id="@+id/textViewDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:textColor="#FF999999"
+        android:textSize="13sp"
+        tools:text="3张可用" />
+
+    <site.iway.androidhelpers.ExtendedImageView
+        android:id="@+id/imageViewArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_right_arrow" />
+
+</site.iway.androidhelpers.ExtendedLinearLayout>

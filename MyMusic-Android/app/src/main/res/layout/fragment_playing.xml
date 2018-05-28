@@ -13,12 +13,12 @@
         app:emptyDrawable="@drawable/bg_no_album"
         app:errorDrawable="@drawable/bg_no_album"
         app:finishAnimation="@anim/fade_in_300"
-        app:scaleType="centerCrop"/>
+        app:scaleType="centerCrop" />
 
     <site.iway.androidhelpers.ExtendedView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#a0555555"/>
+        android:background="#a0555555" />
 
     <site.iway.androidhelpers.ExtendedLinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:id="@+id/titlePad"
             android:layout_width="match_parent"
             android:layout_height="18dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <site.iway.androidhelpers.ExtendedFrameLayout
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/icon_title_bar_back"
                 app:drawablePressAlpha="@integer/titleBarButtonPressAlpha"
-                app:filterClickSpan="500"/>
+                app:filterClickSpan="500" />
 
             <site.iway.androidhelpers.ExtendedTextView
                 android:id="@+id/titleBarText"
@@ -56,7 +56,7 @@
                 android:textColor="@color/titleBarTextColor"
                 android:textSize="@dimen/titleBarTextSize"
                 app:textPressAlpha="@integer/titleBarTextPressAlpha"
-                tools:text="标题"/>
+                tools:text="标题" />
 
             <site.iway.androidhelpers.ExtendedImageView
                 android:id="@+id/titleBarImage"
@@ -65,7 +65,7 @@
                 android:layout_gravity="right|center_vertical"
                 android:scaleType="centerInside"
                 app:drawablePressAlpha="128"
-                app:filterClickSpan="500"/>
+                app:filterClickSpan="500" />
 
         </site.iway.androidhelpers.ExtendedFrameLayout>
 
@@ -80,7 +80,7 @@
             android:singleLine="true"
             android:textColor="#cccccc"
             android:textSize="14sp"
-            tools:text="歌手"/>
+            tools:text="歌手" />
 
         <site.iway.androidhelpers.ViewSwapper
             android:id="@+id/viewSwapper"
@@ -104,7 +104,7 @@
                     <site.iway.androidhelpers.ExtendedView
                         android:layout_width="match_parent"
                         android:layout_height="1.5dp"
-                        android:background="@drawable/bg_gradient_divider"/>
+                        android:background="@drawable/bg_gradient_divider" />
 
                     <site.iway.androidhelpers.ExtendedFrameLayout
                         android:id="@+id/diskContainer"
@@ -115,7 +115,7 @@
                         <site.iway.androidhelpers.ExtendedImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/bg_disk_content"/>
+                            android:src="@drawable/bg_disk_content" />
 
                         <site.iway.androidhelpers.BitmapView
                             android:id="@+id/songArt"
@@ -124,7 +124,7 @@
                             android:layout_margin="40dp"
                             app:roundCornerRadius="20dp"
                             app:scaleType="centerCrop"
-                            app:useDefaultFilter="true"/>
+                            app:useDefaultFilter="true" />
 
                         <site.iway.androidhelpers.ExtendedImageView
                             android:layout_width="match_parent"
@@ -132,7 +132,7 @@
                             android:layout_gravity="top|center_horizontal"
                             android:background="@drawable/bg_disk_light"
                             android:padding="3dp"
-                            android:src="@drawable/bg_disk"/>
+                            android:src="@drawable/bg_disk" />
 
                     </site.iway.androidhelpers.ExtendedFrameLayout>
 
@@ -148,7 +148,7 @@
                         android:textColor="#a0ffffff"
                         android:textSize="18sp"
                         android:visibility="visible"
-                        tools:text="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"/>
+                        tools:text="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈" />
 
                 </site.iway.androidhelpers.ExtendedLinearLayout>
 
@@ -161,7 +161,7 @@
                     android:paddingLeft="58dp"
                     android:src="@drawable/icon_player_handle"
                     android:transformPivotX="75dp"
-                    android:transformPivotY="22dp"/>
+                    android:transformPivotY="22dp" />
 
             </site.iway.androidhelpers.ExtendedFrameLayout>
 
@@ -179,7 +179,7 @@
                     app:lrcEmptyText="暂无歌词"
                     app:lrcLineSpacing="25dp"
                     app:lrcTextLineSpacing="2dp"
-                    app:lrcTextSize="18sp"/>
+                    app:lrcTextSize="18sp" />
 
             </site.iway.androidhelpers.ExtendedFrameLayout>
 
@@ -200,7 +200,7 @@
                 android:gravity="center"
                 android:text="00:00"
                 android:textColor="#80ffffff"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <site.iway.mymusic.user.views.PlayProgressView
                 android:id="@+id/playProgress"
@@ -212,7 +212,7 @@
                 app:progressFgDrawable="@drawable/bg_play_progress_fg"
                 app:progressIndicatorDrawable="@drawable/icon_play_progress_indicator"
                 app:progressIndicatorHeight="14dp"
-                app:progressIndicatorWidth="14dp"/>
+                app:progressIndicatorWidth="14dp" />
 
             <site.iway.androidhelpers.ExtendedTextView
                 android:id="@+id/duration"
@@ -222,7 +222,7 @@
                 android:gravity="center"
                 android:text="00:00"
                 android:textColor="#80ffffff"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
         </site.iway.androidhelpers.ExtendedLinearLayout>
 
@@ -242,19 +242,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/icon_repeat_list"/>
+                    android:src="@drawable/icon_repeat_list" />
 
                 <site.iway.androidhelpers.ExtendedImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/icon_repeat_one"/>
+                    android:src="@drawable/icon_repeat_one" />
 
                 <site.iway.androidhelpers.ExtendedImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/icon_shuffle"/>
+                    android:src="@drawable/icon_shuffle" />
 
             </site.iway.androidhelpers.ViewSwapper>
 
@@ -265,7 +265,7 @@
                 android:layout_marginLeft="24dp"
                 android:src="@drawable/icon_previous_white"
                 app:touchDownAnimation="@anim/button_press"
-                app:touchUpAnimation="@anim/button_release"/>
+                app:touchUpAnimation="@anim/button_release" />
 
             <site.iway.androidhelpers.ExtendedImageView
                 android:id="@+id/playStop"
@@ -273,7 +273,7 @@
                 android:layout_height="64dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:src="@drawable/icon_play_white"/>
+                android:src="@drawable/icon_play_white" />
 
             <site.iway.androidhelpers.ExtendedImageView
                 android:id="@+id/next"
@@ -282,20 +282,19 @@
                 android:layout_marginRight="24dp"
                 android:src="@drawable/icon_next_white"
                 app:touchDownAnimation="@anim/button_press"
-                app:touchUpAnimation="@anim/button_release"/>
+                app:touchUpAnimation="@anim/button_release" />
 
             <site.iway.androidhelpers.ExtendedImageView
-                android:id="@+id/remove"
+                android:id="@+id/settings"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:padding="1dp"
-                android:src="@drawable/icon_delete"
+                android:src="@drawable/icon_settings"
                 app:touchDownAnimation="@anim/button_press"
-                app:touchUpAnimation="@anim/button_release"/>
+                app:touchUpAnimation="@anim/button_release" />
 
         </site.iway.androidhelpers.ExtendedLinearLayout>
 
     </site.iway.androidhelpers.ExtendedLinearLayout>
-
 
 </site.iway.androidhelpers.ExtendedFrameLayout>

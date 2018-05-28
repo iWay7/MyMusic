@@ -8,6 +8,4 @@
     <color name="titleBarButtonTextColor">#ffffff</color>
     <color name="titleBarDividerColor">#dadcdd</color>
 
-    <color name="listItemDividerColor">#dadcdd</color>
-    
 </resources>

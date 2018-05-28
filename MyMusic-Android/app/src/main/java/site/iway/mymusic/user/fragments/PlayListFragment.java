@@ -30,9 +30,10 @@ import site.iway.androidhelpers.OnScrollChangedListener;
 import site.iway.androidhelpers.UnitHelper;
 import site.iway.androidhelpers.WindowHelper;
 import site.iway.mymusic.R;
-import site.iway.mymusic.net.req.MMReq;
-import site.iway.mymusic.net.req.PlayListReq;
-import site.iway.mymusic.net.res.PlayListRes;
+import site.iway.mymusic.net.mymusic.MyMusicReq;
+import site.iway.mymusic.net.mymusic.MyMusicRes;
+import site.iway.mymusic.net.mymusic.models.PlayListReq;
+import site.iway.mymusic.net.mymusic.models.PlayListRes;
 import site.iway.mymusic.user.activities.ViewSongsActivity;
 import site.iway.mymusic.user.dialogs.ActionDialog;
 import site.iway.mymusic.user.dialogs.BaseDialog.OnUserActionListener;
@@ -123,6 +124,12 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
         ((TextView) textView).setText("网络错误，点击刷新");
     }
 
+    @Override
+    protected boolean checkRPCResponse(Object data) {
+        MyMusicRes myMusicRes = (MyMusicRes) data;
+        return myMusicRes.resultCode == MyMusicRes.OK;
+    }
+
     private PlayListAdapter mPlayListAdapter;
 
     @Override
@@ -132,7 +139,7 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
     }
 
     @Override
-    protected MMReq createLoadAdapterDataRPCRequest() {
+    protected MyMusicReq createLoadAdapterDataRPCRequest() {
         PlayListReq playListReq = new PlayListReq();
         playListReq.action = PlayListReq.ACTION_GET;
         playListReq.minDelayTime = 500;

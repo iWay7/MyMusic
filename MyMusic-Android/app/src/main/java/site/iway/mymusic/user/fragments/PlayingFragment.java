@@ -27,9 +27,10 @@ import site.iway.javahelpers.Scale;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
-import site.iway.mymusic.net.data.SongInfo;
-import site.iway.mymusic.net.req.GetSongInfoReq;
-import site.iway.mymusic.net.res.GetSongInfoRes;
+import site.iway.mymusic.net.mymusic.models.GetSongInfoReq;
+import site.iway.mymusic.net.mymusic.models.GetSongInfoRes;
+import site.iway.mymusic.net.mymusic.models.internal.SongInfo;
+import site.iway.mymusic.user.activities.SettingsActivity;
 import site.iway.mymusic.user.activities.ViewSongsActivity;
 import site.iway.mymusic.user.views.LRCView;
 import site.iway.mymusic.user.views.PlayProgressView;
@@ -73,7 +74,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     private ExtendedImageView mPrevious;
     private ExtendedImageView mPlayStop;
     private ExtendedImageView mNext;
-    private ExtendedImageView mRemove;
+    private ExtendedImageView mSettings;
 
     private void refreshPlayMode() {
         int playMode = mPlayer.getPlayMode();
@@ -134,7 +135,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         mPrevious = (ExtendedImageView) mRootView.findViewById(R.id.previous);
         mPlayStop = (ExtendedImageView) mRootView.findViewById(R.id.playStop);
         mNext = (ExtendedImageView) mRootView.findViewById(R.id.next);
-        mRemove = (ExtendedImageView) mRootView.findViewById(R.id.remove);
+        mSettings = (ExtendedImageView) mRootView.findViewById(R.id.settings);
 
         if (WindowHelper.makeTranslucent(mActivity, true, false)) {
             mTitlePad.setVisibility(View.VISIBLE);
@@ -152,7 +153,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         mPrevious.setOnClickListener(this);
         mPlayStop.setOnClickListener(this);
         mNext.setOnClickListener(this);
-        mRemove.setOnClickListener(this);
+        mSettings.setOnClickListener(this);
         mDiskContainer.setOnClickListener(this);
         mLrcView.setOnClickListener(this);
         mLrcView.setOnLongClickListener(this);
@@ -387,6 +388,9 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
             mViewSwapper.setDisplayedChild(1);
         } else if (v == mLrcView) {
             mViewSwapper.setDisplayedChild(0);
+        } else if (v == mSettings) {
+            Intent intent = new Intent(mActivity, SettingsActivity.class);
+            startActivity(intent);
         }
     }
 

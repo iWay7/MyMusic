@@ -46,6 +46,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     public static BaseActivity sRunningInstance;
 
     protected ViewGroup mContentViewContainer;
+    protected View mTitlePad;
     protected View mTitleBarRoot;
     protected ExtendedTextView mTitleBarText;
     protected ExtendedView mTitleBarBg;
@@ -146,6 +147,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     }
 
     private void setTitleBarViews() {
+        mTitlePad = findViewById(R.id.titlePad);
         mTitleBarRoot = findViewById(R.id.titleBarRoot);
         mTitleBarText = (ExtendedTextView) findViewById(R.id.titleBarText);
         mTitleBarBg = (ExtendedView) findViewById(R.id.titleBarBg);

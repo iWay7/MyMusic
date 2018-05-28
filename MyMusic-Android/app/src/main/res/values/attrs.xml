@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="ListActionItem">
+        <attr name="ListActionItemTitle" format="string"/>
+        <attr name="ListActionItemTitleColor" format="color"/>
+        <attr name="ListActionItemTitleTextSize" format="dimension"/>
+        <attr name="ListActionItemDesc" format="string"/>
+        <attr name="ListActionItemDescColor" format="color"/>
+        <attr name="ListActionItemDescTextSize" format="dimension"/>
+        <attr name="ListActionItemShowArrow" format="boolean"/>
+        <attr name="ListActionItemArrow" format="reference"/>
+    </declare-styleable>
+
     <declare-styleable name="PlayProgressView">
         <attr name="progressBgDrawable" format="reference"/>
         <attr name="progressFgDrawable" format="reference"/>

@@ -1,14 +1,14 @@
-package site.iway.mymusic.net.req;
+package site.iway.mymusic.net.mymusic.models;
 
 import com.google.gson.annotations.Expose;
 
-import site.iway.mymusic.net.res.ListSongsRes;
+import site.iway.mymusic.net.mymusic.MyMusicReq;
 
 /**
  * Created by iWay on 2017/12/27.
  */
 
-public class ListSongsReq extends MMReq {
+public class ListSongsReq extends MyMusicReq {
 
     public ListSongsReq() {
         url += "ListSongs";

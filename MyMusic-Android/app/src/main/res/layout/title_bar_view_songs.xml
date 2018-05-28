@@ -1,55 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<site.iway.androidhelpers.ExtendedFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<site.iway.androidhelpers.ExtendedLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/titleBarRoot"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/titleBarHeight">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <site.iway.androidhelpers.ExtendedView
-        android:id="@+id/titleBarBg"
+        android:id="@+id/titlePad"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:background="@color/titleBarBgColor"/>
 
-    <site.iway.androidhelpers.ExtendedImageView
-        android:id="@+id/titleBarBack"
-        android:layout_width="@dimen/titleBarBackWidth"
-        android:layout_height="match_parent"
-        android:scaleType="centerInside"
-        android:src="@drawable/icon_title_bar_back"
-        app:drawablePressAlpha="@integer/titleBarButtonPressAlpha"
-        app:filterClickSpan="500"/>
-
-    <site.iway.androidhelpers.ExtendedEditText
-        android:id="@+id/searchEditor"
+    <site.iway.androidhelpers.ExtendedFrameLayout
+        android:id="@+id/titleBarRoot"
         android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:layout_height="32dp"
-        android:layout_marginLeft="@dimen/titleBarBackWidth"
-        android:layout_marginRight="@dimen/titleBarImageWidth"
-        android:background="@drawable/bg_search_bar"
-        android:hint="歌手、歌名，支持拼音首字母大小写"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:singleLine="true"
-        android:textColor="#333333"
-        android:textColorHint="#7d7d7d"
-        android:textSize="14sp"/>
+        android:layout_height="@dimen/titleBarHeight">
 
-    <site.iway.androidhelpers.ExtendedImageView
-        android:id="@+id/titleBarImage"
-        android:layout_width="@dimen/titleBarImageWidth"
-        android:layout_height="match_parent"
-        android:layout_gravity="right|center_vertical"
-        android:scaleType="centerInside"
-        app:drawablePressAlpha="128"
-        app:filterClickSpan="500"/>
+        <site.iway.androidhelpers.ExtendedView
+            android:id="@+id/titleBarBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/titleBarBgColor" />
 
-    <site.iway.androidhelpers.ExtendedView
-        android:id="@+id/titleBarSplitter"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/titleBarDividerHeight"
-        android:layout_gravity="bottom|center_horizontal"
-        android:background="@color/titleBarDividerColor"/>
+        <site.iway.androidhelpers.ExtendedImageView
+            android:id="@+id/titleBarBack"
+            android:layout_width="@dimen/titleBarBackWidth"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_title_bar_back"
+            app:drawablePressAlpha="@integer/titleBarButtonPressAlpha"
+            app:filterClickSpan="500" />
 
-</site.iway.androidhelpers.ExtendedFrameLayout>
+        <site.iway.androidhelpers.ExtendedEditText
+            android:id="@+id/searchEditor"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/titleBarBackWidth"
+            android:layout_marginRight="@dimen/titleBarImageWidth"
+            android:background="@drawable/bg_search_bar"
+            android:hint="歌手、歌名，支持拼音首字母大小写"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#7d7d7d"
+            android:textSize="14sp" />
+
+        <site.iway.androidhelpers.ExtendedImageView
+            android:id="@+id/titleBarImage"
+            android:layout_width="@dimen/titleBarImageWidth"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical"
+            android:scaleType="centerInside"
+            app:drawablePressAlpha="128"
+            app:filterClickSpan="500" />
+
+        <site.iway.androidhelpers.ExtendedView
+            android:id="@+id/titleBarSplitter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/titleBarDividerHeight"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/titleBarDividerColor" />
+
+    </site.iway.androidhelpers.ExtendedFrameLayout>
+
+</site.iway.androidhelpers.ExtendedLinearLayout>

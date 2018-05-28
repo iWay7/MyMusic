@@ -1,14 +1,14 @@
-package site.iway.mymusic.net.req;
+package site.iway.mymusic.net.mymusic.models;
 
 import com.google.gson.annotations.Expose;
 
-import site.iway.mymusic.net.res.PlayListRes;
+import site.iway.mymusic.net.mymusic.MyMusicReq;
 
 /**
  * Created by iWay on 2017/12/26.
  */
 
-public class PlayListReq extends MMReq {
+public class PlayListReq extends MyMusicReq {
 
     public static final String ACTION_GET = "get";
     public static final String ACTION_ADD = "add";

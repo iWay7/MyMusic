@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="site.iway.mymusic">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -32,6 +33,10 @@
             android:name=".user.activities.ViewSongsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
+        <activity
+            android:name=".user.activities.SettingsActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

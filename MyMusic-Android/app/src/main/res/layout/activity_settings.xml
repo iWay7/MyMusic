@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.androidhelpers.ExtendedLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar_back_and_img" />
+
+    <site.iway.androidhelpers.ExtendedLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/divider_line_horizontal_fill"/>
+
+
+
+        <include layout="@layout/divider_line_horizontal_fill"/>
+
+    </site.iway.androidhelpers.ExtendedLinearLayout>
+
+</site.iway.androidhelpers.ExtendedLinearLayout>
