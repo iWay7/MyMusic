@@ -33,6 +33,7 @@ import site.iway.androidhelpers.ExtendedView;
 import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.UIThread.UIEventHandler;
 import site.iway.androidhelpers.UnitHelper;
+import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.R;
 
 /**
@@ -62,7 +63,6 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     protected Resources mResources;
     protected AssetManager mAssetManager;
     protected boolean mCloseAnimEnabled;
-    protected List<Dialog> mDialogs;
     protected boolean mUserInteractEnabled;
 
     @Override
@@ -76,9 +76,8 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         mResources = getResources();
         mAssetManager = getAssets();
         mCloseAnimEnabled = true;
-        mDialogs = new LinkedList<>();
         mUserInteractEnabled = true;
-        mContentViewContainer = findViewById(android.R.id.content);
+        mContentViewContainer = (ViewGroup) findViewById(android.R.id.content);
         UIThread.register(this);
     }
 
@@ -88,11 +87,12 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         sRunningInstance = this;
     }
 
-    private static final int CONTENT_VIEW_PRIORITY_BASE = 0;
-    private static final int CONTENT_VIEW_PRIORITY_NORMAL = 1;
-    private static final int CONTENT_VIEW_PRIORITY_FLOATING_OBJECT = 126;
-    private static final int CONTENT_VIEW_PRIORITY_SIMULATED_DIALOG = 127;
-    private static final int CONTENT_VIEW_PRIORITY_SIMULATED_TOAST = 128;
+    public static final int CONTENT_VIEW_PRIORITY_BASE = 0;
+    public static final int CONTENT_VIEW_PRIORITY_NORMAL = 1;
+    public static final int CONTENT_VIEW_PRIORITY_FLOATING_OBJECT = 125;
+    public static final int CONTENT_VIEW_PRIORITY_DIALOG = 126;
+    public static final int CONTENT_VIEW_PRIORITY_LOADING_VIEW = 127;
+    public static final int CONTENT_VIEW_PRIORITY_SIMULATED_TOAST = 128;
 
     private void adjustContentViewOrders() {
         List<View> childViews = new ArrayList<>();
@@ -196,6 +196,51 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         mContentViewContainer.removeView(view);
     }
 
+    private View mLoadingView;
+
+    public void showLoadingView(String message) {
+        if (mLoadingView == null) {
+            mLoadingView = mLayoutInflater.inflate(R.layout.dialog_loading, mContentViewContainer, false);
+            addContentViewInternal(mLoadingView, CONTENT_VIEW_PRIORITY_LOADING_VIEW);
+            AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
+            alphaAnimation.setDuration(100);
+            mLoadingView.startAnimation(alphaAnimation);
+        }
+        ExtendedTextView messageView = (ExtendedTextView) mLoadingView.findViewById(R.id.message);
+        messageView.setText(message);
+        messageView.setVisibility(StringHelper.nullOrWhiteSpace(message) ? View.GONE : View.VISIBLE);
+    }
+
+    public void showLoadingView() {
+        showLoadingView(null);
+    }
+
+    public void hideLoadingView() {
+        if (mLoadingView != null) {
+            final View animationView = mLoadingView;
+            AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
+            alphaAnimation.setDuration(100);
+            alphaAnimation.setAnimationListener(new AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    // nothing
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    removeContentView(animationView);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                    // nothing
+                }
+            });
+            mLoadingView.startAnimation(alphaAnimation);
+            mLoadingView = null;
+        }
+    }
+
     public void simulateToast(String message, final long timeout) {
         if (isFinishing()) {
             return;
@@ -284,32 +329,6 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         return false;
     }
 
-    public boolean registerDialog(Dialog dialog) {
-        return mDialogs.add(dialog);
-    }
-
-    public boolean unregisterDialog(Dialog dialog) {
-        return mDialogs.remove(dialog);
-    }
-
-    public boolean hasShowingDialog() {
-        for (Dialog dialog : mDialogs) {
-            if (dialog.isShowing()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    protected void dismissAllDialogs() {
-        List<Dialog> dialogs = new LinkedList<>();
-        dialogs.addAll(mDialogs);
-        for (Dialog dialog : dialogs) {
-            dialog.dismiss();
-        }
-        mDialogs.clear();
-    }
-
     @Override
     public void finish() {
         super.finish();
@@ -333,7 +352,6 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     @Override
     protected final void onDestroy() {
         UIThread.unregister(this);
-        dismissAllDialogs();
         super.onDestroy();
     }
 
