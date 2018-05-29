@@ -1,5 +1,6 @@
 package site.iway.mymusic.user.activities;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -23,15 +24,47 @@ public class LaunchActivity extends BaseActivity {
         }
     };
 
+    private static final int REQUEST_PERMISSIONS = 0;
+
+    private void setPermissions() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(LaunchActivity.this, PermissionActivity.class);
+                String[] permissions = {Manifest.permission.READ_PHONE_STATE};
+                intent.putExtra(PermissionActivity.PERMISSIONS, permissions);
+                startActivityForResult(intent, REQUEST_PERMISSIONS);
+            }
+        }, 1000);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_PERMISSIONS:
+                switch (resultCode) {
+                    case RESULT_OK:
+                        mHandler.postDelayed(mRedirector, 500);
+                        break;
+                    default:
+                        finish();
+                        break;
+                }
+                break;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setWillInitTitleBarViews(false);
         WindowHelper.makeTranslucent(this, true, false);
         Player player = Player.getInstance();
         if (player.isPlaying()) {
             mHandler.postDelayed(mRedirector, 300);
         } else {
-            mHandler.postDelayed(mRedirector, 1500);
+            setPermissions();
         }
     }
 

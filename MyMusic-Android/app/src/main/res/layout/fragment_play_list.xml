@@ -12,11 +12,11 @@
         android:orientation="vertical">
 
         <site.iway.androidhelpers.ExtendedView
-            android:id="@+id/titlePad"
+            android:id="@+id/titleBarPad"
             android:layout_width="match_parent"
-            android:layout_height="18dp"
+            android:layout_height="0dp"
             android:background="@color/titleBarBgColor"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <site.iway.androidhelpers.ExtendedFrameLayout
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                 android:id="@+id/titleBarBg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/titleBarBgColor"/>
+                android:background="@color/titleBarBgColor" />
 
             <site.iway.androidhelpers.ExtendedTextView
                 android:id="@+id/titleBarText"
@@ -40,7 +40,7 @@
                 android:textColor="@color/titleBarTextColor"
                 android:textSize="@dimen/titleBarTextSize"
                 app:textPressAlpha="@integer/titleBarTextPressAlpha"
-                tools:text="标题"/>
+                tools:text="标题" />
 
             <site.iway.androidhelpers.ExtendedImageView
                 android:id="@+id/titleBarImage"
@@ -49,21 +49,21 @@
                 android:layout_gravity="right|center_vertical"
                 android:scaleType="centerInside"
                 app:drawablePressAlpha="128"
-                app:filterClickSpan="500"/>
+                app:filterClickSpan="500" />
 
             <site.iway.androidhelpers.ExtendedView
                 android:id="@+id/titleBarSplitter"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/titleBarDividerHeight"
                 android:layout_gravity="bottom|center_horizontal"
-                android:background="@color/titleBarDividerColor"/>
+                android:background="@color/titleBarDividerColor" />
 
         </site.iway.androidhelpers.ExtendedFrameLayout>
 
-        <include layout="@layout/fragment_pull_refresh"/>
+        <include layout="@layout/fragment_pull_refresh" />
 
     </site.iway.androidhelpers.ExtendedLinearLayout>
 
-    <include layout="@layout/group_play_list_action"/>
+    <include layout="@layout/group_play_list_action" />
 
 </site.iway.androidhelpers.ExtendedFrameLayout>

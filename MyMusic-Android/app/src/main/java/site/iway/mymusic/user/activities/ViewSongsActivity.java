@@ -5,7 +5,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
-import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -15,9 +14,7 @@ import java.util.List;
 import site.iway.androidhelpers.ExtendedEditText;
 import site.iway.androidhelpers.ExtendedListView;
 import site.iway.androidhelpers.ExtendedTextView;
-import site.iway.androidhelpers.ExtendedView;
 import site.iway.androidhelpers.LoadingView;
-import site.iway.androidhelpers.WindowHelper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
@@ -47,13 +44,6 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
         mTitleBarBack.setOnClickListener(this);
         mTitleBarImage.setImageResource(R.drawable.icon_search);
         mTitleBarImage.setOnClickListener(this);
-
-        if (WindowHelper.makeTranslucent(this, true, false)) {
-            mTitlePad.setVisibility(View.VISIBLE);
-            int statusBarHeight = WindowHelper.getStatusBarHeight(this);
-            LayoutParams layoutParams = mTitlePad.getLayoutParams();
-            layoutParams.height = statusBarHeight;
-        }
 
         mSearchEditor.setOnKeyListener(new OnKeyListener() {
             @Override

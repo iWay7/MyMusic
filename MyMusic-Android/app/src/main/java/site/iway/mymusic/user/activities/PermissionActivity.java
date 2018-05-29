@@ -1,6 +1,5 @@
 package site.iway.mymusic.user.activities;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -12,17 +11,18 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
+import site.iway.mymusic.R;
 import site.iway.mymusic.user.dialogs.ActionDialog;
 import site.iway.mymusic.user.dialogs.BaseDialog.OnUserActionListener;
 
 public class PermissionActivity extends BaseActivity {
 
+    public static final String PERMISSIONS = "PERMISSIONS";
+
     private static final int REQUEST_PERMISSIONS = 0;
     private static final int REQUEST_SETTINGS = 1;
 
-    private static final String[] PERMISSIONS = {
-            Manifest.permission.READ_PHONE_STATE
-    };
+    private String[] mPermissions;
 
     private void setPermissionRequiredComponents() {
         finish(RESULT_OK);
@@ -39,7 +39,7 @@ public class PermissionActivity extends BaseActivity {
         mPermissionRequestTime = System.nanoTime();
         if (VERSION.SDK_INT >= VERSION_CODES.M) {
             List<String> toRequestPermissions = new ArrayList<>();
-            for (String permission : PERMISSIONS) {
+            for (String permission : mPermissions) {
                 if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                     toRequestPermissions.add(permission);
                 }
@@ -132,6 +132,17 @@ public class PermissionActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setWillInitTitleBarViews(false);
+        if (mIntent.getIntExtra(CLOSE_ANIMATION_ENTER, 0) == 0) {
+            mIntent.putExtra(CLOSE_ANIMATION_ENTER, R.anim.none_300);
+        }
+        if (mIntent.getIntExtra(CLOSE_ANIMATION_EXIT, 0) == 0) {
+            mIntent.putExtra(CLOSE_ANIMATION_EXIT, R.anim.fade_out_300);
+        }
+        mPermissions = mIntent.getStringArrayExtra(PERMISSIONS);
+        if (mPermissions == null) {
+            mPermissions = new String[0];
+        }
         if (savedInstanceState == null) {
             checkPermissions(false);
         } else {

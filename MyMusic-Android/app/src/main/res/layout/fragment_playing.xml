@@ -26,9 +26,9 @@
         android:orientation="vertical">
 
         <site.iway.androidhelpers.ExtendedView
-            android:id="@+id/titlePad"
+            android:id="@+id/titleBarPad"
             android:layout_width="match_parent"
-            android:layout_height="18dp"
+            android:layout_height="0dp"
             android:visibility="gone" />
 
         <site.iway.androidhelpers.ExtendedFrameLayout

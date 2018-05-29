@@ -56,7 +56,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     private Player mPlayer = Player.getInstance();
 
     private BitmapView mBackground;
-    private ExtendedView mTitlePad;
+    private ExtendedView mTitleBarPad;
     private ExtendedImageView mTitleBarBack;
     private ExtendedTextView mTitleBarText;
     private ExtendedImageView mTitleBarImage;
@@ -117,7 +117,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mBackground = (BitmapView) mRootView.findViewById(R.id.background);
-        mTitlePad = (ExtendedView) mRootView.findViewById(R.id.titlePad);
+        mTitleBarPad = (ExtendedView) mRootView.findViewById(R.id.titleBarPad);
         mTitleBarBack = (ExtendedImageView) mRootView.findViewById(R.id.titleBarBack);
         mTitleBarText = (ExtendedTextView) mRootView.findViewById(R.id.titleBarText);
         mTitleBarImage = (ExtendedImageView) mRootView.findViewById(R.id.titleBarImage);
@@ -138,9 +138,9 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         mSettings = (ExtendedImageView) mRootView.findViewById(R.id.settings);
 
         if (WindowHelper.makeTranslucent(mActivity, true, false)) {
-            mTitlePad.setVisibility(View.VISIBLE);
+            mTitleBarPad.setVisibility(View.VISIBLE);
             int statusBarHeight = WindowHelper.getStatusBarHeight(mActivity);
-            LayoutParams layoutParams = mTitlePad.getLayoutParams();
+            LayoutParams layoutParams = mTitleBarPad.getLayoutParams();
             layoutParams.height = statusBarHeight;
         }
         mTitleBarBack.setOnClickListener(this);

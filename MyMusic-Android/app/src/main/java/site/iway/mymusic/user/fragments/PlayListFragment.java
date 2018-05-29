@@ -52,7 +52,7 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
         return inflater.inflate(R.layout.fragment_play_list, container, false);
     }
 
-    private ExtendedView mTitlePad;
+    private ExtendedView mTitleBarPad;
     private ExtendedTextView mTitleBarText;
     private ExtendedImageView mTitleBarImage;
     private ExtendedView mTitleBarSplitter;
@@ -65,7 +65,7 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
     @Override
     protected void onSetFragmentView(View view) {
         super.onSetFragmentView(view);
-        mTitlePad = (ExtendedView) mRootView.findViewById(R.id.titlePad);
+        mTitleBarPad = (ExtendedView) mRootView.findViewById(R.id.titleBarPad);
         mTitleBarText = (ExtendedTextView) mRootView.findViewById(R.id.titleBarText);
         mTitleBarImage = (ExtendedImageView) mRootView.findViewById(R.id.titleBarImage);
         mTitleBarSplitter = (ExtendedView) mRootView.findViewById(R.id.titleBarSplitter);
@@ -76,9 +76,9 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
         mFinishActions = (ExtendedTextView) mRootView.findViewById(R.id.finishActions);
 
         if (WindowHelper.makeTranslucent(mActivity, true, false)) {
-            mTitlePad.setVisibility(View.VISIBLE);
+            mTitleBarPad.setVisibility(View.VISIBLE);
             int statusBarHeight = WindowHelper.getStatusBarHeight(mActivity);
-            LayoutParams layoutParams = mTitlePad.getLayoutParams();
+            LayoutParams layoutParams = mTitleBarPad.getLayoutParams();
             layoutParams.height = statusBarHeight;
         }
         mTitleBarText.setText(R.string.app_name);

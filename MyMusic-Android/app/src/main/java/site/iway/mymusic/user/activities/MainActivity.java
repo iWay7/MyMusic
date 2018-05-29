@@ -1,6 +1,5 @@
 package site.iway.mymusic.user.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -76,35 +75,13 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private static final int REQUEST_PERMISSIONS = 0;
-
-    private void setPermissions() {
-        Intent intent = new Intent(this, PermissionActivity.class);
-        startActivityForResult(intent, REQUEST_PERMISSIONS);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQUEST_PERMISSIONS:
-                switch (resultCode) {
-                    case RESULT_OK:
-                        break;
-                    default:
-                        finish();
-                        break;
-                }
-                break;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setWillInitTitleBarViews(false);
         setContentView(R.layout.activity_main);
         setViews();
-        setPermissions();
     }
 
     @Override

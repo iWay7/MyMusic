@@ -1,6 +1,5 @@
 package site.iway.mymusic.user.activities;
 
-import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -16,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.OnHierarchyChangeListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -24,7 +24,6 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 
 import site.iway.androidhelpers.ExtendedImageView;
@@ -33,6 +32,7 @@ import site.iway.androidhelpers.ExtendedView;
 import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.UIThread.UIEventHandler;
 import site.iway.androidhelpers.UnitHelper;
+import site.iway.androidhelpers.WindowHelper;
 import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.R;
 
@@ -47,7 +47,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     public static BaseActivity sRunningInstance;
 
     protected ViewGroup mContentViewContainer;
-    protected View mTitlePad;
+    protected View mTitleBarPad;
     protected View mTitleBarRoot;
     protected ExtendedTextView mTitleBarText;
     protected ExtendedView mTitleBarBg;
@@ -64,6 +64,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     protected AssetManager mAssetManager;
     protected boolean mCloseAnimEnabled;
     protected boolean mUserInteractEnabled;
+    protected boolean mWillInitTitleBarViews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,27 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         mAssetManager = getAssets();
         mCloseAnimEnabled = true;
         mUserInteractEnabled = true;
+        mWillInitTitleBarViews = true;
         mContentViewContainer = (ViewGroup) findViewById(android.R.id.content);
+        mContentViewContainer.setOnHierarchyChangeListener(new OnHierarchyChangeListener() {
+            @Override
+            public void onChildViewAdded(View parent, View child) {
+                if (parent == mContentViewContainer) {
+                    Integer priority = (Integer) child.getTag(R.id.contentViewPriority);
+                    Long addTime = (Long) child.getTag(R.id.contentViewAddTime);
+                    if (priority == null || addTime == null) {
+                        child.setTag(R.id.contentViewPriority, CONTENT_VIEW_PRIORITY_NORMAL);
+                        child.setTag(R.id.contentViewAddTime, System.nanoTime());
+                        adjustContentViewOrders();
+                    }
+                }
+            }
+
+            @Override
+            public void onChildViewRemoved(View parent, View child) {
+                // nothing
+            }
+        });
         UIThread.register(this);
     }
 
@@ -147,14 +168,22 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     }
 
     private void setTitleBarViews() {
-        mTitlePad = findViewById(R.id.titlePad);
-        mTitleBarRoot = findViewById(R.id.titleBarRoot);
-        mTitleBarText = (ExtendedTextView) findViewById(R.id.titleBarText);
-        mTitleBarBg = (ExtendedView) findViewById(R.id.titleBarBg);
-        mTitleBarBack = (ExtendedImageView) findViewById(R.id.titleBarBack);
-        mTitleBarButton = (ExtendedTextView) findViewById(R.id.titleBarButton);
-        mTitleBarImage = (ExtendedImageView) findViewById(R.id.titleBarImage);
-        mTitleBarSplitter = (ExtendedView) findViewById(R.id.titleBarSplitter);
+        if (mWillInitTitleBarViews) {
+            mTitleBarPad = findViewById(R.id.titleBarPad);
+            if (mTitleBarPad != null && WindowHelper.makeTranslucent(this, true, false)) {
+                mTitleBarPad.setVisibility(View.VISIBLE);
+                int statusBarHeight = WindowHelper.getStatusBarHeight(this);
+                LayoutParams layoutParams = mTitleBarPad.getLayoutParams();
+                layoutParams.height = statusBarHeight;
+            }
+            mTitleBarRoot = findViewById(R.id.titleBarRoot);
+            mTitleBarText = (ExtendedTextView) findViewById(R.id.titleBarText);
+            mTitleBarBg = (ExtendedView) findViewById(R.id.titleBarBg);
+            mTitleBarBack = (ExtendedImageView) findViewById(R.id.titleBarBack);
+            mTitleBarButton = (ExtendedTextView) findViewById(R.id.titleBarButton);
+            mTitleBarImage = (ExtendedImageView) findViewById(R.id.titleBarImage);
+            mTitleBarSplitter = (ExtendedView) findViewById(R.id.titleBarSplitter);
+        }
     }
 
     @Override
@@ -293,6 +322,10 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
 
     public void setCloseAnimEnabled(boolean closeAnimEnabled) {
         mCloseAnimEnabled = closeAnimEnabled;
+    }
+
+    public void setWillInitTitleBarViews(boolean willInitTitleBarViews) {
+        mWillInitTitleBarViews = willInitTitleBarViews;
     }
 
     public void disableUserInteract() {

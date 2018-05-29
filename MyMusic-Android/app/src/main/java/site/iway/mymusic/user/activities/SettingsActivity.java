@@ -11,12 +11,6 @@ import site.iway.mymusic.R;
 public class SettingsActivity extends BaseActivity implements OnClickListener {
 
     private void setViews() {
-        if (WindowHelper.makeTranslucent(this, true, false)) {
-            mTitlePad.setVisibility(View.VISIBLE);
-            int statusBarHeight = WindowHelper.getStatusBarHeight(this);
-            LayoutParams layoutParams = mTitlePad.getLayoutParams();
-            layoutParams.height = statusBarHeight;
-        }
         mTitleBarText.setText("设置");
         mTitleBarBack.setOnClickListener(this);
     }

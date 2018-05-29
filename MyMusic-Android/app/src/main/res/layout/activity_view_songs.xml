@@ -5,13 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <site.iway.androidhelpers.ExtendedView
-        android:id="@+id/titlePad"
-        android:layout_width="match_parent"
-        android:layout_height="18dp"
-        android:background="@color/titleBarBgColor"
-        android:visibility="gone"/>
-
     <include layout="@layout/title_bar_view_songs"/>
 
     <site.iway.androidhelpers.ExtendedFrameLayout

@@ -7,11 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <site.iway.androidhelpers.ExtendedView
-        android:id="@+id/titlePad"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/titleBarBgColor"/>
+    <include layout="@layout/title_bar_top_pad_view" />
 
     <site.iway.androidhelpers.ExtendedFrameLayout
         android:id="@+id/titleBarRoot"
