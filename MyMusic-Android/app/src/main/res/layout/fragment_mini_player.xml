@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:circleDiameter="50dp"
-                app:progressBackColor="#4d4d4d"
+                app:progressBackColor="#cccccc"
                 app:progressFrontColor="#d33a31"
                 app:progressWidth="2dp"/>
 

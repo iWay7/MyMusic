@@ -1,11 +1,11 @@
 package site.iway.mymusic.utils;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
-import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 import site.iway.androidhelpers.UIThread;
+import site.iway.mymusic.user.receivers.HeadsetPlugReceiver;
 
 /**
  * Created by iWay on 2017/12/27.
@@ -30,15 +31,11 @@ public class Player {
     private int mPlayMode;
     private String mPlayingFile;
 
-    private void setPhoneStateListener() {
-        PhoneStateListener phoneStateListener = new PhoneStateListener() {
-            @Override
-            public void onCallStateChanged(int state, String incomingNumber) {
-                super.onCallStateChanged(state, incomingNumber);
-            }
-        };
-        TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-        telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+    private void setHeadSetPlugReceiver() {
+        HeadsetPlugReceiver headsetPlugReceiver = new HeadsetPlugReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
+        mContext.registerReceiver(headsetPlugReceiver, intentFilter);
     }
 
     public Player(Context context) {
@@ -48,7 +45,7 @@ public class Player {
         mMediaPlayer.setOnErrorListener(mOnErrorListener);
         mPlayList = new ArrayList<>();
         mPlayMode = Settings.getPlayerPlayMode();
-        setPhoneStateListener();
+        setHeadSetPlugReceiver();
     }
 
     public void setPlayList(List<String> playList) {

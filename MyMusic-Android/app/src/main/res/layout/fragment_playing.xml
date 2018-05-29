@@ -235,6 +235,7 @@
                 android:id="@+id/switchMode"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
+                android:padding="1dp"
                 app:inAnimation="@anim/fade_in_300"
                 app:outAnimation="@anim/fade_out_300">
 
