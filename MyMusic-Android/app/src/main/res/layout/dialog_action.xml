@@ -37,7 +37,7 @@
             android:gravity="center"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:textColor="#000000"
+            android:textColor="#333333"
             android:textSize="16sp"
             tools:text="MESSAGE"/>
 
@@ -74,7 +74,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_com_dialog_rc_btn_b"
                 android:gravity="center"
-                android:textColor="#000000"
+                android:textColor="#333333"
                 android:textSize="16sp"
                 tools:text="ACTION"/>
 
@@ -93,7 +93,7 @@
                 android:background="@drawable/bg_com_dialog_rc_btn_bl"
                 android:gravity="center"
                 android:text="L ACTION"
-                android:textColor="#000000"
+                android:textColor="#333333"
                 android:textSize="16sp"/>
 
             <include layout="@layout/divider_line_vertical_fill"/>
@@ -106,7 +106,7 @@
                 android:background="@drawable/bg_com_dialog_rc_btn_br"
                 android:gravity="center"
                 android:text="R ACTION"
-                android:textColor="#000000"
+                android:textColor="#333333"
                 android:textSize="16sp"/>
 
         </site.iway.androidhelpers.ExtendedLinearLayout>
@@ -124,7 +124,7 @@
                 android:background="@drawable/bg_com_dialog_rc_btn_bl"
                 android:gravity="center"
                 android:text="L ACTION"
-                android:textColor="#000000"
+                android:textColor="#333333"
                 android:textSize="16sp"/>
 
             <include layout="@layout/divider_line_vertical_fill"/>
@@ -137,7 +137,7 @@
                 android:background="@drawable/bg_com_dialog_rc_btn_bm"
                 android:gravity="center"
                 android:text="M ACTION"
-                android:textColor="#000000"
+                android:textColor="#333333"
                 android:textSize="16sp"/>
 
             <include layout="@layout/divider_line_vertical_fill"/>
@@ -150,7 +150,7 @@
                 android:background="@drawable/bg_com_dialog_rc_btn_br"
                 android:gravity="center"
                 android:text="R ACTION"
-                android:textColor="#000000"
+                android:textColor="#333333"
                 android:textSize="16sp"/>
 
         </site.iway.androidhelpers.ExtendedLinearLayout>

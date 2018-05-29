@@ -3,9 +3,10 @@
     package="site.iway.mymusic">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name="site.iway.mymusic.app.MyMusicApp"
+        android:name=".app.MyMusicApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,7 +15,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="site.iway.mymusic.user.activities.LaunchActivity"
+            android:name=".user.activities.LaunchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeLaunch">
             <intent-filter>
@@ -37,6 +38,11 @@
         <activity
             android:name=".user.activities.SettingsActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".user.activities.PermissionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
     </application>
 

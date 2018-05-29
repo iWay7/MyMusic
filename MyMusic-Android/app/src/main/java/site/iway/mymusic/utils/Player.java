@@ -4,6 +4,8 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
@@ -24,10 +26,20 @@ public class Player {
 
     private Context mContext;
     private MediaPlayer mMediaPlayer;
-
     private List<String> mPlayList;
     private int mPlayMode;
     private String mPlayingFile;
+
+    private void setPhoneStateListener() {
+        PhoneStateListener phoneStateListener = new PhoneStateListener() {
+            @Override
+            public void onCallStateChanged(int state, String incomingNumber) {
+                super.onCallStateChanged(state, incomingNumber);
+            }
+        };
+        TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+    }
 
     public Player(Context context) {
         mContext = context;
@@ -36,6 +48,7 @@ public class Player {
         mMediaPlayer.setOnErrorListener(mOnErrorListener);
         mPlayList = new ArrayList<>();
         mPlayMode = Settings.getPlayerPlayMode();
+        setPhoneStateListener();
     }
 
     public void setPlayList(List<String> playList) {
