@@ -29,7 +29,7 @@ import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoReq;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoRes;
-import site.iway.mymusic.net.mymusic.models.internal.SongInfo;
+import site.iway.mymusic.net.mymusic.models.common.SongInfo;
 import site.iway.mymusic.user.activities.SettingsActivity;
 import site.iway.mymusic.user.activities.ViewSongsActivity;
 import site.iway.mymusic.user.views.LRCView;

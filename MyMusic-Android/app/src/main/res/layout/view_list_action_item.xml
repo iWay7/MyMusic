@@ -33,6 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_right_arrow" />
+        android:src="@drawable/icon_list_action_arrow" />
 
 </site.iway.androidhelpers.ExtendedLinearLayout>

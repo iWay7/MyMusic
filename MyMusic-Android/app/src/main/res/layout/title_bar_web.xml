@@ -19,14 +19,34 @@
             android:layout_height="match_parent"
             android:background="@color/titleBarBgColor" />
 
-        <site.iway.androidhelpers.ExtendedImageView
-            android:id="@+id/titleBarBack"
-            android:layout_width="@dimen/titleBarBackWidth"
+        <site.iway.androidhelpers.ExtendedLinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:src="@drawable/icon_title_bar_back"
-            app:drawablePressAlpha="@integer/titleBarButtonPressAlpha"
-            app:filterClickSpan="500" />
+            android:layout_gravity="left|center_vertical">
+
+            <site.iway.androidhelpers.ExtendedImageView
+                android:id="@+id/titleBarBack"
+                android:layout_width="@dimen/titleBarBackWidth"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_title_bar_back"
+                app:drawablePressAlpha="@integer/titleBarButtonPressAlpha"
+                app:filterClickSpan="500" />
+
+            <site.iway.androidhelpers.ExtendedTextView
+                android:id="@+id/titleBarClose"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|center_vertical"
+                android:gravity="center"
+                android:paddingLeft="@dimen/titleBarButtonPadding"
+                android:paddingRight="@dimen/titleBarButtonPadding"
+                android:text="关闭"
+                android:textColor="@color/titleBarButtonTextColor"
+                android:textSize="@dimen/titleBarButtonTextSize"
+                app:textPressAlpha="@integer/titleBarButtonPressAlpha" />
+
+        </site.iway.androidhelpers.ExtendedLinearLayout>
 
         <site.iway.androidhelpers.ExtendedTextView
             android:id="@+id/titleBarText"
@@ -43,20 +63,11 @@
             app:textPressAlpha="@integer/titleBarTextPressAlpha"
             tools:text="标题" />
 
-        <site.iway.androidhelpers.ExtendedTextView
-            android:id="@+id/titleBarButton"
+        <site.iway.androidhelpers.ExtendedLinearLayout
+            android:id="@+id/titleBarActions"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="right|center_vertical"
-            android:gravity="center"
-            android:paddingLeft="@dimen/titleBarButtonPadding"
-            android:paddingRight="@dimen/titleBarButtonPadding"
-            android:textColor="@color/titleBarButtonTextColor"
-            android:textSize="@dimen/titleBarButtonTextSize"
-            app:drawablePressAlpha="@integer/titleBarImagePressAlpha"
-            app:filterClickSpan="500"
-            app:textPressAlpha="@integer/titleBarButtonPressAlpha"
-            tools:text="按钮" />
+            android:layout_gravity="right|center_vertical" />
 
         <site.iway.androidhelpers.ExtendedView
             android:id="@+id/titleBarSplitter"

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<site.iway.androidhelpers.ExtendedFrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<site.iway.androidhelpers.ExtendedFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -39,6 +38,7 @@
                 android:singleLine="true"
                 android:textColor="@color/titleBarTextColor"
                 android:textSize="@dimen/titleBarTextSize"
+                android:textStyle="bold"
                 app:textPressAlpha="@integer/titleBarTextPressAlpha"
                 tools:text="标题" />
 

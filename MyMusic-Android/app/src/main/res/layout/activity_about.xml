@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.androidhelpers.ExtendedLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar_back_and_img" />
+
+    <include layout="@layout/divider_pad_vertical" />
+
+    <site.iway.androidhelpers.ExtendedTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更多信息请访问："
+        android:textColor="#333333"
+        android:textSize="15sp" />
+
+    <site.iway.androidhelpers.ExtendedTextView
+        android:id="@+id/visitWebSite"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:text="https://github.com/iWay7/MyMusic"
+        android:textColor="#0000ff"
+        android:textSize="15sp"
+        app:textPressAlpha="128" />
+
+    <site.iway.androidhelpers.ExtendedView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5" />
+
+    <site.iway.androidhelpers.ExtendedTextView
+        android:id="@+id/versionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="版本号："
+        android:textColor="#666666"
+        android:textSize="14sp" />
+
+</site.iway.androidhelpers.ExtendedLinearLayout>

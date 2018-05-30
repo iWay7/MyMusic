@@ -37,6 +37,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxEms="@integer/titleBarTextMaxEms"
+            android:textStyle="bold"
             android:singleLine="true"
             android:textColor="@color/titleBarTextColor"
             android:textSize="@dimen/titleBarTextSize"

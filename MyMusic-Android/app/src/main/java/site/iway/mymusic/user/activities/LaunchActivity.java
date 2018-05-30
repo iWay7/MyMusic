@@ -59,7 +59,7 @@ public class LaunchActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setWillInitTitleBarViews(false);
-        WindowHelper.makeTranslucent(this, true, true);
+        WindowHelper.makeTranslucent(this, true, false);
         Player player = Player.getInstance();
         if (player.isPlaying()) {
             mHandler.postDelayed(mRedirector, 300);

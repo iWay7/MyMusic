@@ -15,7 +15,7 @@ import site.iway.androidhelpers.UITimer;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
-import site.iway.mymusic.net.mymusic.models.internal.SongInfo;
+import site.iway.mymusic.net.mymusic.models.common.SongInfo;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoReq;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoRes;
 import site.iway.mymusic.utils.Constants;

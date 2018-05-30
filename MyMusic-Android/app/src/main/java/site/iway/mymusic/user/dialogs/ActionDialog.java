@@ -204,29 +204,33 @@ public class ActionDialog extends BaseDialog implements OnClickListener {
         setViews();
     }
 
+    protected Object getResultData(int action) {
+        return null;
+    }
+
     @Override
     public void onClick(View v) {
         int viewId = v.getId();
         if (viewId == R.id.actionView) {
             if (mAutoDismiss)
-                dismiss(ACTION_DEFAULT, null);
+                dismiss(ACTION_DEFAULT, getResultData(ACTION_DEFAULT));
             else
-                onUserAction(ACTION_DEFAULT, null);
+                onUserAction(ACTION_DEFAULT, getResultData(ACTION_DEFAULT));
         } else if (viewId == R.id.actionLeftView) {
             if (mAutoDismiss)
-                dismiss(ACTION_LEFT, null);
+                dismiss(ACTION_LEFT, getResultData(ACTION_LEFT));
             else
-                onUserAction(ACTION_LEFT, null);
+                onUserAction(ACTION_LEFT, getResultData(ACTION_LEFT));
         } else if (viewId == R.id.actionMiddleView) {
             if (mAutoDismiss)
-                dismiss(ACTION_MIDDLE, null);
+                dismiss(ACTION_MIDDLE, getResultData(ACTION_MIDDLE));
             else
-                onUserAction(ACTION_MIDDLE, null);
+                onUserAction(ACTION_MIDDLE, getResultData(ACTION_MIDDLE));
         } else if (viewId == R.id.actionRightView) {
             if (mAutoDismiss)
-                dismiss(ACTION_RIGHT, null);
+                dismiss(ACTION_RIGHT, getResultData(ACTION_RIGHT));
             else
-                onUserAction(ACTION_RIGHT, null);
+                onUserAction(ACTION_RIGHT, getResultData(ACTION_RIGHT));
         }
     }
 

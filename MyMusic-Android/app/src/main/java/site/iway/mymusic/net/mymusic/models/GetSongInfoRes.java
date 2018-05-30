@@ -3,7 +3,7 @@ package site.iway.mymusic.net.mymusic.models;
 import java.util.List;
 
 import site.iway.mymusic.net.mymusic.MyMusicRes;
-import site.iway.mymusic.net.mymusic.models.internal.SongInfo;
+import site.iway.mymusic.net.mymusic.models.common.SongInfo;
 
 /**
  * Created by iWay on 2017/12/28.

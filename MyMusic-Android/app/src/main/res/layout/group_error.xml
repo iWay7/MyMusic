@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/icon_empty"/>
+        android:src="@drawable/ic_network_error"/>
 
     <site.iway.androidhelpers.ExtendedTextView
         android:id="@id/errorText"

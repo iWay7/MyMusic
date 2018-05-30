@@ -2,6 +2,7 @@ package site.iway.mymusic.user.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -49,7 +50,10 @@ public class ListActionItem extends FrameLayout {
         mTextViewDesc.setTextColor(a.getColor(R.styleable.ListActionItem_ListActionItemDescColor, 0xFF999999));
         mTextViewDesc.setTextSize(TypedValue.COMPLEX_UNIT_PX, a.getDimension(R.styleable.ListActionItem_ListActionItemDescTextSize, mTextViewDesc.getTextSize()));
         mImageViewArrow.setVisibility(a.getBoolean(R.styleable.ListActionItem_ListActionItemShowArrow, true) ? View.VISIBLE : View.GONE);
-        mImageViewArrow.setImageDrawable(a.getDrawable(R.styleable.ListActionItem_ListActionItemArrow));
+        Drawable drawable = a.getDrawable(R.styleable.ListActionItem_ListActionItemArrow);
+        if (drawable != null) {
+            mImageViewArrow.setImageDrawable(drawable);
+        }
         a.recycle();
         addView(mRootView);
     }
