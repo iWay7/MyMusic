@@ -13,7 +13,6 @@ import site.iway.javahelpers.StringHelper;
 import site.iway.javahelpers.TextRW;
 import site.iway.mymusic.R;
 import site.iway.mymusic.user.fragments.WebFragment;
-import site.iway.mymusic.user.fragments.WebFragment.OnJavascriptCallListener;
 import site.iway.mymusic.utils.Constants;
 
 public class WebActivity extends BaseActivity implements OnClickListener {

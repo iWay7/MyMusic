@@ -17,6 +17,16 @@
         <include layout="@layout/divider_line_horizontal_fill" />
 
         <site.iway.mymusic.user.views.ListActionItem
+            android:id="@+id/goImageCache"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_com_rect"
+            app:ListActionItemDesc="正在计算..."
+            app:ListActionItemTitle="清除图片缓存" />
+
+        <include layout="@layout/divider_line_horizontal_indent" />
+
+        <site.iway.mymusic.user.views.ListActionItem
             android:id="@+id/goSongCache"
             android:layout_width="match_parent"
             android:layout_height="44dp"

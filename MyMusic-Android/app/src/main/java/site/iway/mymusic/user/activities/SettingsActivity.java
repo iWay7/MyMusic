@@ -19,6 +19,7 @@ import site.iway.mymusic.utils.Settings;
 
 public class SettingsActivity extends BaseActivity implements OnClickListener {
 
+    private ListActionItem mGoImageCache;
     private ListActionItem mGoSongCache;
     private ListActionItem mGoLyricCache;
     private ListActionItem mGoPlayListSortType;
@@ -78,6 +79,28 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         return decimalFormat.format(fileSize) + " B";
     }
 
+    private FolderScanner mImageScanner = new FolderScanner() {
+        private long mFileSize;
+
+        @Override
+        protected void onDetectFile(File file) {
+            mFileSize += file.length();
+        }
+
+        @Override
+        protected void onCompleted(File file) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (!isFinishing()) {
+                        mGoImageCache.setDesc(getFileSize(mFileSize));
+                        mGoImageCache.setOnClickListener(SettingsActivity.this);
+                    }
+                }
+            });
+        }
+    };
+
     private FolderScanner mMP3Scanner = new FolderScanner() {
         private long mFileSize;
 
@@ -93,6 +116,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
                 public void run() {
                     if (!isFinishing()) {
                         mGoSongCache.setDesc(getFileSize(mFileSize));
+                        mGoSongCache.setOnClickListener(SettingsActivity.this);
                     }
                 }
             });
@@ -114,6 +138,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
                 public void run() {
                     if (!isFinishing()) {
                         mGoLyricCache.setDesc(getFileSize(mFileSize));
+                        mGoLyricCache.setOnClickListener(SettingsActivity.this);
                     }
                 }
             });
@@ -121,12 +146,16 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
     };
 
     private void setViews() {
+        mGoImageCache = (ListActionItem) findViewById(R.id.goImageCache);
         mGoSongCache = (ListActionItem) findViewById(R.id.goSongCache);
         mGoLyricCache = (ListActionItem) findViewById(R.id.goLyricCache);
         mGoPlayListSortType = (ListActionItem) findViewById(R.id.goPlayListSortType);
         mGoSearchSortType = (ListActionItem) findViewById(R.id.goSearchSortType);
         mGoAbout = (ListActionItem) findViewById(R.id.goAbout);
         File rootCacheDir = getCacheDir();
+        File imageCacheDir = new File(rootCacheDir, Constants.DIR_NAME_IMAGE_CACHE);
+        mImageScanner.addFolders(imageCacheDir);
+        mImageScanner.start();
         File musicCacheDir = new File(rootCacheDir, Constants.DIR_NAME_MUSIC_CACHE);
         mMP3Scanner.addFolders(musicCacheDir);
         mMP3Scanner.start();
@@ -157,6 +186,12 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         if (v == mTitleBarBack) {
             onBackPressed();
+        } else if (v == mGoImageCache) {
+
+        } else if (v == mGoSongCache) {
+
+        } else if (v == mGoLyricCache) {
+
         } else if (v == mGoPlayListSortType) {
             ListActionDialog dialog = new ListActionDialog(this);
             dialog.setCancelable(true);
