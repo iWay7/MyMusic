@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import java.io.File;
+import java.text.DecimalFormat;
 
 import site.iway.androidhelpers.UIThread;
 import site.iway.javahelpers.FolderScanner;
@@ -52,13 +53,33 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         }
     }
 
+    private String getFileSize(double fileSize) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        double p = 1024d * 1024d * 1024d * 1024d * 1024d;
+        if (fileSize > p) {
+            return decimalFormat.format(fileSize / p) + " P";
+        }
+        double t = 1024d * 1024d * 1024d * 1024d;
+        if (fileSize > t) {
+            return decimalFormat.format(fileSize / t) + " T";
+        }
+        double g = 1024d * 1024d * 1024d;
+        if (fileSize > g) {
+            return decimalFormat.format(fileSize / g) + " G";
+        }
+        double m = 1024d * 1024d;
+        if (fileSize > m) {
+            return decimalFormat.format(fileSize / m) + " M";
+        }
+        double k = 1024d;
+        if (fileSize > k) {
+            return decimalFormat.format(fileSize / k) + " K";
+        }
+        return decimalFormat.format(fileSize) + " B";
+    }
+
     private FolderScanner mMP3Scanner = new FolderScanner() {
         private long mFileSize;
-
-        @Override
-        protected void onEnterFolder(File file) {
-            // nothing
-        }
 
         @Override
         protected void onDetectFile(File file) {
@@ -66,17 +87,12 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         }
 
         @Override
-        protected void onSkipFile(File file) {
-            // nothing
-        }
-
-        @Override
-        protected void onCompleted() {
+        protected void onCompleted(File file) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     if (!isFinishing()) {
-                        mGoSongCache.setDesc(mFileSize + " 字节");
+                        mGoSongCache.setDesc(getFileSize(mFileSize));
                     }
                 }
             });
@@ -87,27 +103,17 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         private long mFileSize;
 
         @Override
-        protected void onEnterFolder(File file) {
-            // nothing
-        }
-
-        @Override
         protected void onDetectFile(File file) {
             mFileSize += file.length();
         }
 
         @Override
-        protected void onSkipFile(File file) {
-            // nothing
-        }
-
-        @Override
-        protected void onCompleted() {
+        protected void onCompleted(File file) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     if (!isFinishing()) {
-                        mGoLyricCache.setDesc(mFileSize + " 字节");
+                        mGoLyricCache.setDesc(getFileSize(mFileSize));
                     }
                 }
             });
@@ -120,13 +126,12 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         mGoPlayListSortType = (ListActionItem) findViewById(R.id.goPlayListSortType);
         mGoSearchSortType = (ListActionItem) findViewById(R.id.goSearchSortType);
         mGoAbout = (ListActionItem) findViewById(R.id.goAbout);
-        mMP3Scanner.addExtension(".mp3");
         File rootCacheDir = getCacheDir();
         File musicCacheDir = new File(rootCacheDir, Constants.DIR_NAME_MUSIC_CACHE);
-        mMP3Scanner.addFolder(musicCacheDir);
+        mMP3Scanner.addFolders(musicCacheDir);
         mMP3Scanner.start();
         File lyricCacheDir = new File(rootCacheDir, Constants.DIR_NAME_LYRIC_CACHE);
-        mLyricScanner.addFolder(lyricCacheDir);
+        mLyricScanner.addFolders(lyricCacheDir);
         mLyricScanner.start();
         mTitleBarText.setText("设置");
         mTitleBarBack.setOnClickListener(this);

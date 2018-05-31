@@ -7,12 +7,10 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
@@ -31,19 +29,13 @@ import site.iway.androidhelpers.ExtendedTextView;
 import site.iway.androidhelpers.ExtendedView;
 import site.iway.androidhelpers.ExtendedWebView;
 import site.iway.androidhelpers.LoadingView;
-import site.iway.mymusic.BuildConfig;
 import site.iway.mymusic.R;
 import site.iway.mymusic.user.dialogs.BaseDialog.OnUserActionListener;
 import site.iway.mymusic.user.dialogs.DoubleActionDialog;
 import site.iway.mymusic.user.dialogs.JsPromptDialog;
 import site.iway.mymusic.user.dialogs.SingleActionDialog;
-import site.iway.mymusic.utils.JavascriptCallable;
 
 public class WebFragment extends BaseFragment implements OnClickListener {
-
-    public interface OnJavascriptCallListener {
-        public String onJavascriptCall(String param);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -100,29 +92,8 @@ public class WebFragment extends BaseFragment implements OnClickListener {
         // nothing
     }
 
-    private OnJavascriptCallListener mOnJavascriptCallListener;
-
-    public void setOnJavascriptCallListener(OnJavascriptCallListener onJavascriptCallListener) {
-        mOnJavascriptCallListener = onJavascriptCallListener;
-    }
-
     public void runJavascript(String javascript) {
         mWebView.loadUrl("javascript:" + javascript);
-    }
-
-    private class JavascriptBridge implements JavascriptCallable {
-
-        @JavascriptInterface
-        public String run(String param) {
-            if (BuildConfig.DEBUG) {
-                Log.d("WebCall", param);
-            }
-            if (mOnJavascriptCallListener != null) {
-                mOnJavascriptCallListener.onJavascriptCall(param);
-            }
-            return null;
-        }
-
     }
 
     private boolean mErrorOccurred;
@@ -289,7 +260,6 @@ public class WebFragment extends BaseFragment implements OnClickListener {
             mWebView.removeJavascriptInterface("accessibility");
             mWebView.removeJavascriptInterface("accessibilityTraversal");
         }
-        mWebView.addJavascriptInterface(new JavascriptBridge(), "CJS");
         mRefreshButton.setOnClickListener(this);
     }
 

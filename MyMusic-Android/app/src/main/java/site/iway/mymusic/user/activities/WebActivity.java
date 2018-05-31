@@ -16,7 +16,7 @@ import site.iway.mymusic.user.fragments.WebFragment;
 import site.iway.mymusic.user.fragments.WebFragment.OnJavascriptCallListener;
 import site.iway.mymusic.utils.Constants;
 
-public class WebActivity extends BaseActivity implements OnJavascriptCallListener, OnClickListener {
+public class WebActivity extends BaseActivity implements OnClickListener {
 
     public static final String DEFAULT_TITLE = "DEFAULT_TITLE";
     public static final String URL = "URL";
@@ -37,7 +37,6 @@ public class WebActivity extends BaseActivity implements OnJavascriptCallListene
         mWebFragment.setTitleBarActions((ExtendedLinearLayout) findViewById(R.id.titleBarActions));
         mWebFragment.setTitleBarSplitter(mTitleBarSplitter);
         mWebFragment.setTitleBarText(mTitleBarText);
-        mWebFragment.setOnJavascriptCallListener(this);
         if (!StringHelper.nullOrWhiteSpace(mIntent.getStringExtra(URL))) {
             mWebFragment.loadUrl(mIntent.getStringExtra(URL));
         }
@@ -71,11 +70,6 @@ public class WebActivity extends BaseActivity implements OnJavascriptCallListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         setViews();
-    }
-
-    @Override
-    public String onJavascriptCall(String param) {
-        return null;
     }
 
     @Override

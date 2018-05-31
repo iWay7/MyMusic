@@ -19,9 +19,8 @@ import site.iway.androidhelpers.ExtendedBaseAdapter;
 import site.iway.androidhelpers.ExtendedImageView;
 import site.iway.androidhelpers.ExtendedLinearLayout;
 import site.iway.androidhelpers.ExtendedTextView;
-import site.iway.androidhelpers.UnitHelper;
+import site.iway.javahelpers.HanziPinyinHelper;
 import site.iway.mymusic.R;
-import site.iway.mymusic.utils.Helpers;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Settings;
 import site.iway.mymusic.utils.Song;
@@ -217,14 +216,14 @@ public class PlayListAdapter extends ExtendedBaseAdapter<String> {
                     case Settings.SORT_BY_ARTIST_NAME:
                         Song o1s = new Song(o1);
                         Song o2s = new Song(o2);
-                        String pinyin1 = Helpers.stringToPinyin(o1s.artist + o1s.name);
-                        String pinyin2 = Helpers.stringToPinyin(o2s.artist + o2s.name);
+                        String pinyin1 = HanziPinyinHelper.getPinyin(o1s.artist + o1s.name);
+                        String pinyin2 = HanziPinyinHelper.getPinyin(o2s.artist + o2s.name);
                         return pinyin1.compareTo(pinyin2);
                     case Settings.SORT_BY_SONG_NAME:
                         o1s = new Song(o1);
                         o2s = new Song(o2);
-                        pinyin1 = Helpers.stringToPinyin(o1s.name + o1s.artist);
-                        pinyin2 = Helpers.stringToPinyin(o2s.name + o2s.artist);
+                        pinyin1 = HanziPinyinHelper.getPinyin(o1s.name + o1s.artist);
+                        pinyin2 = HanziPinyinHelper.getPinyin(o2s.name + o2s.artist);
                         return pinyin1.compareTo(pinyin2);
                 }
                 return 0;
