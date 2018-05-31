@@ -9,6 +9,7 @@ import site.iway.androidhelpers.DeviceHelper;
 import site.iway.androidhelpers.RPCEngine;
 import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.UnitHelper;
+import site.iway.javahelpers.HanziPinyinHelper;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.LyricCache;
 import site.iway.mymusic.utils.MusicCache;
@@ -40,6 +41,7 @@ public class MyMusicApp extends Application {
         ActionTimer.initialize(this);
         UIThread.initialize();
         RPCEngine.initialize(2);
+        HanziPinyinHelper.initialize();
 
         Settings.initialize(getFilesDir() + "/" + Constants.FILE_NAME_SETTINGS, "sPBocrqJKgBiSag3");
         Toaster.initialize(this);

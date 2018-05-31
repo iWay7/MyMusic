@@ -18,6 +18,7 @@ public class AboutActivity extends BaseActivity implements OnClickListener {
         mVisitWebSite = (ExtendedTextView) findViewById(R.id.visitWebSite);
         mVersionName = (ExtendedTextView) findViewById(R.id.versionName);
 
+        mTitleBarBack.setOnClickListener(this);
         mTitleBarText.setText("关于");
         mVisitWebSite.setOnClickListener(this);
         mVersionName.setOnClickListener(this);
@@ -32,11 +33,6 @@ public class AboutActivity extends BaseActivity implements OnClickListener {
     }
 
     @Override
-    public void onBackPressed() {
-        finish();
-    }
-
-    @Override
     public void onClick(View v) {
         if (v == mTitleBarBack) {
             onBackPressed();
@@ -46,6 +42,11 @@ public class AboutActivity extends BaseActivity implements OnClickListener {
             intent.putExtra(WebActivity.URL, "https://github.com/iWay7/MyMusic");
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
 }

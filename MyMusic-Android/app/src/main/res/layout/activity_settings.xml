@@ -17,6 +17,7 @@
         <include layout="@layout/divider_line_horizontal_fill" />
 
         <site.iway.mymusic.user.views.ListActionItem
+            android:id="@+id/goSongCache"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="@drawable/bg_com_rect"
@@ -25,6 +26,7 @@
         <include layout="@layout/divider_line_horizontal_indent" />
 
         <site.iway.mymusic.user.views.ListActionItem
+            android:id="@+id/goLyricCache"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="@drawable/bg_com_rect"
@@ -44,10 +46,20 @@
         <include layout="@layout/divider_line_horizontal_fill" />
 
         <site.iway.mymusic.user.views.ListActionItem
+            android:id="@+id/goPlayListSortType"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="@drawable/bg_com_rect"
-            app:ListActionItemTitle="列表排序方式" />
+            app:ListActionItemTitle="播放列表排序方式" />
+
+        <include layout="@layout/divider_line_horizontal_indent" />
+
+        <site.iway.mymusic.user.views.ListActionItem
+            android:id="@+id/goSearchSortType"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_com_rect"
+            app:ListActionItemTitle="搜索列表排序方式" />
 
         <include layout="@layout/divider_line_horizontal_fill" />
 

@@ -23,5 +23,7 @@ public final class Constants {
     public static final String EV_PLAYER_PLAY_ERROR = "EV_PLAYER_PLAY_ERROR";
     public static final String EV_PLAY_LIST_VIEW = "EV_PLAY_LIST_VIEW";
     public static final String EV_PLAY_LIST_REFRESH = "EV_PLAY_LIST_REFRESH";
+    public static final String EV_PLAY_LIST_SORT_TYPE_CHANGED = "EV_PLAY_LIST_SORT_TYPE_CHANGED";
+    public static final String EV_SEARCH_SORT_TYPE_CHANGED = "EV_SEARCH_SORT_TYPE_CHANGED";
 
 }

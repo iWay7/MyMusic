@@ -45,7 +45,7 @@ public class ListActionDialog extends BaseDialog implements OnClickListener {
                 View view = mLayoutInflater.inflate(R.layout.group_action_item, mActionContainer, false);
                 ExtendedTextView actionText = (ExtendedTextView) view.findViewById(R.id.actionText);
                 actionText.setText(mActions[i]);
-                actionText.setTag(i);
+                actionText.setTag(mActions[i]);
                 actionText.setOnClickListener(this);
                 mActionContainer.addView(view);
             }

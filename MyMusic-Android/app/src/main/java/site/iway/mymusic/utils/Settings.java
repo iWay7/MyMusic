@@ -32,4 +32,27 @@ public class Settings extends PrefsStatic {
         putInt(PLAYER_PLAY_MODE, playMode);
     }
 
+    public static final int SORT_BY_ADD_TIME = -1;
+    public static final int SORT_BY_ARTIST_NAME = 0;
+    public static final int SORT_BY_SONG_NAME = 1;
+
+    private static final String PLAY_LIST_SORT_TYPE = "PLAY_LIST_SORT_TYPE";
+
+    public static int getPlayListSortType() {
+        return getInt(PLAY_LIST_SORT_TYPE, SORT_BY_ADD_TIME);
+    }
+
+    public static void setPlayListSortType(int sortType) {
+        putInt(PLAY_LIST_SORT_TYPE, sortType);
+    }
+
+    private static final String SEARCH_SORT_TYPE = "SEARCH_SORT_TYPE";
+
+    public static int getSearchSortType() {
+        return getInt(SEARCH_SORT_TYPE, SORT_BY_ADD_TIME);
+    }
+
+    public static void setSearchSortType(int sortType) {
+        putInt(SEARCH_SORT_TYPE, sortType);
+    }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<site.iway.androidhelpers.ExtendedLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<site.iway.androidhelpers.ExtendedLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialogRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,11 +20,10 @@
         android:id="@+id/cancel"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="15dp"
         android:background="@drawable/bg_com_rect"
         android:gravity="center"
         android:text="取消"
-        android:textColor="#000000"
+        android:textColor="#d33a31"
         android:textSize="16sp" />
 
 </site.iway.androidhelpers.ExtendedLinearLayout>

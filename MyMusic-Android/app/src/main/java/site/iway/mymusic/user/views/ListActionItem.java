@@ -63,7 +63,7 @@ public class ListActionItem extends FrameLayout {
     }
 
     public void setDesc(CharSequence desc) {
-        mTextViewTitle.setText(desc);
+        mTextViewDesc.setText(desc);
     }
 
     public void showArrow() {

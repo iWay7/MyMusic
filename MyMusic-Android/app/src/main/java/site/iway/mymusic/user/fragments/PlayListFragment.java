@@ -227,6 +227,9 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
             case Constants.EV_PLAY_LIST_REFRESH:
                 doRefresh();
                 break;
+            case Constants.EV_PLAY_LIST_SORT_TYPE_CHANGED:
+                mPlayListAdapter.resort();
+                break;
         }
     }
 
@@ -271,9 +274,6 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
                             Player player = Player.getInstance();
                             player.removePlayListItems(copiedSelectedItems);
                             mPlayListAdapter.removeItemsFromSelected();
-                            LayoutParams layoutParams = mFooterView.findViewById(R.id.footerPad).getLayoutParams();
-                            layoutParams.height = UnitHelper.dipToPxInt(80f);
-                            mFooterView.findViewById(R.id.footerPad).setLayoutParams(layoutParams);
                             onClick(mFinishActions);
                         }
                     }
@@ -297,7 +297,9 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
             animationSet.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
-
+                    LayoutParams layoutParams = mFooterView.findViewById(R.id.footerPad).getLayoutParams();
+                    layoutParams.height = UnitHelper.dipToPxInt(80f);
+                    mFooterView.findViewById(R.id.footerPad).setLayoutParams(layoutParams);
                 }
 
                 @Override

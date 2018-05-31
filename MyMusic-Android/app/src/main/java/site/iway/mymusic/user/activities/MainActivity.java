@@ -96,6 +96,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        if (mViewPager.getCurrentItem() != 0) {
+            mViewPager.setCurrentItem(0);
+            return;
+        }
         finish();
     }
 

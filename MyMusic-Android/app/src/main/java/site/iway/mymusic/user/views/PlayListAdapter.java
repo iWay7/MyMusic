@@ -11,14 +11,19 @@ import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import site.iway.androidhelpers.ExtendedBaseAdapter;
 import site.iway.androidhelpers.ExtendedImageView;
 import site.iway.androidhelpers.ExtendedLinearLayout;
 import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.UnitHelper;
 import site.iway.mymusic.R;
+import site.iway.mymusic.utils.Helpers;
 import site.iway.mymusic.utils.Player;
+import site.iway.mymusic.utils.Settings;
 import site.iway.mymusic.utils.Song;
 
 /**
@@ -31,9 +36,26 @@ public class PlayListAdapter extends ExtendedBaseAdapter<String> {
         super(context);
     }
 
+    @Override
+    public void addData(List<String> data) {
+        super.addData(data);
+        resort();
+    }
+
+    @Override
+    public void addData(String data) {
+        super.addData(data);
+        resort();
+    }
+
+    @Override
+    public void setData(List<String> data) {
+        super.setData(data);
+        resort();
+    }
+
     private boolean mInSelectionMode = false;
     private List<String> mSelectedItems = new ArrayList<>();
-    ;
 
     public void setInSelectionMode(boolean inSelectionMode) {
         mInSelectionMode = inSelectionMode;
@@ -186,4 +208,28 @@ public class PlayListAdapter extends ExtendedBaseAdapter<String> {
         return convertView;
     }
 
+    public void resort() {
+        Collections.sort(mData, new Comparator<String>() {
+
+            @Override
+            public int compare(String o1, String o2) {
+                switch (Settings.getPlayListSortType()) {
+                    case Settings.SORT_BY_ARTIST_NAME:
+                        Song o1s = new Song(o1);
+                        Song o2s = new Song(o2);
+                        String pinyin1 = Helpers.stringToPinyin(o1s.artist + o1s.name);
+                        String pinyin2 = Helpers.stringToPinyin(o2s.artist + o2s.name);
+                        return pinyin1.compareTo(pinyin2);
+                    case Settings.SORT_BY_SONG_NAME:
+                        o1s = new Song(o1);
+                        o2s = new Song(o2);
+                        pinyin1 = Helpers.stringToPinyin(o1s.name + o1s.artist);
+                        pinyin2 = Helpers.stringToPinyin(o2s.name + o2s.artist);
+                        return pinyin1.compareTo(pinyin2);
+                }
+                return 0;
+            }
+        });
+        notifyDataSetChanged();
+    }
 }
