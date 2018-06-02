@@ -15,6 +15,7 @@ public final class Constants {
     public static final String FILE_NAME_SETTINGS = "1b203810-efd3-4164-bdd5-0cfec03f79ed";
 
     public static final String SERVICE_URL_BASE = "http://home.iway.site:8888/mm/";
+    public static final String MUSIC_URL_BASE = SERVICE_URL_BASE + "GetSong?fileName=";
 
     public static final String EV_PLAY_LIST_MODE_CHANGED = "EV_PLAY_LIST_MODE_CHANGED";
 

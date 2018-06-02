@@ -42,50 +42,55 @@ public class PlayList extends ArrayList<String> {
         addAll(items);
     }
 
+    private Random mRandom = new Random(System.nanoTime());
+
     public String previous(String current) {
+        if (isEmpty())
+            return null;
+        if (size() == 1)
+            return get(0);
         switch (mPlayMode) {
             case MODE_LOOP_LIST:
-                if (size() == 0)
-                    return null;
-                if (size() == 1)
-                    return get(0);
+            case MODE_LOOP_SINGLE:
                 int currentIndex = indexOf(current);
                 int previousIndex = currentIndex - 1;
                 if (previousIndex <= -1) {
                     previousIndex = size() - 1;
                 }
                 return get(previousIndex);
-            case MODE_LOOP_SINGLE:
-                return current;
             case MODE_RANDOM:
-                int random = new Random(System.nanoTime()).nextInt(size());
-                return get(random);
+                return get(mRandom.nextInt(size()));
             default:
                 return null;
         }
     }
 
     public String next(String current) {
+        if (isEmpty())
+            return null;
+        if (size() == 1)
+            return get(0);
         switch (mPlayMode) {
             case MODE_LOOP_LIST:
-                if (size() == 0)
-                    return null;
-                if (size() == 1)
-                    return get(0);
+            case MODE_LOOP_SINGLE:
                 int currentIndex = indexOf(current);
                 int nextIndex = currentIndex + 1;
                 if (nextIndex >= size()) {
                     nextIndex = 0;
                 }
                 return get(nextIndex);
-            case MODE_LOOP_SINGLE:
-                return current;
             case MODE_RANDOM:
-                int random = new Random(System.nanoTime()).nextInt(size());
-                return get(random);
+                return get(mRandom.nextInt(size()));
             default:
                 return null;
         }
+    }
+
+    public String nextAuto(String current) {
+        if (mPlayMode == MODE_LOOP_SINGLE && current != null) {
+            return current;
+        }
+        return next(current);
     }
 
     public void resort() {

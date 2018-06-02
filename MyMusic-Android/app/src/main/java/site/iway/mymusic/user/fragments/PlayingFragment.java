@@ -33,12 +33,10 @@ import site.iway.mymusic.net.mymusic.models.common.SongInfo;
 import site.iway.mymusic.user.activities.SettingsActivity;
 import site.iway.mymusic.user.activities.ViewSongsActivity;
 import site.iway.mymusic.user.views.LRCView;
+import site.iway.mymusic.user.views.LineLRCView;
 import site.iway.mymusic.user.views.PlayProgressView;
 import site.iway.mymusic.user.views.PlayProgressView.OnRequestPlayProgressListener;
 import site.iway.mymusic.utils.Constants;
-import site.iway.mymusic.utils.LyricCache;
-import site.iway.mymusic.utils.LyricManager;
-import site.iway.mymusic.utils.LyricManager.LyricLine;
 import site.iway.mymusic.utils.PlayList;
 import site.iway.mymusic.utils.PlayTask;
 import site.iway.mymusic.utils.Player;
@@ -66,7 +64,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     private ViewSwapper mViewSwapper;
     private ExtendedFrameLayout mDiskContainer;
     private BitmapView mSongArt;
-    private ExtendedTextView mLrc;
+    private LineLRCView mLrc;
     private ExtendedImageView mDiskHandle;
     private LRCView mLrcView;
     private ExtendedTextView mPosition;
@@ -102,7 +100,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     private void refreshViews() {
         PlayTask playTask = mPlayer.getPlayTask();
         if (playTask != null) {
-            String musicFileName = playTask.getMusicFileName();
+            String musicFileName = playTask.getFileName();
             Song song = new Song(musicFileName);
             mTitleBarText.setText(song.name);
             mArtist.setText(song.artist);
@@ -127,7 +125,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         mViewSwapper = (ViewSwapper) mRootView.findViewById(R.id.viewSwapper);
         mDiskContainer = (ExtendedFrameLayout) mRootView.findViewById(R.id.diskContainer);
         mSongArt = (BitmapView) mRootView.findViewById(R.id.songArt);
-        mLrc = (ExtendedTextView) mRootView.findViewById(R.id.lrc);
+        mLrc = (LineLRCView) mRootView.findViewById(R.id.lrc);
         mDiskHandle = (ExtendedImageView) mRootView.findViewById(R.id.diskHandle);
         mLrcView = (LRCView) mRootView.findViewById(R.id.lrcView);
         mPosition = (ExtendedTextView) mRootView.findViewById(R.id.position);
@@ -193,12 +191,9 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         }
     };
 
-    private LyricManager mLyricManager;
-
     @Override
     public void onRequestOK(RPCBaseReq req) {
         if (req == mLastFetchSongInfo) {
-            GetSongInfoReq getSongInfoReq = (GetSongInfoReq) req;
             GetSongInfoRes getSongInfoRes = (GetSongInfoRes) req.response;
             String imageLink = null;
             String lrcLink = null;
@@ -217,13 +212,8 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
             }
             mBackground.loadFromURLSource(imageLink, mBitmapFilter);
             mSongArt.loadFromURLSource(imageLink == null ? null : imageLink.replace("90", "512"));
-            if (!TextUtils.isEmpty(lrcLink)) {
-                Song song = (Song) getSongInfoReq.tag;
-                LyricCache lyricCache = LyricCache.getInstance();
-                if (!lyricCache.exists(song)) {
-                    lyricCache.download(song, lrcLink);
-                }
-            }
+            mLrc.load(lrcLink);
+            mLrcView.load(lrcLink);
         }
     }
 
@@ -344,44 +334,6 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
             }
         }
 
-        private long mLastLyricTime;
-
-        private void setLyric() {
-            if (mTicks % 8 == 0) {
-                PlayTask playTask = mPlayer.getPlayTask();
-                if (playTask != null) {
-                    String musicFileName = playTask.getMusicFileName();
-                    Song playingSong = new Song(musicFileName);
-                    if (mLyricManager == null || !mLyricManager.forSong(playingSong)) {
-                        LyricCache lyricCache = LyricCache.getInstance();
-                        if (lyricCache.exists(playingSong)) {
-                            mLyricManager = lyricCache.get(playingSong);
-                        } else {
-                            mLyricManager = null;
-                        }
-                    }
-                    mLrcView.setLyricManager(mLyricManager);
-                    if (mLyricManager != null) {
-                        int position = playTask.getPosition();
-                        LyricLine lyricLine = mLyricManager.getCurrentLine(position);
-                        mLrcView.setCurrentLine(lyricLine);
-                        if (lyricLine != null) {
-                            long lyricTime = lyricLine.millis;
-                            if (mLastLyricTime != lyricTime) {
-                                String newText = lyricLine.combineLineTexts();
-                                mLrc.setText(newText);
-                            }
-                            mLastLyricTime = lyricTime;
-                        } else {
-                            mLrc.setText(null);
-                        }
-                    } else {
-                        mLrc.setText(null);
-                    }
-                }
-            }
-        }
-
         @Override
         public void doOnUIThread() {
             mTicks++;
@@ -389,7 +341,6 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
             setDiskHandle();
             setProgress();
             setPlayPause();
-            setLyric();
         }
     };
 

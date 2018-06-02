@@ -48,7 +48,6 @@ public class LyricManager {
 
     }
 
-    private final Song mForSong;
     private final List<LyricLine> mLyricLines = new ArrayList<>();
 
     private long getMillis(String time) {
@@ -81,8 +80,7 @@ public class LyricManager {
         }
     }
 
-    public LyricManager(Song song, List<String> lyricLines) {
-        mForSong = song;
+    public LyricManager(List<String> lyricLines) {
         mLyricLines.clear();
         for (String line : lyricLines) {
             Matcher matcher = mPattern.matcher(line);
@@ -115,10 +113,6 @@ public class LyricManager {
             }
         }
         return null;
-    }
-
-    public boolean forSong(Song song) {
-        return mForSong.equals(song);
     }
 
     private Paint mPaint;

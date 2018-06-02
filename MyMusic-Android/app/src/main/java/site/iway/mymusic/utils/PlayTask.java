@@ -4,6 +4,8 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
 
+import site.iway.javahelpers.URLCodec;
+
 public class PlayTask extends Thread implements OnCompletionListener, OnErrorListener {
 
     public interface PlayStateListener {
@@ -21,23 +23,23 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
     public static final int STATE_TASK_CANCELED = 9;
 
     private final MediaPlayer mMediaPlayer;
-    private final String mMusicFileName;
+    private final String mFileName;
     private final PlayStateListener mListener;
     private volatile int mState;
     private volatile boolean mIsCanceled;
 
-    public PlayTask(String musicFileName, PlayStateListener listener) {
+    public PlayTask(String fileName, PlayStateListener listener) {
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setOnCompletionListener(this);
         mMediaPlayer.setOnErrorListener(this);
-        mMusicFileName = musicFileName;
+        mFileName = fileName;
         mListener = listener;
         updateTaskState(STATE_READY);
         mIsCanceled = false;
     }
 
-    public String getMusicFileName() {
-        return mMusicFileName;
+    public String getFileName() {
+        return mFileName;
     }
 
     public int getTaskState() {
@@ -65,18 +67,19 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
     public void run() {
         updateTaskState(STATE_TASK_START);
         updateTaskState(STATE_DOWNLOADING);
-        MusicCache musicCache = MusicCache.getInstance();
-        if (musicCache.exists(mMusicFileName)) {
-            String musicFilePath = musicCache.get(mMusicFileName);
+        String url = Constants.MUSIC_URL_BASE + URLCodec.encode(mFileName);
+        FileCache musicCache = FileCache.getMusic();
+        if (musicCache.exists(url)) {
+            String filePath = musicCache.getFilePath(url);
             try {
-                mMediaPlayer.setDataSource(musicFilePath);
+                mMediaPlayer.setDataSource(filePath);
                 mMediaPlayer.prepare();
                 updateTaskState(STATE_PREPARED);
             } catch (Exception e) {
                 updateTaskState(STATE_ERROR);
             }
         } else {
-            musicCache.download(mMusicFileName);
+            musicCache.download(url);
             do {
                 try {
                     Thread.sleep(333);
@@ -84,11 +87,11 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
                     break;
                 }
             }
-            while (musicCache.isDownloading(mMusicFileName));
-            if (musicCache.exists(mMusicFileName)) {
-                String musicFilePath = musicCache.get(mMusicFileName);
+            while (musicCache.isDownloading(url));
+            if (musicCache.exists(url)) {
+                String filePath = musicCache.getFilePath(url);
                 try {
-                    mMediaPlayer.setDataSource(musicFilePath);
+                    mMediaPlayer.setDataSource(filePath);
                     mMediaPlayer.prepare();
                     updateTaskState(STATE_PREPARED);
                 } catch (Exception e) {

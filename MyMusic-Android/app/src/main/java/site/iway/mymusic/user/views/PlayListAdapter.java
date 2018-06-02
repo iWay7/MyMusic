@@ -138,7 +138,7 @@ public class PlayListAdapter extends BaseAdapter {
         artist.setText(song.artist);
         Player player = Player.getInstance();
         PlayTask playTask = player.getPlayTask();
-        if (playTask != null && fileName.equals(playTask.getMusicFileName())) {
+        if (playTask != null && fileName.equals(playTask.getFileName())) {
             int oldVisibility = playingIndicator.getVisibility();
             playingIndicator.setVisibility(View.VISIBLE);
             title.setTextColor(0xffd33a31);

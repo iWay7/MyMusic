@@ -19,16 +19,21 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
+import site.iway.androidhelpers.UITimer;
 import site.iway.androidhelpers.UnitHelper;
 import site.iway.mymusic.R;
-import site.iway.mymusic.utils.LyricManager.LyricLine;
 import site.iway.mymusic.utils.LyricManager;
+import site.iway.mymusic.utils.LyricManager.LyricLine;
+import site.iway.mymusic.utils.LyricTask;
+import site.iway.mymusic.utils.LyricTask.LyricStateListener;
+import site.iway.mymusic.utils.PlayTask;
+import site.iway.mymusic.utils.Player;
 
 /**
  * Created by iWay on 2017/12/25.
  */
 
-public class LRCView extends View {
+public class LRCView extends View implements LyricStateListener {
 
     public LRCView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -70,9 +75,10 @@ public class LRCView extends View {
         a.recycle();
     }
 
-    private LyricManager mLyricManager;
+    private volatile LyricTask mLyricTask;
+    private volatile LyricManager mLyricManager;
 
-    public void setLyricManager(LyricManager lyricManager) {
+    private void setLyricManager(LyricManager lyricManager) {
         if (mLyricManager != lyricManager) {
             mLyricManager = lyricManager;
             if (mLyricManager != null) {
@@ -88,6 +94,32 @@ public class LRCView extends View {
             mCurrentLine = null;
             invalidate();
             scrollLyric();
+        }
+    }
+
+    @Override
+    public void onLyricStateChanged(LyricTask lyricTask) {
+        if (mLyricTask == lyricTask) {
+            switch (lyricTask.getTaskState()) {
+                case LyricTask.STATE_SUCCESS:
+                    final LyricManager lyricManager = lyricTask.getLyricManager();
+                    post(new Runnable() {
+                        @Override
+                        public void run() {
+                            setLyricManager(lyricManager);
+                        }
+                    });
+                    break;
+            }
+        }
+    }
+
+    public void load(String url) {
+        mLyricManager = null;
+        mLyricTask = null;
+        if (url != null) {
+            mLyricTask = new LyricTask(url, this);
+            mLyricTask.start();
         }
     }
 
@@ -113,13 +145,46 @@ public class LRCView extends View {
 
     private LyricLine mCurrentLine;
 
-    public void setCurrentLine(LyricLine currentLine) {
+    private void setCurrentLine(LyricLine currentLine) {
         if (mCurrentLine != currentLine) {
             mCurrentLine = currentLine;
             mLyricManager.setCurrentLine(currentLine);
             invalidate();
             scrollLyric();
         }
+    }
+
+    private UITimer mUITimer = new UITimer(200) {
+
+        @Override
+        public void doOnUIThread() {
+            if (mLyricManager == null) {
+                setCurrentLine(null);
+            } else {
+                Player player = Player.getInstance();
+                PlayTask playTask = player.getPlayTask();
+                if (playTask == null) {
+                    setCurrentLine(null);
+                } else {
+                    int position = playTask.getPosition();
+                    LyricLine currentLine = mLyricManager.getCurrentLine(position);
+                    setCurrentLine(currentLine);
+                }
+            }
+        }
+
+    };
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mUITimer.start(false);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mUITimer.stop();
+        super.onDetachedFromWindow();
     }
 
     private ObjectAnimator mObjectAnimator;
@@ -132,9 +197,14 @@ public class LRCView extends View {
             int viewHeight = getHeight();
             int targetScroll = mCurrentLine.middleY - viewHeight / 2;
             int currentScroll = getScrollY();
-            mObjectAnimator = ObjectAnimator.ofInt(this, "scrollY", currentScroll, targetScroll);
-            mObjectAnimator.setDuration(300);
-            mObjectAnimator.start();
+            int visibility = getVisibility();
+            if (visibility == View.VISIBLE) {
+                mObjectAnimator = ObjectAnimator.ofInt(this, "scrollY", currentScroll, targetScroll);
+                mObjectAnimator.setDuration(300);
+                mObjectAnimator.start();
+            } else {
+                setScrollY(targetScroll);
+            }
         } else {
             setScrollY(0);
         }

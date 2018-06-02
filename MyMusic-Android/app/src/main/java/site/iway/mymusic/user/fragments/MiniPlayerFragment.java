@@ -52,7 +52,7 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
     private void refreshViews() {
         PlayTask playTask = mPlayer.getPlayTask();
         if (playTask != null) {
-            String musicFileName = playTask.getMusicFileName();
+            String musicFileName = playTask.getFileName();
             Song song = new Song(musicFileName);
             loadImage(song);
             mSongName.setText(song.name);

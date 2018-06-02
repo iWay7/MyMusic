@@ -181,7 +181,7 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
                 if (playTask == null) {
                     player.play(requestedItem);
                 } else {
-                    String musicFileName = playTask.getMusicFileName();
+                    String musicFileName = playTask.getFileName();
                     if (!musicFileName.equals(mPlayListAdapter.getItem(position))) {
                         player.play(requestedItem);
                     }

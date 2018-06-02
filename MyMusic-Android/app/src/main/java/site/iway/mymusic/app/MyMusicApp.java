@@ -11,11 +11,9 @@ import site.iway.androidhelpers.DeviceHelper;
 import site.iway.androidhelpers.RPCEngine;
 import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.UnitHelper;
-import site.iway.androidhelpers.WTFRecorder;
 import site.iway.javahelpers.HanziPinyinHelper;
 import site.iway.mymusic.utils.Constants;
-import site.iway.mymusic.utils.LyricCache;
-import site.iway.mymusic.utils.MusicCache;
+import site.iway.mymusic.utils.FileCache;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Settings;
 import site.iway.mymusic.utils.Toaster;
@@ -47,12 +45,10 @@ public class MyMusicApp extends Application {
         UIThread.initialize();
         RPCEngine.initialize(2);
         HanziPinyinHelper.initialize();
-        WTFRecorder.initialize(this, filesDir + "/" + Constants.DIR_NAME_ERROR_CACHE);
 
         Settings.initialize(filesDir + "/" + Constants.FILE_NAME_SETTINGS, "sPBocrqJKgBiSag3");
         Toaster.initialize(this);
-        MusicCache.initialize(this);
-        LyricCache.initialize(this);
+        FileCache.initialize(this);
         Player.initialize(this);
     }
 

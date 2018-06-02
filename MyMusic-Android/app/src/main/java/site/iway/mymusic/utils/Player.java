@@ -63,19 +63,23 @@ public class Player implements PlayStateListener {
     public void previous() {
         String current = null;
         if (mPlayTask != null) {
-            current = mPlayTask.getMusicFileName();
+            current = mPlayTask.getFileName();
         }
         String previous = mPlayList.previous(current);
         play(previous);
     }
 
-    public void next() {
+    public void next(boolean auto) {
         String current = null;
         if (mPlayTask != null) {
-            current = mPlayTask.getMusicFileName();
+            current = mPlayTask.getFileName();
         }
-        String next = mPlayList.next(current);
+        String next = auto ? mPlayList.nextAuto(current) : mPlayList.next(current);
         play(next);
+    }
+
+    public void next() {
+        next(false);
     }
 
     @Override
@@ -87,7 +91,7 @@ public class Player implements PlayStateListener {
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            next();
+                            next(true);
                         }
                     });
                     break;
