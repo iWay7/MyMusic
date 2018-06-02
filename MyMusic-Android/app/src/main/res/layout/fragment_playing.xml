@@ -275,7 +275,9 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp">
+                android:layout_marginRight="12dp"
+                app:outAnimation="@anim/fade_out_300"
+                app:inAnimation="@anim/fade_in_300">
 
                 <site.iway.androidhelpers.ExtendedImageView
                     android:layout_width="match_parent"

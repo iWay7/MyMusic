@@ -155,6 +155,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         mNext.setOnClickListener(this);
         mSettings.setOnClickListener(this);
         mDiskContainer.setOnClickListener(this);
+        mDiskContainer.setOnLongClickListener(this);
         mLrcView.setOnClickListener(this);
         mLrcView.setOnLongClickListener(this);
 
@@ -413,6 +414,8 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     @Override
     public boolean onLongClick(View v) {
         if (v == mLrcView) {
+            return true;
+        } else if (v == mDiskContainer) {
             return true;
         }
         return false;
