@@ -318,6 +318,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
 
         private static final int INDEX_PLAY = 0;
         private static final int INDEX_PAUSE = 1;
+        private static final int INDEX_LOADING = 2;
 
         private void setPlayPause() {
             if (mTicks % 8 == 0) {
@@ -326,6 +327,12 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
                     mPlayPause.setDisplayedChild(INDEX_PLAY);
                 } else {
                     switch (playTask.getTaskState()) {
+                        case PlayTask.STATE_READY:
+                        case PlayTask.STATE_TASK_START:
+                        case PlayTask.STATE_DOWNLOADING:
+                        case PlayTask.STATE_PREPARED:
+                            mPlayPause.setDisplayedChild(INDEX_LOADING);
+                            break;
                         case PlayTask.STATE_PLAYING:
                             mPlayPause.setDisplayedChild(INDEX_PAUSE);
                             break;

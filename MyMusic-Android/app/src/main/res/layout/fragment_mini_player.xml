@@ -80,7 +80,9 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                app:displayedChild="0">
+                app:displayedChild="2"
+                app:inAnimation="@anim/fade_in_300"
+                app:outAnimation="@anim/fade_out_300">
 
                 <site.iway.androidhelpers.ExtendedImageView
                     android:layout_width="match_parent"
@@ -93,6 +95,11 @@
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_pause" />
+
+                <site.iway.androidhelpers.LoadingView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center" />
 
             </site.iway.androidhelpers.ViewSwapper>
 

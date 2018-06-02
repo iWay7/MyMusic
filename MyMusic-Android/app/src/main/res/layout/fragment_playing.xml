@@ -287,6 +287,11 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/icon_pause_white" />
 
+                <site.iway.androidhelpers.LoadingView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center" />
+
             </site.iway.androidhelpers.ViewSwapper>
 
             <site.iway.androidhelpers.ExtendedImageView

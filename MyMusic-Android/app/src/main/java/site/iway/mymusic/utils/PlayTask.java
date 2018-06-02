@@ -77,13 +77,14 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
             }
         } else {
             musicCache.download(mMusicFileName);
-            while (musicCache.isDownloading(mMusicFileName)) {
+            do {
                 try {
                     Thread.sleep(333);
                 } catch (Exception e) {
                     break;
                 }
             }
+            while (musicCache.isDownloading(mMusicFileName));
             if (musicCache.exists(mMusicFileName)) {
                 String musicFilePath = musicCache.get(mMusicFileName);
                 try {

@@ -1,8 +1,11 @@
 package site.iway.mymusic.user.activities;
 
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout.LayoutParams;
 
 import java.io.FileOutputStream;
 import java.nio.charset.Charset;
@@ -21,47 +24,62 @@ public class WebActivity extends BaseActivity implements OnClickListener {
     public static final String URL = "URL";
     public static final String HTML = "HTML";
 
-    private WebFragment mWebFragment;
+    protected WebFragment mWebFragment;
+
+    protected ExtendedTextView mTitleBarClose;
+    protected ExtendedLinearLayout mTitleBarActions;
+
+    protected void addTitleBarAction(String action, OnClickListener onClickListener) {
+        ExtendedTextView extendedTextView = new ExtendedTextView(this);
+        extendedTextView.setText(action);
+        extendedTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mResources.getDimensionPixelSize(R.dimen.titleBarButtonTextSize));
+        extendedTextView.setTextColor(mResources.getColor(R.color.titleBarButtonTextColor));
+        extendedTextView.setGravity(Gravity.CENTER);
+        int padding = mResources.getDimensionPixelSize(R.dimen.titleBarButtonPadding);
+        extendedTextView.setPadding(padding, 0, padding, 0);
+        extendedTextView.setTextPressAlpha(mResources.getInteger(R.integer.titleBarTextPressAlpha));
+        extendedTextView.setOnClickListener(onClickListener);
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+        mTitleBarActions.addView(extendedTextView, layoutParams);
+    }
+
+    protected void loadUrl(String url) {
+        mWebFragment.loadUrl(mIntent.getStringExtra(URL));
+    }
+
+    protected void loadHtml(String html) {
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(Constants.FILE_NAME_TEMP_HTML, MODE_PRIVATE);
+            TextRW.writeAllText(fileOutputStream, Charset.forName("utf-8"), html);
+            fileOutputStream.close();
+            mWebFragment.loadUrl("file://" + getFilesDir() + "/" + Constants.FILE_NAME_TEMP_HTML);
+        } catch (Exception e) {
+            // nothing
+        }
+    }
 
     public void setViews() {
+        mTitleBarClose = findViewById(R.id.titleBarClose);
+        mTitleBarActions = findViewById(R.id.titleBarActions);
         mWebFragment = (WebFragment) mFragmentManager.findFragmentById(R.id.webFragment);
 
         mTitleBarBack.setOnClickListener(this);
+        mTitleBarClose.setOnClickListener(this);
         mTitleBarText.setText(mIntent.getStringExtra(DEFAULT_TITLE));
         mTitleBarSplitter.setVisibility(View.GONE);
 
         mWebFragment.setTitleBarRoot(mTitleBarRoot);
         mWebFragment.setTitleBarBack(mTitleBarBack);
-        mWebFragment.setTitleBarClose((ExtendedTextView) findViewById(R.id.titleBarClose));
-        mWebFragment.setTitleBarActions((ExtendedLinearLayout) findViewById(R.id.titleBarActions));
+        mWebFragment.setTitleBarClose(mTitleBarClose);
+        mWebFragment.setTitleBarActions(mTitleBarActions);
         mWebFragment.setTitleBarSplitter(mTitleBarSplitter);
         mWebFragment.setTitleBarText(mTitleBarText);
         if (!StringHelper.nullOrWhiteSpace(mIntent.getStringExtra(URL))) {
-            mWebFragment.loadUrl(mIntent.getStringExtra(URL));
+            loadUrl(mIntent.getStringExtra(URL));
         }
         if (!StringHelper.nullOrWhiteSpace(mIntent.getStringExtra(HTML))) {
-            FileOutputStream fileOutputStream = null;
-            try {
-                fileOutputStream = openFileOutput(Constants.FILE_NAME_TEMP_HTML, MODE_PRIVATE);
-                Charset charset = Charset.forName("utf-8");
-                String data = mIntent.getStringExtra(HTML);
-                TextRW.writeAllText(fileOutputStream, charset, data);
-                fileOutputStream.close();
-                fileOutputStream = null;
-                mWebFragment.loadUrl("file://" + getFilesDir() + "/" + Constants.FILE_NAME_TEMP_HTML);
-            } catch (Exception e) {
-                // nothing
-            } finally {
-                try {
-                    if (fileOutputStream != null) {
-                        fileOutputStream.close();
-                    }
-                } catch (Exception e) {
-                    // nothing
-                }
-            }
+            loadHtml(mIntent.getStringExtra(HTML));
         }
-        findViewById(R.id.titleBarClose).setOnClickListener(this);
     }
 
     @Override
