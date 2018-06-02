@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity {
     public void onEvent(String event, Object data) {
         super.onEvent(event, data);
         switch (event) {
-            case Constants.EV_PLAY_LIST_VIEW:
+            case Constants.EV_REQUEST_VIEW_PLAY_LIST:
                 mViewPager.setCurrentItem(0);
                 break;
         }

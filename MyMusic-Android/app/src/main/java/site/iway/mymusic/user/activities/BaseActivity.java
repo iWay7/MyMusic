@@ -33,7 +33,6 @@ import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.UIThread.UIEventHandler;
 import site.iway.androidhelpers.UnitHelper;
 import site.iway.androidhelpers.WindowHelper;
-import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.R;
 
 /**
@@ -226,8 +225,9 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     }
 
     private View mLoadingView;
+    private int mShowCount;
 
-    public void showLoadingView(String message) {
+    public void showLoadingView() {
         if (mLoadingView == null) {
             mLoadingView = mLayoutInflater.inflate(R.layout.dialog_loading, mContentViewContainer, false);
             addContentViewInternal(mLoadingView, CONTENT_VIEW_PRIORITY_LOADING_VIEW);
@@ -235,17 +235,14 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
             alphaAnimation.setDuration(100);
             mLoadingView.startAnimation(alphaAnimation);
         }
-        ExtendedTextView messageView = (ExtendedTextView) mLoadingView.findViewById(R.id.message);
-        messageView.setText(message);
-        messageView.setVisibility(StringHelper.nullOrWhiteSpace(message) ? View.GONE : View.VISIBLE);
-    }
-
-    public void showLoadingView() {
-        showLoadingView(null);
+        mShowCount++;
     }
 
     public void hideLoadingView() {
-        if (mLoadingView != null) {
+        if (mShowCount > 0) {
+            mShowCount--;
+        }
+        if (mShowCount == 0 && mLoadingView != null) {
             final View animationView = mLoadingView;
             AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
             alphaAnimation.setDuration(100);

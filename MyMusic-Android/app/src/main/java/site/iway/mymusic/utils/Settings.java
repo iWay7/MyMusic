@@ -25,7 +25,7 @@ public class Settings extends PrefsStatic {
     private static final String PLAYER_PLAY_MODE = "PLAYER_PLAY_MODE";
 
     public static int getPlayerPlayMode() {
-        return getInt(PLAYER_PLAY_MODE, Player.MODE_LOOP_LIST);
+        return getInt(PLAYER_PLAY_MODE, PlayList.MODE_LOOP_LIST);
     }
 
     public static void setPlayerPlayMode(int playMode) {

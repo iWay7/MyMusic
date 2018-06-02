@@ -39,6 +39,8 @@ import site.iway.mymusic.user.dialogs.ActionDialog;
 import site.iway.mymusic.user.dialogs.BaseDialog.OnUserActionListener;
 import site.iway.mymusic.user.views.PlayListAdapter;
 import site.iway.mymusic.utils.Constants;
+import site.iway.mymusic.utils.PlayList;
+import site.iway.mymusic.utils.PlayTask;
 import site.iway.mymusic.utils.Player;
 
 /**
@@ -150,8 +152,6 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
     protected void setAdapterDataFromRPCResponse(Object data) {
         PlayListRes playListRes = (PlayListRes) data;
         mPlayListAdapter.setData(playListRes.fileNames);
-        Player player = Player.getInstance();
-        player.setPlayList(playListRes.fileNames);
     }
 
     private void setSelectAllImage() {
@@ -175,8 +175,17 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
                 }
                 setSelectAllImage();
             } else {
+                String requestedItem = mPlayListAdapter.getItem(position);
                 Player player = Player.getInstance();
-                player.playFile(mPlayListAdapter.getItem(position));
+                PlayTask playTask = player.getPlayTask();
+                if (playTask == null) {
+                    player.play(requestedItem);
+                } else {
+                    String musicFileName = playTask.getMusicFileName();
+                    if (!musicFileName.equals(mPlayListAdapter.getItem(position))) {
+                        player.play(requestedItem);
+                    }
+                }
                 mPlayListAdapter.notifyDataSetChanged();
             }
         }
@@ -221,10 +230,10 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
     public void onEvent(String event, Object data) {
         super.onEvent(event, data);
         switch (event) {
-            case Constants.EV_PLAYER_START_PLAY:
+            case Constants.EV_PLAYER_TASK_CHANGED:
                 mPlayListAdapter.notifyDataSetChanged();
                 break;
-            case Constants.EV_PLAY_LIST_REFRESH:
+            case Constants.EV_REQUEST_REFRESH_PLAY_LIST:
                 doRefresh();
                 break;
             case Constants.EV_PLAY_LIST_SORT_TYPE_CHANGED:
@@ -272,7 +281,8 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
                             playListReq.fileNames = stringBuilder.substring(1);
                             playListReq.start();
                             Player player = Player.getInstance();
-                            player.removePlayListItems(copiedSelectedItems);
+                            PlayList playList = player.getPlayList();
+                            playList.removeAll(copiedSelectedItems);
                             mPlayListAdapter.removeItemsFromSelected();
                             onClick(mFinishActions);
                         }

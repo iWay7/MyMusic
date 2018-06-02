@@ -12,13 +12,15 @@ import site.iway.androidhelpers.CircleProgressBar;
 import site.iway.androidhelpers.ExtendedImageView;
 import site.iway.androidhelpers.ExtendedTextView;
 import site.iway.androidhelpers.UITimer;
+import site.iway.androidhelpers.ViewSwapper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
-import site.iway.mymusic.net.mymusic.models.common.SongInfo;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoReq;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoRes;
+import site.iway.mymusic.net.mymusic.models.common.SongInfo;
 import site.iway.mymusic.utils.Constants;
+import site.iway.mymusic.utils.PlayTask;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Song;
 
@@ -39,21 +41,21 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
     private ExtendedTextView mSongName;
     private ExtendedTextView mSongArtist;
     private ExtendedImageView mPrevious;
-    private ExtendedImageView mPlayStop;
+    private ViewSwapper mPlayPause;
     private CircleProgressBar mProgress;
     private ExtendedImageView mNext;
 
+    private static final int INDEX_PLAY = 0;
+    private static final int INDEX_PAUSE = 1;
+
     private void refreshViews() {
-        if (mPlayer.isPlayingFile()) {
-            Song song = mPlayer.getPlayingSong();
+        PlayTask playTask = mPlayer.getPlayTask();
+        if (playTask != null) {
+            String musicFileName = playTask.getMusicFileName();
+            Song song = new Song(musicFileName);
             loadImage(song);
             mSongName.setText(song.name);
             mSongArtist.setText(song.artist);
-            if (mPlayer.isPlaying()) {
-                mPlayStop.setImageResource(R.drawable.icon_pause);
-            } else {
-                mPlayStop.setImageResource(R.drawable.icon_play);
-            }
         }
     }
 
@@ -62,11 +64,11 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
         mSongName = (ExtendedTextView) mRootView.findViewById(R.id.songName);
         mSongArtist = (ExtendedTextView) mRootView.findViewById(R.id.songArtist);
         mPrevious = (ExtendedImageView) mRootView.findViewById(R.id.previous);
-        mPlayStop = (ExtendedImageView) mRootView.findViewById(R.id.playStop);
+        mPlayPause = (ViewSwapper) mRootView.findViewById(R.id.playPause);
         mProgress = (CircleProgressBar) mRootView.findViewById(R.id.progress);
         mNext = (ExtendedImageView) mRootView.findViewById(R.id.next);
         mPrevious.setOnClickListener(this);
-        mPlayStop.setOnClickListener(this);
+        mPlayPause.setOnClickListener(this);
         mNext.setOnClickListener(this);
         mUITimer.start(true);
         refreshViews();
@@ -89,13 +91,37 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
     private UITimer mUITimer = new UITimer(200) {
         @Override
         public void doOnUIThread() {
-            if (mPlayer.isPlayingFile()) {
-                float duration = mPlayer.getDuration();
-                float position = mPlayer.getPosition();
-                float percent = position * 100 / duration;
-                mProgress.setProgress(percent, false);
-            } else {
+            PlayTask playTask = mPlayer.getPlayTask();
+            if (playTask == null) {
+                mPlayPause.setDisplayedChild(INDEX_PLAY);
                 mProgress.setProgress(0, false);
+            } else {
+                switch (playTask.getTaskState()) {
+                    case PlayTask.STATE_PLAYING:
+                        mPlayPause.setDisplayedChild(INDEX_PAUSE);
+                        break;
+                    default:
+                        mPlayPause.setDisplayedChild(INDEX_PLAY);
+                        break;
+                }
+                switch (playTask.getTaskState()) {
+                    case PlayTask.STATE_READY:
+                    case PlayTask.STATE_TASK_START:
+                    case PlayTask.STATE_DOWNLOADING:
+                    case PlayTask.STATE_ERROR:
+                    case PlayTask.STATE_TASK_CANCELED:
+                        mProgress.setProgress(0, false);
+                        break;
+                    case PlayTask.STATE_PREPARED:
+                    case PlayTask.STATE_PLAYING:
+                    case PlayTask.STATE_PAUSED:
+                    case PlayTask.STATE_COMPLETED:
+                        float duration = playTask.getDuration();
+                        float position = playTask.getPosition();
+                        float percent = position * 100 / duration;
+                        mProgress.setProgress(percent, false);
+                        break;
+                }
             }
         }
     };
@@ -140,24 +166,30 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
     public void onEvent(String event, Object data) {
         super.onEvent(event, data);
         switch (event) {
-            case Constants.EV_PLAYER_START_PLAY:
+            case Constants.EV_PLAYER_TASK_CHANGED:
                 refreshViews();
-                break;
-            case Constants.EV_PLAYER_PAUSED_PLAY:
-            case Constants.EV_PLAYER_FINISHED_PLAY:
-            case Constants.EV_PLAYER_PLAY_ERROR:
-                mPlayStop.setImageResource(R.drawable.icon_play);
                 break;
         }
     }
 
     @Override
     public void onClick(View v) {
-        if (v == mPlayStop) {
-            if (mPlayer.isPlaying()) {
-                mPlayer.pause();
-            } else {
+        if (v == mPlayPause) {
+            PlayTask playTask = mPlayer.getPlayTask();
+            if (playTask == null) {
                 mPlayer.play();
+            } else {
+                switch (playTask.getTaskState()) {
+                    case PlayTask.STATE_PLAYING:
+                        playTask.pause();
+                        break;
+                    case PlayTask.STATE_PAUSED:
+                        playTask.play();
+                        break;
+                    default:
+                        // nothing
+                        break;
+                }
             }
         } else if (v == mPrevious) {
             mPlayer.previous();

@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import site.iway.androidhelpers.WindowHelper;
 import site.iway.mymusic.R;
-import site.iway.mymusic.utils.Player;
 
 /**
  * Created by iWay on 2017/12/28.
@@ -55,17 +54,19 @@ public class LaunchActivity extends BaseActivity {
         }
     }
 
+    private static boolean mInitialized = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setWillInitTitleBarViews(false);
         WindowHelper.makeTranslucent(this, true, false);
-        Player player = Player.getInstance();
-        if (player.isPlaying()) {
+        if (mInitialized) {
             mHandler.postDelayed(mRedirector, 300);
         } else {
             setPermissions();
         }
+        mInitialized = true;
     }
 
     @Override

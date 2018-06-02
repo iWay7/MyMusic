@@ -270,13 +270,24 @@
                 app:touchDownAnimation="@anim/button_press"
                 app:touchUpAnimation="@anim/button_release" />
 
-            <site.iway.androidhelpers.ExtendedImageView
-                android:id="@+id/playStop"
+            <site.iway.androidhelpers.ViewSwapper
+                android:id="@+id/playPause"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:src="@drawable/icon_play_white" />
+                android:layout_marginRight="12dp">
+
+                <site.iway.androidhelpers.ExtendedImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_play_white" />
+
+                <site.iway.androidhelpers.ExtendedImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_pause_white" />
+
+            </site.iway.androidhelpers.ViewSwapper>
 
             <site.iway.androidhelpers.ExtendedImageView
                 android:id="@+id/next"

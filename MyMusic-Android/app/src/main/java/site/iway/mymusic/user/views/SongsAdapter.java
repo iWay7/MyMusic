@@ -22,6 +22,7 @@ import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.mymusic.models.PlayListReq;
 import site.iway.mymusic.net.mymusic.models.PlayListRes;
+import site.iway.mymusic.utils.PlayList;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Song;
 
@@ -103,8 +104,9 @@ public class SongsAdapter extends ExtendedBaseAdapter<String> {
                             notifyDataSetChanged();
                             if ((Boolean) playListReq.tag) {
                                 Player player = Player.getInstance();
-                                player.addToPlayList(fileName);
-                                player.playFile(fileName);
+                                PlayList playList = player.getPlayList();
+                                playList.add(fileName);
+                                player.play(fileName);
                             }
                         }
 

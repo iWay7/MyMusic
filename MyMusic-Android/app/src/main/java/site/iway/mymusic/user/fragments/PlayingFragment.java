@@ -39,6 +39,8 @@ import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.LyricCache;
 import site.iway.mymusic.utils.LyricManager;
 import site.iway.mymusic.utils.LyricManager.LyricLine;
+import site.iway.mymusic.utils.PlayList;
+import site.iway.mymusic.utils.PlayTask;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Song;
 
@@ -72,20 +74,20 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     private ExtendedTextView mDuration;
     private ViewSwapper mSwitchMode;
     private ExtendedImageView mPrevious;
-    private ExtendedImageView mPlayStop;
+    private ViewSwapper mPlayPause;
     private ExtendedImageView mNext;
     private ExtendedImageView mSettings;
 
     private void refreshPlayMode() {
-        int playMode = mPlayer.getPlayMode();
-        switch (playMode) {
-            case Player.MODE_LOOP_LIST:
+        PlayList playList = mPlayer.getPlayList();
+        switch (playList.getMode()) {
+            case PlayList.MODE_LOOP_LIST:
                 mSwitchMode.setDisplayedChild(0);
                 break;
-            case Player.MODE_LOOP_SINGLE:
+            case PlayList.MODE_LOOP_SINGLE:
                 mSwitchMode.setDisplayedChild(1);
                 break;
-            case Player.MODE_RANDOM:
+            case PlayList.MODE_RANDOM:
                 mSwitchMode.setDisplayedChild(2);
                 break;
         }
@@ -98,18 +100,18 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     }
 
     private void refreshViews() {
-        if (mPlayer.isPlayingFile()) {
-            Song playingSong = mPlayer.getPlayingSong();
-            loadImage(playingSong);
-            mTitleBarText.setText(playingSong.name);
-            mArtist.setText(playingSong.artist);
-            if (mPlayer.isPlaying()) {
-                mPlayStop.setImageResource(R.drawable.icon_pause_white);
-            } else {
-                mPlayStop.setImageResource(R.drawable.icon_play_white);
-            }
-            mPosition.setText(getTime(mPlayer.getPosition()));
-            mDuration.setText(getTime(mPlayer.getDuration()));
+        PlayTask playTask = mPlayer.getPlayTask();
+        if (playTask != null) {
+            String musicFileName = playTask.getMusicFileName();
+            Song song = new Song(musicFileName);
+            mTitleBarText.setText(song.name);
+            mArtist.setText(song.artist);
+            loadImage(song);
+        } else {
+            mTitleBarText.setText(R.string.app_name);
+            mArtist.setText(null);
+            mBackground.loadFromURLSource(null);
+            mSongArt.loadFromURLSource(null);
         }
     }
 
@@ -133,7 +135,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         mDuration = (ExtendedTextView) mRootView.findViewById(R.id.duration);
         mSwitchMode = (ViewSwapper) mRootView.findViewById(R.id.switchMode);
         mPrevious = (ExtendedImageView) mRootView.findViewById(R.id.previous);
-        mPlayStop = (ExtendedImageView) mRootView.findViewById(R.id.playStop);
+        mPlayPause = (ViewSwapper) mRootView.findViewById(R.id.playPause);
         mNext = (ExtendedImageView) mRootView.findViewById(R.id.next);
         mSettings = (ExtendedImageView) mRootView.findViewById(R.id.settings);
 
@@ -151,7 +153,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         mPlayProgress.setListener(this);
         mSwitchMode.setOnClickListener(this);
         mPrevious.setOnClickListener(this);
-        mPlayStop.setOnClickListener(this);
+        mPlayPause.setOnClickListener(this);
         mNext.setOnClickListener(this);
         mSettings.setOnClickListener(this);
         mDiskContainer.setOnClickListener(this);
@@ -236,9 +238,17 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
 
         private int mTicks = 0;
 
+        private boolean isPlayerPlaying() {
+            PlayTask playTask = mPlayer.getPlayTask();
+            if (playTask != null) {
+                int playState = playTask.getTaskState();
+                return playState == PlayTask.STATE_PLAYING;
+            }
+            return false;
+        }
+
         private void setDisk() {
-            boolean playing = mPlayer.isPlaying();
-            if (playing) {
+            if (isPlayerPlaying()) {
                 float current = mDiskContainer.getRotation();
                 current += 0.5;
                 mDiskContainer.setRotation(current);
@@ -249,8 +259,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         private float mPlayingDegrees = 0;
 
         private void setDiskHandle() {
-            boolean playing = mPlayer.isPlaying();
-            if (playing) {
+            if (isPlayerPlaying()) {
                 float current = mDiskHandle.getRotation();
                 if (current < 0) {
                     float target = current + 1;
@@ -273,18 +282,57 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
 
         private void setProgress() {
             if (mTicks % 8 == 0) {
-                if (mPlayer.isPlayingFile()) {
-                    float duration = mPlayer.getDuration();
-                    float position = mPlayer.getPosition();
-                    float percent = position * 100 / duration;
-                    mPlayProgress.setProgress(percent);
-                    if (mTicks % 40 == 0) {
-                        mPosition.setText(getTime(mPlayer.getPosition()));
-                    }
-                } else {
+                PlayTask playTask = mPlayer.getPlayTask();
+                if (playTask == null) {
                     mPlayProgress.setProgress(0);
                     mPosition.setText(getTime(0));
                     mDuration.setText(getTime(0));
+                } else {
+                    switch (playTask.getTaskState()) {
+                        case PlayTask.STATE_READY:
+                        case PlayTask.STATE_TASK_START:
+                        case PlayTask.STATE_DOWNLOADING:
+                        case PlayTask.STATE_ERROR:
+                        case PlayTask.STATE_TASK_CANCELED:
+                            mPlayProgress.setProgress(0);
+                            mPosition.setText(getTime(0));
+                            mDuration.setText(getTime(0));
+                            break;
+                        case PlayTask.STATE_PREPARED:
+                        case PlayTask.STATE_PLAYING:
+                        case PlayTask.STATE_PAUSED:
+                        case PlayTask.STATE_COMPLETED:
+                            float duration = playTask.getDuration();
+                            float position = playTask.getPosition();
+                            float percent = position * 100 / duration;
+                            mPlayProgress.setProgress(percent);
+                            if (mTicks % 40 == 0) {
+                                mPosition.setText(getTime(playTask.getPosition()));
+                                mDuration.setText(getTime(playTask.getDuration()));
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
+        private static final int INDEX_PLAY = 0;
+        private static final int INDEX_PAUSE = 1;
+
+        private void setPlayPause() {
+            if (mTicks % 8 == 0) {
+                PlayTask playTask = mPlayer.getPlayTask();
+                if (playTask == null) {
+                    mPlayPause.setDisplayedChild(INDEX_PLAY);
+                } else {
+                    switch (playTask.getTaskState()) {
+                        case PlayTask.STATE_PLAYING:
+                            mPlayPause.setDisplayedChild(INDEX_PAUSE);
+                            break;
+                        default:
+                            mPlayPause.setDisplayedChild(INDEX_PLAY);
+                            break;
+                    }
                 }
             }
         }
@@ -293,8 +341,10 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
 
         private void setLyric() {
             if (mTicks % 8 == 0) {
-                if (mPlayer.isPlayingFile()) {
-                    Song playingSong = mPlayer.getPlayingSong();
+                PlayTask playTask = mPlayer.getPlayTask();
+                if (playTask != null) {
+                    String musicFileName = playTask.getMusicFileName();
+                    Song playingSong = new Song(musicFileName);
                     if (mLyricManager == null || !mLyricManager.forSong(playingSong)) {
                         LyricCache lyricCache = LyricCache.getInstance();
                         if (lyricCache.exists(playingSong)) {
@@ -305,7 +355,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
                     }
                     mLrcView.setLyricManager(mLyricManager);
                     if (mLyricManager != null) {
-                        int position = mPlayer.getPosition();
+                        int position = playTask.getPosition();
                         LyricLine lyricLine = mLyricManager.getCurrentLine(position);
                         mLrcView.setCurrentLine(lyricLine);
                         if (lyricLine != null) {
@@ -331,6 +381,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
             setDisk();
             setDiskHandle();
             setProgress();
+            setPlayPause();
             setLyric();
         }
     };
@@ -339,15 +390,10 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     public void onEvent(String event, Object data) {
         super.onEvent(event, data);
         switch (event) {
-            case Constants.EV_PLAYER_START_PLAY:
+            case Constants.EV_PLAYER_TASK_CHANGED:
                 refreshViews();
                 break;
-            case Constants.EV_PLAYER_PAUSED_PLAY:
-            case Constants.EV_PLAYER_FINISHED_PLAY:
-            case Constants.EV_PLAYER_PLAY_ERROR:
-                mPlayStop.setImageResource(R.drawable.icon_play_white);
-                break;
-            case Constants.EV_PLAYER_MODE_CHANGED:
+            case Constants.EV_PLAY_LIST_MODE_CHANGED:
                 refreshPlayMode();
                 break;
         }
@@ -358,27 +404,39 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     @Override
     public void onClick(View v) {
         if (v == mTitleBarBack) {
-            UIThread.event(Constants.EV_PLAY_LIST_VIEW);
+            UIThread.event(Constants.EV_REQUEST_VIEW_PLAY_LIST);
         } else if (v == mTitleBarImage) {
             Intent intent = new Intent(mActivity, ViewSongsActivity.class);
             startActivityForResult(intent, REQUEST_CODE_VIEW_SONGS);
         } else if (v == mSwitchMode) {
-            switch (mPlayer.getPlayMode()) {
-                case Player.MODE_LOOP_LIST:
-                    mPlayer.setPlayMode(Player.MODE_LOOP_SINGLE);
+            PlayList playList = mPlayer.getPlayList();
+            switch (playList.getMode()) {
+                case PlayList.MODE_LOOP_LIST:
+                    playList.setMode(PlayList.MODE_LOOP_SINGLE);
                     break;
-                case Player.MODE_LOOP_SINGLE:
-                    mPlayer.setPlayMode(Player.MODE_RANDOM);
+                case PlayList.MODE_LOOP_SINGLE:
+                    playList.setMode(PlayList.MODE_RANDOM);
                     break;
-                case Player.MODE_RANDOM:
-                    mPlayer.setPlayMode(Player.MODE_LOOP_LIST);
+                case PlayList.MODE_RANDOM:
+                    playList.setMode(PlayList.MODE_LOOP_LIST);
                     break;
             }
-        } else if (v == mPlayStop) {
-            if (mPlayer.isPlaying()) {
-                mPlayer.pause();
-            } else {
+        } else if (v == mPlayPause) {
+            PlayTask playTask = mPlayer.getPlayTask();
+            if (playTask == null) {
                 mPlayer.play();
+            } else {
+                switch (playTask.getTaskState()) {
+                    case PlayTask.STATE_PLAYING:
+                        playTask.pause();
+                        break;
+                    case PlayTask.STATE_PAUSED:
+                        playTask.play();
+                        break;
+                    default:
+                        // nothing
+                        break;
+                }
             }
         } else if (v == mPrevious) {
             mPlayer.previous();
@@ -404,7 +462,10 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
 
     @Override
     public void onRequestPlayProgress(float progress) {
-        mPlayer.seekTo((int) (mPlayer.getDuration() * progress / 100));
+        PlayTask playTask = mPlayer.getPlayTask();
+        if (playTask != null) {
+            playTask.seekTo((int) (playTask.getDuration() * progress / 100));
+        }
     }
 
     @Override
@@ -413,7 +474,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         switch (requestCode) {
             case REQUEST_CODE_VIEW_SONGS:
                 if (resultCode == ViewSongsActivity.RESULT_OK) {
-                    UIThread.event(Constants.EV_PLAY_LIST_REFRESH);
+                    UIThread.event(Constants.EV_REQUEST_REFRESH_PLAY_LIST);
                 }
                 break;
         }

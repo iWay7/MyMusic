@@ -67,7 +67,8 @@ public class MusicCache {
 
     public void download(final String musicFileName) {
         synchronized (mListAccessLock) {
-            if (!mDownloadingList.contains(musicFileName)) {
+            if (!exists(musicFileName) && !mDownloadingList.contains(musicFileName)) {
+                mDownloadingList.add(musicFileName);
                 String url = getUrl(musicFileName);
                 String file = get(musicFileName);
                 HttpFileDownloader httpFileDownloader = new HttpFileDownloader(url, file) {
@@ -87,6 +88,7 @@ public class MusicCache {
                         }
                     }
                 };
+                httpFileDownloader.setOverwriteIfExisted(true);
                 httpFileDownloader.start();
             }
         }

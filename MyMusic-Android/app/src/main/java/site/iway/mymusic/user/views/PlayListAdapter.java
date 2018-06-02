@@ -1,6 +1,7 @@
 package site.iway.mymusic.user.views;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -8,49 +9,60 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import site.iway.androidhelpers.ExtendedBaseAdapter;
 import site.iway.androidhelpers.ExtendedImageView;
 import site.iway.androidhelpers.ExtendedLinearLayout;
 import site.iway.androidhelpers.ExtendedTextView;
-import site.iway.javahelpers.HanziPinyinHelper;
 import site.iway.mymusic.R;
+import site.iway.mymusic.utils.PlayList;
+import site.iway.mymusic.utils.PlayTask;
 import site.iway.mymusic.utils.Player;
-import site.iway.mymusic.utils.Settings;
 import site.iway.mymusic.utils.Song;
 
 /**
  * Created by iWay on 2017/12/26.
  */
 
-public class PlayListAdapter extends ExtendedBaseAdapter<String> {
+public class PlayListAdapter extends BaseAdapter {
+
+    private LayoutInflater mLayoutInflater;
+    private PlayList mPlayList;
 
     public PlayListAdapter(Context context) {
-        super(context);
+        mLayoutInflater = LayoutInflater.from(context);
+        Player player = Player.getInstance();
+        mPlayList = player.getPlayList();
     }
 
-    @Override
-    public void addData(List<String> data) {
-        super.addData(data);
-        resort();
-    }
-
-    @Override
-    public void addData(String data) {
-        super.addData(data);
-        resort();
-    }
-
-    @Override
     public void setData(List<String> data) {
-        super.setData(data);
-        resort();
+        mPlayList.replace(data);
+        mPlayList.resort();
+        notifyDataSetChanged();
+    }
+
+    public void resort() {
+        mPlayList.resort();
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount() {
+        return mPlayList.size();
+    }
+
+    @Override
+    public String getItem(int position) {
+        return mPlayList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     private boolean mInSelectionMode = false;
@@ -73,7 +85,7 @@ public class PlayListAdapter extends ExtendedBaseAdapter<String> {
     public void selectAll(boolean selected) {
         mSelectedItems.clear();
         if (selected) {
-            mSelectedItems.addAll(mData);
+            mSelectedItems.addAll(mPlayList);
         }
         notifyDataSetChanged();
     }
@@ -91,7 +103,7 @@ public class PlayListAdapter extends ExtendedBaseAdapter<String> {
     }
 
     public void removeItemsFromSelected() {
-        mData.removeAll(mSelectedItems);
+        mPlayList.removeAll(mSelectedItems);
         notifyDataSetChanged();
     }
 
@@ -125,7 +137,8 @@ public class PlayListAdapter extends ExtendedBaseAdapter<String> {
         splitter.setText("  -  ");
         artist.setText(song.artist);
         Player player = Player.getInstance();
-        if (fileName.equals(player.getPlayingFile())) {
+        PlayTask playTask = player.getPlayTask();
+        if (playTask != null && fileName.equals(playTask.getMusicFileName())) {
             int oldVisibility = playingIndicator.getVisibility();
             playingIndicator.setVisibility(View.VISIBLE);
             title.setTextColor(0xffd33a31);
@@ -207,28 +220,4 @@ public class PlayListAdapter extends ExtendedBaseAdapter<String> {
         return convertView;
     }
 
-    public void resort() {
-        Collections.sort(mData, new Comparator<String>() {
-
-            @Override
-            public int compare(String o1, String o2) {
-                switch (Settings.getPlayListSortType()) {
-                    case Settings.SORT_BY_ARTIST_NAME:
-                        Song o1s = new Song(o1);
-                        Song o2s = new Song(o2);
-                        String pinyin1 = HanziPinyinHelper.getPinyin(o1s.artist + o1s.name);
-                        String pinyin2 = HanziPinyinHelper.getPinyin(o2s.artist + o2s.name);
-                        return pinyin1.compareTo(pinyin2);
-                    case Settings.SORT_BY_SONG_NAME:
-                        o1s = new Song(o1);
-                        o2s = new Song(o2);
-                        pinyin1 = HanziPinyinHelper.getPinyin(o1s.name + o1s.artist);
-                        pinyin2 = HanziPinyinHelper.getPinyin(o2s.name + o2s.artist);
-                        return pinyin1.compareTo(pinyin2);
-                }
-                return 0;
-            }
-        });
-        notifyDataSetChanged();
-    }
 }

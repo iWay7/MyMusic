@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import site.iway.mymusic.utils.PlayTask;
 import site.iway.mymusic.utils.Player;
 
 public class HeadsetPlugReceiver extends BroadcastReceiver {
@@ -14,7 +15,10 @@ public class HeadsetPlugReceiver extends BroadcastReceiver {
             int state = intent.getIntExtra("state", 0);
             if (state == 0) {
                 Player player = Player.getInstance();
-                player.pause();
+                PlayTask playTask = player.getPlayTask();
+                if (playTask != null) {
+                    playTask.pause();
+                }
             }
         }
     }

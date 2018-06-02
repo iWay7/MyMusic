@@ -16,6 +16,7 @@ import site.iway.mymusic.user.dialogs.ListActionDialog;
 import site.iway.mymusic.user.views.ListActionItem;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.Settings;
+import site.iway.mymusic.utils.Toaster;
 
 public class SettingsActivity extends BaseActivity implements OnClickListener {
 
@@ -57,27 +58,34 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
     private String getFileSize(double fileSize) {
         DecimalFormat decimalFormat = new DecimalFormat("0.##");
         double p = 1024d * 1024d * 1024d * 1024d * 1024d;
-        if (fileSize > p) {
+        if (fileSize >= p) {
             return decimalFormat.format(fileSize / p) + " P";
         }
         double t = 1024d * 1024d * 1024d * 1024d;
-        if (fileSize > t) {
+        if (fileSize >= t) {
             return decimalFormat.format(fileSize / t) + " T";
         }
         double g = 1024d * 1024d * 1024d;
-        if (fileSize > g) {
+        if (fileSize >= g) {
             return decimalFormat.format(fileSize / g) + " G";
         }
         double m = 1024d * 1024d;
-        if (fileSize > m) {
+        if (fileSize >= m) {
             return decimalFormat.format(fileSize / m) + " M";
         }
         double k = 1024d;
-        if (fileSize > k) {
+        if (fileSize >= k) {
             return decimalFormat.format(fileSize / k) + " K";
         }
         return decimalFormat.format(fileSize) + " B";
     }
+
+    private OnClickListener mNoNeedCleanClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toaster.show("没有缓存，无需清理~");
+        }
+    };
 
     private FolderScanner mImageScanner = new FolderScanner() {
         private long mFileSize;
@@ -94,7 +102,10 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
                 public void run() {
                     if (!isFinishing()) {
                         mGoImageCache.setDesc(getFileSize(mFileSize));
-                        mGoImageCache.setOnClickListener(SettingsActivity.this);
+                        if (mFileSize == 0)
+                            mGoImageCache.setOnClickListener(mNoNeedCleanClickListener);
+                        else
+                            mGoImageCache.setOnClickListener(SettingsActivity.this);
                     }
                 }
             });
@@ -116,7 +127,10 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
                 public void run() {
                     if (!isFinishing()) {
                         mGoSongCache.setDesc(getFileSize(mFileSize));
-                        mGoSongCache.setOnClickListener(SettingsActivity.this);
+                        if (mFileSize == 0)
+                            mGoSongCache.setOnClickListener(mNoNeedCleanClickListener);
+                        else
+                            mGoSongCache.setOnClickListener(SettingsActivity.this);
                     }
                 }
             });
@@ -138,7 +152,10 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
                 public void run() {
                     if (!isFinishing()) {
                         mGoLyricCache.setDesc(getFileSize(mFileSize));
-                        mGoLyricCache.setOnClickListener(SettingsActivity.this);
+                        if (mFileSize == 0)
+                            mGoLyricCache.setOnClickListener(mNoNeedCleanClickListener);
+                        else
+                            mGoLyricCache.setOnClickListener(SettingsActivity.this);
                     }
                 }
             });
@@ -152,15 +169,11 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         mGoPlayListSortType = (ListActionItem) findViewById(R.id.goPlayListSortType);
         mGoSearchSortType = (ListActionItem) findViewById(R.id.goSearchSortType);
         mGoAbout = (ListActionItem) findViewById(R.id.goAbout);
-        File rootCacheDir = getCacheDir();
-        File imageCacheDir = new File(rootCacheDir, Constants.DIR_NAME_IMAGE_CACHE);
-        mImageScanner.addFolders(imageCacheDir);
+        mImageScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_IMAGE_CACHE));
         mImageScanner.start();
-        File musicCacheDir = new File(rootCacheDir, Constants.DIR_NAME_MUSIC_CACHE);
-        mMP3Scanner.addFolders(musicCacheDir);
+        mMP3Scanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_MUSIC_CACHE));
         mMP3Scanner.start();
-        File lyricCacheDir = new File(rootCacheDir, Constants.DIR_NAME_LYRIC_CACHE);
-        mLyricScanner.addFolders(lyricCacheDir);
+        mLyricScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_LYRIC_CACHE));
         mLyricScanner.start();
         mTitleBarText.setText("设置");
         mTitleBarBack.setOnClickListener(this);
@@ -187,11 +200,77 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         if (v == mTitleBarBack) {
             onBackPressed();
         } else if (v == mGoImageCache) {
+            disableUserInteract();
+            showLoadingView();
+            FolderScanner folderScanner = new FolderScanner() {
+                @Override
+                protected void onDetectFile(File file) {
+                    file.delete();
+                }
 
+                @Override
+                protected void onAllCompleted() {
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            hideLoadingView();
+                            enableUserInteract();
+                            mGoImageCache.setDesc("0 B");
+                            mGoImageCache.setOnClickListener(mNoNeedCleanClickListener);
+                        }
+                    }, 500);
+                }
+            };
+            folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_IMAGE_CACHE));
+            folderScanner.start();
         } else if (v == mGoSongCache) {
+            disableUserInteract();
+            showLoadingView();
+            FolderScanner folderScanner = new FolderScanner() {
+                @Override
+                protected void onDetectFile(File file) {
+                    file.delete();
+                }
 
+                @Override
+                protected void onAllCompleted() {
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            hideLoadingView();
+                            enableUserInteract();
+                            mGoSongCache.setDesc("0 B");
+                            mGoSongCache.setOnClickListener(mNoNeedCleanClickListener);
+                        }
+                    }, 500);
+                }
+            };
+            folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_MUSIC_CACHE));
+            folderScanner.start();
         } else if (v == mGoLyricCache) {
+            disableUserInteract();
+            showLoadingView();
+            FolderScanner folderScanner = new FolderScanner() {
+                @Override
+                protected void onDetectFile(File file) {
+                    file.delete();
+                }
 
+                @Override
+                protected void onAllCompleted() {
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            hideLoadingView();
+                            enableUserInteract();
+                            mGoLyricCache.setDesc("0 B");
+                            mGoLyricCache.setOnClickListener(mNoNeedCleanClickListener);
+                        }
+                    }, 300);
+                }
+            };
+            folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_LYRIC_CACHE));
+            folderScanner.start();
         } else if (v == mGoPlayListSortType) {
             ListActionDialog dialog = new ListActionDialog(this);
             dialog.setCancelable(true);

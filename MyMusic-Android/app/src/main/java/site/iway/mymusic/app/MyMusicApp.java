@@ -2,6 +2,8 @@ package site.iway.mymusic.app;
 
 import android.app.Application;
 
+import java.io.File;
+
 import site.iway.androidhelpers.ActionTimer;
 import site.iway.androidhelpers.BitmapCache;
 import site.iway.androidhelpers.BuildConfig;
@@ -9,6 +11,7 @@ import site.iway.androidhelpers.DeviceHelper;
 import site.iway.androidhelpers.RPCEngine;
 import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.UnitHelper;
+import site.iway.androidhelpers.WTFRecorder;
 import site.iway.javahelpers.HanziPinyinHelper;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.LyricCache;
@@ -27,6 +30,8 @@ public class MyMusicApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        File filesDir = getFilesDir();
+
         UnitHelper.initialize(this);
         BitmapCache.setIsDebugMode(BuildConfig.DEBUG);
         BitmapCache.setLoaderCount(2);
@@ -42,8 +47,9 @@ public class MyMusicApp extends Application {
         UIThread.initialize();
         RPCEngine.initialize(2);
         HanziPinyinHelper.initialize();
+        WTFRecorder.initialize(this, filesDir + "/" + Constants.DIR_NAME_ERROR_CACHE);
 
-        Settings.initialize(getFilesDir() + "/" + Constants.FILE_NAME_SETTINGS, "sPBocrqJKgBiSag3");
+        Settings.initialize(filesDir + "/" + Constants.FILE_NAME_SETTINGS, "sPBocrqJKgBiSag3");
         Toaster.initialize(this);
         MusicCache.initialize(this);
         LyricCache.initialize(this);

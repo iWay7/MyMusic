@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<site.iway.androidhelpers.ExtendedLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<site.iway.androidhelpers.ExtendedLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,7 +10,7 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <include layout="@layout/divider_line_horizontal_fill"/>
+    <include layout="@layout/divider_line_horizontal_fill" />
 
     <site.iway.androidhelpers.ExtendedLinearLayout
         android:layout_width="match_parent"
@@ -29,7 +28,7 @@
             app:errorDrawable="@drawable/bg_mini_player_image_empty"
             app:finishAnimation="@anim/fade_in_300"
             app:scaleType="centerCrop"
-            app:useDefaultFilter="true"/>
+            app:useDefaultFilter="true" />
 
         <site.iway.androidhelpers.ExtendedLinearLayout
             android:layout_width="0dp"
@@ -45,7 +44,7 @@
                 android:singleLine="true"
                 android:textColor="#333333"
                 android:textSize="18sp"
-                tools:text="Let It Go"/>
+                tools:text="Let It Go" />
 
             <site.iway.androidhelpers.ExtendedTextView
                 android:id="@+id/songArtist"
@@ -56,7 +55,7 @@
                 android:singleLine="true"
                 android:textColor="#7d7d7d"
                 android:textSize="14sp"
-                tools:text="Idina Menzel"/>
+                tools:text="Idina Menzel" />
 
         </site.iway.androidhelpers.ExtendedLinearLayout>
 
@@ -68,7 +67,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/icon_previous"
             app:touchDownAnimation="@anim/button_press"
-            app:touchUpAnimation="@anim/button_release"/>
+            app:touchUpAnimation="@anim/button_release" />
 
         <site.iway.androidhelpers.ExtendedFrameLayout
             android:layout_width="54dp"
@@ -76,13 +75,26 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp">
 
-            <site.iway.androidhelpers.ExtendedImageView
-                android:id="@+id/playStop"
+            <site.iway.androidhelpers.ViewSwapper
+                android:id="@+id/playPause"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:src="@drawable/icon_play"/>
+                app:displayedChild="0">
+
+                <site.iway.androidhelpers.ExtendedImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_play" />
+
+                <site.iway.androidhelpers.ExtendedImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_pause" />
+
+            </site.iway.androidhelpers.ViewSwapper>
 
             <site.iway.androidhelpers.CircleProgressBar
                 android:id="@+id/progress"
@@ -91,7 +103,7 @@
                 app:circleDiameter="50dp"
                 app:progressBackColor="#cccccc"
                 app:progressFrontColor="#d33a31"
-                app:progressWidth="2dp"/>
+                app:progressWidth="2dp" />
 
         </site.iway.androidhelpers.ExtendedFrameLayout>
 
@@ -103,7 +115,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/icon_next"
             app:touchDownAnimation="@anim/button_press"
-            app:touchUpAnimation="@anim/button_release"/>
+            app:touchUpAnimation="@anim/button_release" />
 
     </site.iway.androidhelpers.ExtendedLinearLayout>
 
