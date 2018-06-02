@@ -234,10 +234,8 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
                 mPlayListAdapter.notifyDataSetChanged();
                 break;
             case Constants.EV_REQUEST_REFRESH_PLAY_LIST:
-                doRefresh();
-                break;
             case Constants.EV_PLAY_LIST_SORT_TYPE_CHANGED:
-                mPlayListAdapter.resort();
+                doRefresh();
                 break;
         }
     }

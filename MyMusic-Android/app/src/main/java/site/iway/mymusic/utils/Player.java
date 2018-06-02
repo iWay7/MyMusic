@@ -87,7 +87,7 @@ public class Player implements PlayStateListener {
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            play();
+                            next();
                         }
                     });
                     break;
