@@ -78,37 +78,21 @@ public class LRCView extends View implements LyricStateListener {
     private volatile LyricTask mLyricTask;
     private volatile LyricManager mLyricManager;
 
-    private void setLyricManager(LyricManager lyricManager) {
-        if (mLyricManager != lyricManager) {
-            mLyricManager = lyricManager;
-            if (mLyricManager != null) {
-                mLyricManager.setPaint(mPaint);
-                mLyricManager.setTextLineSpacing(mTextLineSpacing);
-                mLyricManager.setLineSpacing(mLineSpacing);
-                mLyricManager.setNormalColor(mNormalColor);
-                mLyricManager.setHighLightColor(mHighLightColor);
-                mLyricManager.setDisplayWidth(getWidth());
-                mLyricManager.setDisplayHeight(getHeight());
-                mLyricManager.computePositions();
-            }
-            mCurrentLine = null;
-            invalidate();
-            scrollLyric();
-        }
-    }
-
     @Override
     public void onLyricStateChanged(LyricTask lyricTask) {
         if (mLyricTask == lyricTask) {
             switch (lyricTask.getTaskState()) {
                 case LyricTask.STATE_SUCCESS:
-                    final LyricManager lyricManager = lyricTask.getLyricManager();
-                    post(new Runnable() {
-                        @Override
-                        public void run() {
-                            setLyricManager(lyricManager);
-                        }
-                    });
+                    LyricManager lyricManager = lyricTask.getLyricManager();
+                    lyricManager.setPaint(mPaint);
+                    lyricManager.setTextLineSpacing(mTextLineSpacing);
+                    lyricManager.setLineSpacing(mLineSpacing);
+                    lyricManager.setNormalColor(mNormalColor);
+                    lyricManager.setHighLightColor(mHighLightColor);
+                    lyricManager.setDisplayWidth(getWidth());
+                    lyricManager.setDisplayHeight(getHeight());
+                    lyricManager.computePositions();
+                    mLyricManager = lyricManager;
                     break;
             }
         }
@@ -143,33 +127,44 @@ public class LRCView extends View implements LyricStateListener {
         }
     }
 
-    private LyricLine mCurrentLine;
-
-    private void setCurrentLine(LyricLine currentLine) {
-        if (mCurrentLine != currentLine) {
-            mCurrentLine = currentLine;
-            mLyricManager.setCurrentLine(currentLine);
-            invalidate();
-            scrollLyric();
-        }
-    }
 
     private UITimer mUITimer = new UITimer(200) {
+
+        private ObjectAnimator mObjectAnimator;
+        private LyricLine mLastLyricLine;
 
         @Override
         public void doOnUIThread() {
             if (mLyricManager == null) {
-                setCurrentLine(null);
+                invalidate();
             } else {
                 Player player = Player.getInstance();
                 PlayTask playTask = player.getPlayTask();
-                if (playTask == null) {
-                    setCurrentLine(null);
-                } else {
-                    int position = playTask.getPosition();
-                    LyricLine currentLine = mLyricManager.getCurrentLine(position);
-                    setCurrentLine(currentLine);
+                int position = playTask == null ? 0 : playTask.getPosition();
+                mLyricManager.computeCurrentLine(position);
+                LyricLine currentLyricLine = mLyricManager.getCurrentLine();
+                if (currentLyricLine != mLastLyricLine) {
+                    if (mObjectAnimator != null) {
+                        mObjectAnimator.cancel();
+                    }
+                    LyricLine currentLine = mLyricManager.getCurrentLine();
+                    if (currentLine != null) {
+                        int viewHeight = getHeight();
+                        int targetScroll = currentLine.middleY - viewHeight / 2;
+                        int currentScroll = getScrollY();
+                        int visibility = getVisibility();
+                        if (viewHeight > 0 && visibility == View.VISIBLE) {
+                            mObjectAnimator = ObjectAnimator.ofInt(LRCView.this, "scrollY", currentScroll, targetScroll);
+                            mObjectAnimator.setDuration(300);
+                            mObjectAnimator.start();
+                        } else {
+                            setScrollY(targetScroll);
+                        }
+                    } else {
+                        setScrollY(0);
+                    }
                 }
+                mLastLyricLine = currentLyricLine;
             }
         }
 
@@ -187,28 +182,6 @@ public class LRCView extends View implements LyricStateListener {
         super.onDetachedFromWindow();
     }
 
-    private ObjectAnimator mObjectAnimator;
-
-    protected void scrollLyric() {
-        if (mObjectAnimator != null) {
-            mObjectAnimator.cancel();
-        }
-        if (mCurrentLine != null) {
-            int viewHeight = getHeight();
-            int targetScroll = mCurrentLine.middleY - viewHeight / 2;
-            int currentScroll = getScrollY();
-            int visibility = getVisibility();
-            if (visibility == View.VISIBLE) {
-                mObjectAnimator = ObjectAnimator.ofInt(this, "scrollY", currentScroll, targetScroll);
-                mObjectAnimator.setDuration(300);
-                mObjectAnimator.start();
-            } else {
-                setScrollY(targetScroll);
-            }
-        } else {
-            setScrollY(0);
-        }
-    }
 
     private Xfermode mXfermode = new PorterDuffXfermode(Mode.SRC_IN);
     private RectF mTempRectF = new RectF();

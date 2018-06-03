@@ -67,6 +67,11 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
     public void run() {
         updateTaskState(STATE_TASK_START);
         updateTaskState(STATE_DOWNLOADING);
+        try {
+            Thread.sleep(300);
+        } catch (Exception e) {
+            // nothing
+        }
         String url = Constants.MUSIC_URL_BASE + URLCodec.encode(mFileName);
         FileCache musicCache = FileCache.getMusic();
         if (musicCache.exists(url)) {

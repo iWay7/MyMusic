@@ -57,6 +57,10 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
             loadImage(song);
             mSongName.setText(song.name);
             mSongArtist.setText(song.artist);
+        }  else {
+            mSongCover.loadFromURLSource(null);
+            mSongName.setText(null);
+            mSongArtist.setText(null);
         }
     }
 

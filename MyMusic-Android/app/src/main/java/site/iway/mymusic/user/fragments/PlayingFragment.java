@@ -212,7 +212,13 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
                 }
             }
             mBackground.loadFromURLSource(imageLink, mBitmapFilter);
-            mSongArt.loadFromURLSource(imageLink == null ? null : imageLink.replace("90", "512"));
+            if (imageLink != null) {
+                int lastIndexOfAt = imageLink.lastIndexOf('@');
+                if (lastIndexOfAt > -1) {
+                    imageLink = imageLink.substring(0, lastIndexOfAt);
+                }
+            }
+            mSongArt.loadFromURLSource(imageLink);
             mLrc.load(lrcLink);
             mLrcView.load(lrcLink);
         }

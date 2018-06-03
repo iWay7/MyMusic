@@ -47,11 +47,10 @@ public class Player implements PlayStateListener {
             mPlayTask.cancel();
             mPlayTask = null;
         }
-        if (fileName == null) {
-            return;
+        if (fileName != null) {
+            mPlayTask = new PlayTask(fileName, this);
+            mPlayTask.start();
         }
-        mPlayTask = new PlayTask(fileName, Player.this);
-        mPlayTask.start();
         UIThread.event(Constants.EV_PLAYER_TASK_CHANGED);
     }
 

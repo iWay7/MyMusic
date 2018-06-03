@@ -78,16 +78,8 @@ public class FileCache {
                 String filePath = getFilePath(url);
                 HttpFileDownloader httpFileDownloader = new HttpFileDownloader(url, filePath) {
                     @Override
-                    public void onFinish() {
-                        super.onFinish();
-                        synchronized (mListAccessLock) {
-                            mDownloadingList.remove(url);
-                        }
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        super.onError(e);
+                    public void onFinally() {
+                        super.onFinally();
                         synchronized (mListAccessLock) {
                             mDownloadingList.remove(url);
                         }

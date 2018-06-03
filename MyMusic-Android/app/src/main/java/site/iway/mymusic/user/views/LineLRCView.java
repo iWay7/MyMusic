@@ -65,7 +65,8 @@ public class LineLRCView extends TextView implements LyricStateListener {
                     setText(null);
                 } else {
                     int position = playTask.getPosition();
-                    LyricLine currentLine = mLyricManager.getCurrentLine(position);
+                    mLyricManager.computeCurrentLine(position);
+                    LyricLine currentLine = mLyricManager.getCurrentLine();
                     if (currentLine != mLastLyricLine) {
                         if (currentLine == null) {
                             setText(null);

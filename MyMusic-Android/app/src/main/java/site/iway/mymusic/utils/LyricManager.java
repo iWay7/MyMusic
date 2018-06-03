@@ -104,15 +104,22 @@ public class LyricManager {
         Collections.sort(mLyricLines);
     }
 
-    public LyricLine getCurrentLine(int songPosition) {
+    private LyricLine mCurrentLine;
+
+    public void computeCurrentLine(int songPosition) {
         int size = mLyricLines.size();
         for (int i = size - 1; i >= 0; i--) {
             LyricLine lyricLine = mLyricLines.get(i);
             if (lyricLine.millis < songPosition) {
-                return lyricLine;
+                mCurrentLine = lyricLine;
+                return;
             }
         }
-        return null;
+        mCurrentLine = null;
+    }
+
+    public LyricLine getCurrentLine() {
+        return mCurrentLine;
     }
 
     private Paint mPaint;
@@ -122,7 +129,7 @@ public class LyricManager {
     private int mLineSpacing;
     private int mNormalColor;
     private int mHighLightColor;
-    private LyricLine mCurrentLine;
+
 
     public void setPaint(Paint paint) {
         mPaint = paint;
@@ -150,10 +157,6 @@ public class LyricManager {
 
     public void setHighLightColor(int highLightColor) {
         mHighLightColor = highLightColor;
-    }
-
-    public void setCurrentLine(LyricLine currentLine) {
-        mCurrentLine = currentLine;
     }
 
     private CharWidthMeasurer mCharWidthMeasurer = new CharWidthMeasurer() {
