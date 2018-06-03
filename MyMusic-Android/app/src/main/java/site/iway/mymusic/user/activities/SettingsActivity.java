@@ -12,6 +12,7 @@ import site.iway.androidhelpers.UIThread;
 import site.iway.javahelpers.FolderScanner;
 import site.iway.mymusic.R;
 import site.iway.mymusic.user.dialogs.BaseDialog.OnUserActionListener;
+import site.iway.mymusic.user.dialogs.DoubleActionDialog;
 import site.iway.mymusic.user.dialogs.ListActionDialog;
 import site.iway.mymusic.user.views.ListActionItem;
 import site.iway.mymusic.utils.Constants;
@@ -200,77 +201,113 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         if (v == mTitleBarBack) {
             onBackPressed();
         } else if (v == mGoImageCache) {
-            disableUserInteract();
-            showLoadingView();
-            FolderScanner folderScanner = new FolderScanner() {
+            DoubleActionDialog dialog = new DoubleActionDialog(this);
+            dialog.setMessageText("确定要清理图片缓存吗？");
+            dialog.setOnUserActionListener(new OnUserActionListener() {
                 @Override
-                protected void onDetectFile(File file) {
-                    file.delete();
-                }
+                public void onUserAction(int action, Object data) {
+                    if (action == DoubleActionDialog.ACTION_RIGHT) {
+                        disableUserInteract();
+                        showLoadingView();
+                        FolderScanner folderScanner = new FolderScanner() {
+                            @Override
+                            protected void onDetectFile(File file) {
+                                file.delete();
+                            }
 
-                @Override
-                protected void onAllCompleted() {
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            hideLoadingView();
-                            enableUserInteract();
-                            mGoImageCache.setDesc("0 B");
-                            mGoImageCache.setOnClickListener(mNoNeedCleanClickListener);
-                        }
-                    }, 500);
+                            @Override
+                            protected void onAllCompleted() {
+                                mHandler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        hideLoadingView();
+                                        enableUserInteract();
+                                        mGoImageCache.setDesc("0 B");
+                                        mGoImageCache.setOnClickListener(mNoNeedCleanClickListener);
+                                    }
+                                }, 500);
+                            }
+                        };
+                        folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_IMAGE_CACHE));
+                        folderScanner.start();
+                    }
                 }
-            };
-            folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_IMAGE_CACHE));
-            folderScanner.start();
+            });
+            dialog.setActionLeftText("取消");
+            dialog.setActionRightText("确定");
+            dialog.show();
         } else if (v == mGoSongCache) {
-            disableUserInteract();
-            showLoadingView();
-            FolderScanner folderScanner = new FolderScanner() {
+            DoubleActionDialog dialog = new DoubleActionDialog(this);
+            dialog.setMessageText("确定要清理音乐缓存吗？");
+            dialog.setOnUserActionListener(new OnUserActionListener() {
                 @Override
-                protected void onDetectFile(File file) {
-                    file.delete();
-                }
+                public void onUserAction(int action, Object data) {
+                    if (action == DoubleActionDialog.ACTION_RIGHT) {
+                        disableUserInteract();
+                        showLoadingView();
+                        FolderScanner folderScanner = new FolderScanner() {
+                            @Override
+                            protected void onDetectFile(File file) {
+                                file.delete();
+                            }
 
-                @Override
-                protected void onAllCompleted() {
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            hideLoadingView();
-                            enableUserInteract();
-                            mGoSongCache.setDesc("0 B");
-                            mGoSongCache.setOnClickListener(mNoNeedCleanClickListener);
-                        }
-                    }, 500);
+                            @Override
+                            protected void onAllCompleted() {
+                                mHandler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        hideLoadingView();
+                                        enableUserInteract();
+                                        mGoSongCache.setDesc("0 B");
+                                        mGoSongCache.setOnClickListener(mNoNeedCleanClickListener);
+                                    }
+                                }, 500);
+                            }
+                        };
+                        folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_MUSIC_CACHE));
+                        folderScanner.start();
+                    }
                 }
-            };
-            folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_MUSIC_CACHE));
-            folderScanner.start();
+            });
+            dialog.setActionLeftText("取消");
+            dialog.setActionRightText("确定");
+            dialog.show();
         } else if (v == mGoLyricCache) {
-            disableUserInteract();
-            showLoadingView();
-            FolderScanner folderScanner = new FolderScanner() {
+            DoubleActionDialog dialog = new DoubleActionDialog(this);
+            dialog.setMessageText("确定要清理歌词缓存吗？");
+            dialog.setOnUserActionListener(new OnUserActionListener() {
                 @Override
-                protected void onDetectFile(File file) {
-                    file.delete();
-                }
+                public void onUserAction(int action, Object data) {
+                    if (action == DoubleActionDialog.ACTION_RIGHT) {
+                        disableUserInteract();
+                        showLoadingView();
+                        FolderScanner folderScanner = new FolderScanner() {
+                            @Override
+                            protected void onDetectFile(File file) {
+                                file.delete();
+                            }
 
-                @Override
-                protected void onAllCompleted() {
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            hideLoadingView();
-                            enableUserInteract();
-                            mGoLyricCache.setDesc("0 B");
-                            mGoLyricCache.setOnClickListener(mNoNeedCleanClickListener);
-                        }
-                    }, 300);
+                            @Override
+                            protected void onAllCompleted() {
+                                mHandler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        hideLoadingView();
+                                        enableUserInteract();
+                                        mGoLyricCache.setDesc("0 B");
+                                        mGoLyricCache.setOnClickListener(mNoNeedCleanClickListener);
+                                    }
+                                }, 300);
+                            }
+                        };
+                        folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_LYRIC_CACHE));
+                        folderScanner.start();
+                    }
                 }
-            };
-            folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_LYRIC_CACHE));
-            folderScanner.start();
+            });
+            dialog.setActionLeftText("取消");
+            dialog.setActionRightText("确定");
+            dialog.show();
         } else if (v == mGoPlayListSortType) {
             ListActionDialog dialog = new ListActionDialog(this);
             dialog.setCancelable(true);
