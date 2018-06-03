@@ -42,7 +42,7 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
     private ExtendedTextView mSongArtist;
     private ExtendedImageView mPrevious;
     private ViewSwapper mPlayPause;
-    private CircleProgressBar mProgress;
+    private CircleProgressBar mCircleProgressBar;
     private ExtendedImageView mNext;
 
     private static final int INDEX_PLAY = 0;
@@ -70,7 +70,7 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
         mSongArtist = (ExtendedTextView) mRootView.findViewById(R.id.songArtist);
         mPrevious = (ExtendedImageView) mRootView.findViewById(R.id.previous);
         mPlayPause = (ViewSwapper) mRootView.findViewById(R.id.playPause);
-        mProgress = (CircleProgressBar) mRootView.findViewById(R.id.progress);
+        mCircleProgressBar = (CircleProgressBar) mRootView.findViewById(R.id.circleProgressBar);
         mNext = (ExtendedImageView) mRootView.findViewById(R.id.next);
         mPrevious.setOnClickListener(this);
         mPlayPause.setOnClickListener(this);
@@ -99,13 +99,13 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
             PlayTask playTask = mPlayer.getPlayTask();
             if (playTask == null) {
                 mPlayPause.setDisplayedChild(INDEX_PLAY);
-                mProgress.setProgress(0, false);
+                mCircleProgressBar.setProgress(0, false);
             } else {
                 switch (playTask.getTaskState()) {
                     case PlayTask.STATE_READY:
                     case PlayTask.STATE_TASK_START:
                     case PlayTask.STATE_DOWNLOADING:
-                    case PlayTask.STATE_PREPARED:
+                    case PlayTask.STATE_DATA_READY:
                         mPlayPause.setDisplayedChild(INDEX_LOADING);
                         break;
                     case PlayTask.STATE_PLAYING:
@@ -119,18 +119,18 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
                     case PlayTask.STATE_READY:
                     case PlayTask.STATE_TASK_START:
                     case PlayTask.STATE_DOWNLOADING:
+                    case PlayTask.STATE_DATA_READY:
                     case PlayTask.STATE_ERROR:
                     case PlayTask.STATE_TASK_CANCELED:
-                        mProgress.setProgress(0, false);
+                        mCircleProgressBar.setProgress(0, false);
                         break;
-                    case PlayTask.STATE_PREPARED:
                     case PlayTask.STATE_PLAYING:
                     case PlayTask.STATE_PAUSED:
                     case PlayTask.STATE_COMPLETED:
                         float duration = playTask.getDuration();
                         float position = playTask.getPosition();
                         float percent = position * 100 / duration;
-                        mProgress.setProgress(percent, false);
+                        mCircleProgressBar.setProgress(percent, false);
                         break;
                 }
             }
@@ -145,6 +145,7 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
             mLastFetchSongInfo = null;
         }
         mLastFetchSongInfo = new GetSongInfoReq();
+        mLastFetchSongInfo.minDelayTime = 300;
         mLastFetchSongInfo.query = song.artist + " " + song.name;
         mLastFetchSongInfo.start(this);
     }

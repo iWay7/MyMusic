@@ -173,6 +173,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
             mLastFetchSongInfo = null;
         }
         mLastFetchSongInfo = new GetSongInfoReq();
+        mLastFetchSongInfo.minDelayTime = 300;
         mLastFetchSongInfo.query = song.artist + " " + song.name;
         mLastFetchSongInfo.tag = song;
         mLastFetchSongInfo.start(this);
@@ -289,13 +290,13 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
                         case PlayTask.STATE_READY:
                         case PlayTask.STATE_TASK_START:
                         case PlayTask.STATE_DOWNLOADING:
+                        case PlayTask.STATE_DATA_READY:
                         case PlayTask.STATE_ERROR:
                         case PlayTask.STATE_TASK_CANCELED:
                             mPlayProgress.setProgress(0);
                             mPosition.setText(getTime(0));
                             mDuration.setText(getTime(0));
                             break;
-                        case PlayTask.STATE_PREPARED:
                         case PlayTask.STATE_PLAYING:
                         case PlayTask.STATE_PAUSED:
                         case PlayTask.STATE_COMPLETED:
@@ -327,7 +328,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
                         case PlayTask.STATE_READY:
                         case PlayTask.STATE_TASK_START:
                         case PlayTask.STATE_DOWNLOADING:
-                        case PlayTask.STATE_PREPARED:
+                        case PlayTask.STATE_DATA_READY:
                             mPlayPause.setDisplayedChild(INDEX_LOADING);
                             break;
                         case PlayTask.STATE_PLAYING:

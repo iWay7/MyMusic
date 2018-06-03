@@ -104,7 +104,7 @@
             </site.iway.androidhelpers.ViewSwapper>
 
             <site.iway.androidhelpers.CircleProgressBar
-                android:id="@+id/progress"
+                android:id="@+id/circleProgressBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:circleDiameter="50dp"

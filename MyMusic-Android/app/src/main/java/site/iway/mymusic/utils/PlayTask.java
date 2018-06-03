@@ -15,23 +15,20 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
     public static final int STATE_READY = 0;
     public static final int STATE_TASK_START = 1;
     public static final int STATE_DOWNLOADING = 2;
-    public static final int STATE_PREPARED = 3;
+    public static final int STATE_DATA_READY = 3;
     public static final int STATE_PLAYING = 4;
     public static final int STATE_PAUSED = 5;
     public static final int STATE_COMPLETED = 6;
     public static final int STATE_ERROR = 7;
     public static final int STATE_TASK_CANCELED = 9;
 
-    private final MediaPlayer mMediaPlayer;
     private final String mFileName;
     private final PlayStateListener mListener;
+    private volatile MediaPlayer mMediaPlayer;
     private volatile int mState;
     private volatile boolean mIsCanceled;
 
     public PlayTask(String fileName, PlayStateListener listener) {
-        mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setOnCompletionListener(this);
-        mMediaPlayer.setOnErrorListener(this);
         mFileName = fileName;
         mListener = listener;
         updateTaskState(STATE_READY);
@@ -75,14 +72,7 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
         String url = Constants.MUSIC_URL_BASE + URLCodec.encode(mFileName);
         FileCache musicCache = FileCache.getMusic();
         if (musicCache.exists(url)) {
-            String filePath = musicCache.getFilePath(url);
-            try {
-                mMediaPlayer.setDataSource(filePath);
-                mMediaPlayer.prepare();
-                updateTaskState(STATE_PREPARED);
-            } catch (Exception e) {
-                updateTaskState(STATE_ERROR);
-            }
+            updateTaskState(STATE_DATA_READY);
         } else {
             musicCache.download(url);
             do {
@@ -94,22 +84,25 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
             }
             while (musicCache.isDownloading(url));
             if (musicCache.exists(url)) {
-                String filePath = musicCache.getFilePath(url);
-                try {
-                    mMediaPlayer.setDataSource(filePath);
-                    mMediaPlayer.prepare();
-                    updateTaskState(STATE_PREPARED);
-                } catch (Exception e) {
-                    updateTaskState(STATE_ERROR);
-                }
+                updateTaskState(STATE_DATA_READY);
             } else {
                 updateTaskState(STATE_ERROR);
             }
         }
-        if (mState == STATE_PREPARED) {
+        if (mState == STATE_DATA_READY) {
             if (!mIsCanceled) {
-                mMediaPlayer.start();
-                updateTaskState(STATE_PLAYING);
+                try {
+                    mMediaPlayer = new MediaPlayer();
+                    mMediaPlayer.setOnCompletionListener(this);
+                    mMediaPlayer.setOnErrorListener(this);
+                    String filePath = musicCache.getFilePath(url);
+                    mMediaPlayer.setDataSource(filePath);
+                    mMediaPlayer.prepare();
+                    mMediaPlayer.start();
+                    updateTaskState(STATE_PLAYING);
+                } catch (Exception e) {
+                    updateTaskState(STATE_ERROR);
+                }
             }
         }
     }
@@ -129,8 +122,7 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
     }
 
     public void seekTo(int msec) {
-        if (mState == STATE_PREPARED ||
-                mState == STATE_PAUSED ||
+        if (mState == STATE_PAUSED ||
                 mState == STATE_PLAYING ||
                 mState == STATE_COMPLETED) {
             mMediaPlayer.seekTo(msec);
@@ -138,8 +130,7 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
     }
 
     public int getDuration() {
-        if (mState == STATE_PREPARED ||
-                mState == STATE_PAUSED ||
+        if (mState == STATE_PAUSED ||
                 mState == STATE_PLAYING ||
                 mState == STATE_COMPLETED) {
             return mMediaPlayer.getDuration();
@@ -148,8 +139,7 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
     }
 
     public int getPosition() {
-        if (mState == STATE_PREPARED ||
-                mState == STATE_PAUSED ||
+        if (mState == STATE_PAUSED ||
                 mState == STATE_PLAYING ||
                 mState == STATE_COMPLETED) {
             return mMediaPlayer.getCurrentPosition();
