@@ -26,6 +26,8 @@ public class ViewLyricActivity extends BaseActivity implements OnClickListener {
 
         mTitleBarBack.setOnClickListener(this);
         mTitleBarText.setText("歌词");
+        mTitleBarButton.setText("编辑");
+        mTitleBarButton.setOnClickListener(this);
 
         HttpTextReader httpTextReader = new HttpTextReader(mIntent.getStringExtra(URL)) {
             @Override
@@ -69,6 +71,8 @@ public class ViewLyricActivity extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         if (v == mTitleBarBack) {
             onBackPressed();
+        } else if (v == mTitleBarButton) {
+            // TODO
         }
     }
 
