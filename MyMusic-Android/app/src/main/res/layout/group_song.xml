@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_com_rect"
     android:orientation="vertical"
-    android:paddingLeft="9dp">
+    android:paddingLeft="10dp">
 
     <site.iway.androidhelpers.ExtendedLinearLayout
         android:layout_width="match_parent"

@@ -30,6 +30,7 @@ import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoReq;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoRes;
 import site.iway.mymusic.net.mymusic.models.common.SongInfo;
+import site.iway.mymusic.user.activities.LyricListActivity;
 import site.iway.mymusic.user.activities.SettingsActivity;
 import site.iway.mymusic.user.activities.ViewSongsActivity;
 import site.iway.mymusic.user.views.LRCView;
@@ -421,7 +422,15 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     @Override
     public boolean onLongClick(View v) {
         if (v == mLrcView) {
-            return true;
+            PlayTask playTask = mPlayer.getPlayTask();
+            if (playTask == null) {
+                return false;
+            } else {
+                Intent intent = new Intent(mActivity, LyricListActivity.class);
+                intent.putExtra(LyricListActivity.FILE_NAME, playTask.getFileName());
+                startActivity(intent);
+                return true;
+            }
         } else if (v == mDiskContainer) {
             return true;
         }
