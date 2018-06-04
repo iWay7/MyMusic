@@ -26,7 +26,7 @@ public class ViewLyricActivity extends BaseActivity implements OnClickListener {
 
         mTitleBarBack.setOnClickListener(this);
         mTitleBarText.setText("歌词");
-        mTitleBarButton.setText("编辑");
+        mTitleBarButton.setText("调整");
         mTitleBarButton.setOnClickListener(this);
 
         HttpTextReader httpTextReader = new HttpTextReader(mIntent.getStringExtra(URL)) {
