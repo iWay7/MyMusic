@@ -41,12 +41,6 @@ public class PlayListAdapter extends BaseAdapter {
 
     public void setData(List<String> data) {
         mPlayList.replace(data);
-        mPlayList.resort();
-        notifyDataSetChanged();
-    }
-
-    public void resort() {
-        mPlayList.resort();
         notifyDataSetChanged();
     }
 

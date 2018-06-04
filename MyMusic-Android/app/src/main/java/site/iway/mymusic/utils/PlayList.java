@@ -93,30 +93,6 @@ public class PlayList extends ArrayList<String> {
         return next(current);
     }
 
-    public void resort() {
-        Collections.sort(this, new Comparator<String>() {
-
-            @Override
-            public int compare(String o1, String o2) {
-                switch (Settings.getPlayListSortType()) {
-                    case Settings.SORT_BY_ARTIST_NAME:
-                        Song o1s = new Song(o1);
-                        Song o2s = new Song(o2);
-                        String pinyin1 = HanziPinyinHelper.getPinyin(o1s.artist + o1s.name);
-                        String pinyin2 = HanziPinyinHelper.getPinyin(o2s.artist + o2s.name);
-                        return pinyin1.compareTo(pinyin2);
-                    case Settings.SORT_BY_SONG_NAME:
-                        o1s = new Song(o1);
-                        o2s = new Song(o2);
-                        pinyin1 = HanziPinyinHelper.getPinyin(o1s.name + o1s.artist);
-                        pinyin2 = HanziPinyinHelper.getPinyin(o2s.name + o2s.artist);
-                        return pinyin1.compareTo(pinyin2);
-                }
-                return 0;
-            }
-        });
-    }
-
     private volatile static PlayList sInstance;
 
     public static PlayList getInstance() {
