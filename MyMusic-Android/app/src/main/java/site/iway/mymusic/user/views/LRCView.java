@@ -111,6 +111,8 @@ public class LRCView extends View implements LyricStateListener {
     private LinearGradient mEdgeFadingTopShader;
     private LinearGradient mEdgeFadingBottomShader;
 
+    private boolean mSizeChanged;
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -125,6 +127,7 @@ public class LRCView extends View implements LyricStateListener {
             mEdgeFadingTopShader = new LinearGradient(0, 0, 0, mEdgeFadingHeight, mNormalColor & 0x00ffffff, mNormalColor, TileMode.CLAMP);
             mEdgeFadingBottomShader = new LinearGradient(0, 0, 0, mEdgeFadingHeight, mNormalColor, mNormalColor & 0x00ffffff, TileMode.CLAMP);
         }
+        mSizeChanged = true;
     }
 
 
@@ -135,6 +138,14 @@ public class LRCView extends View implements LyricStateListener {
 
         @Override
         public void doOnUIThread() {
+            if (mSizeChanged) {
+                if (mObjectAnimator != null) {
+                    mObjectAnimator.cancel();
+                    mObjectAnimator = null;
+                }
+                mLastLyricLine = null;
+                mSizeChanged = false;
+            }
             if (mLyricManager == null) {
                 invalidate();
             } else {

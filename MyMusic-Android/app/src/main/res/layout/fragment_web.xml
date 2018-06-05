@@ -12,8 +12,8 @@
 
     <site.iway.androidhelpers.LoadingView
         android:id="@+id/loadingView"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_gravity="center"
         android:visibility="visible" />
 
