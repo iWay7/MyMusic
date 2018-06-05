@@ -111,7 +111,8 @@ public class LyricListActivity extends BaseActivity implements OnClickListener, 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         LyricsAdapter lyricsAdapter = (LyricsAdapter) parent.getAdapter();
         Intent intent = new Intent(this, ViewLyricActivity.class);
-        intent.putExtra(ViewLyricActivity.URL, lyricsAdapter.getItem(position).url);
+        intent.putExtra(ViewLyricActivity.SONG_FILE_NAME, mIntent.getStringExtra(FILE_NAME));
+        intent.putExtra(ViewLyricActivity.SONG_LYRIC_URL, lyricsAdapter.getItem(position).url);
         startActivity(intent);
     }
 

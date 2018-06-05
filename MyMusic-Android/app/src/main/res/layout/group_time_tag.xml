@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.androidhelpers.ExtendedLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="25dp"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="12dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_lyric_line_arrow_small" />
+
+    <site.iway.androidhelpers.ExtendedTextView
+        android:id="@+id/timeTag"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_lyric_line_tag"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="00:00.00"
+        android:textColor="@color/text_lyric_line"
+        android:textSize="14sp" />
+
+</site.iway.androidhelpers.ExtendedLinearLayout>

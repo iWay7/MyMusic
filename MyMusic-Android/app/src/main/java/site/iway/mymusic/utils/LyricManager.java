@@ -104,6 +104,10 @@ public class LyricManager {
         Collections.sort(mLyricLines);
     }
 
+    public List<LyricLine> getLyricLines() {
+        return mLyricLines;
+    }
+
     private LyricLine mCurrentLine;
 
     public void computeCurrentLine(int songPosition) {

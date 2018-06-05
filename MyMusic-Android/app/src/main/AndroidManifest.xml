@@ -64,6 +64,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
 
+        <activity
+            android:name=".user.activities.EditLyricActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
+
     </application>
 
 </manifest>

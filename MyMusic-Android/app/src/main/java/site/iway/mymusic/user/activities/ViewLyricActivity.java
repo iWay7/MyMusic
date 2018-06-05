@@ -1,5 +1,6 @@
 package site.iway.mymusic.user.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,7 +12,8 @@ import site.iway.mymusic.R;
 
 public class ViewLyricActivity extends BaseActivity implements OnClickListener {
 
-    public static final String URL = "URL";
+    public static final String SONG_FILE_NAME = "SONG_FILE_NAME";
+    public static final String SONG_LYRIC_URL = "SONG_LYRIC_URL";
 
     private static final int INDEX_LOADING = 0;
     private static final int INDEX_LIST = 1;
@@ -29,7 +31,7 @@ public class ViewLyricActivity extends BaseActivity implements OnClickListener {
         mTitleBarButton.setText("调整");
         mTitleBarButton.setOnClickListener(this);
 
-        HttpTextReader httpTextReader = new HttpTextReader(mIntent.getStringExtra(URL)) {
+        HttpTextReader httpTextReader = new HttpTextReader(mIntent.getStringExtra(SONG_LYRIC_URL)) {
             @Override
             public void onGetText(final String s) throws Exception {
                 sleep(300);
@@ -72,7 +74,10 @@ public class ViewLyricActivity extends BaseActivity implements OnClickListener {
         if (v == mTitleBarBack) {
             onBackPressed();
         } else if (v == mTitleBarButton) {
-            // TODO
+            Intent intent = new Intent(this, EditLyricActivity.class);
+            intent.putExtra(EditLyricActivity.SONG_FILE_NAME, mIntent.getStringExtra(SONG_FILE_NAME));
+            intent.putExtra(EditLyricActivity.SONG_LYRIC_URL, mIntent.getStringExtra(SONG_LYRIC_URL));
+            startActivity(intent);
         }
     }
 

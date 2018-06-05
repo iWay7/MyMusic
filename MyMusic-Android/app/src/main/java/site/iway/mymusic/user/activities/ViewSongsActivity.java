@@ -63,17 +63,38 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
     private ListSongsReq mListSongsReq;
 
     private void showLoading() {
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
+        alphaAnimation.setDuration(300);
         mLoadingView.setVisibility(View.VISIBLE);
+        mLoadingView.startAnimation(alphaAnimation);
     }
 
     private void hideLoading() {
-        mLoadingView.setVisibility(View.GONE);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
+        alphaAnimation.setDuration(300);
+        alphaAnimation.setAnimationListener(new AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mLoadingView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        mLoadingView.startAnimation(alphaAnimation);
     }
 
     private void showList(final List<String> fileNames, final List<String> playList, final String filter) {
         if (mSongsAdapter.isEmpty()) {
             AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
-            alphaAnimation.setDuration(300);
+            alphaAnimation.setDuration(500);
             alphaAnimation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -95,7 +116,7 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
             mListView.startAnimation(alphaAnimation);
         } else {
             AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
-            alphaAnimation.setDuration(100);
+            alphaAnimation.setDuration(250);
             alphaAnimation.setRepeatMode(Animation.REVERSE);
             alphaAnimation.setRepeatCount(1);
             alphaAnimation.setAnimationListener(new AnimationListener() {
@@ -114,21 +135,21 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
                     mSongsAdapter.setData(fileNames);
                     mSongsAdapter.setPlayList(playList);
                     mSongsAdapter.setSearchFilter(filter);
-                    animation.setDuration(200);
+                    animation.setDuration(250);
                 }
             });
             mListView.startAnimation(alphaAnimation);
         }
         if (fileNames.isEmpty()) {
             AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
-            alphaAnimation.setDuration(300);
+            alphaAnimation.setDuration(500);
             if (mEmptyView.getVisibility() != View.VISIBLE) {
                 mEmptyView.setVisibility(View.VISIBLE);
                 mEmptyView.startAnimation(alphaAnimation);
             }
         } else {
             AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
-            alphaAnimation.setDuration(300);
+            alphaAnimation.setDuration(500);
             alphaAnimation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
