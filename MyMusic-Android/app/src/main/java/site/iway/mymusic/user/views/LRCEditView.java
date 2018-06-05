@@ -44,8 +44,12 @@ public class LRCEditView extends FrameLayout {
     private Paint mPaint;
 
     private Drawable mTimeLineDrawable;
+    private Drawable mSelectionDrawable;
     private View mStartTag;
     private View mEndTag;
+    private int mSelectionStart;
+    private int mSelectionEnd;
+
 
     private void init(Context context) {
         setWillNotDraw(false);
@@ -57,11 +61,15 @@ public class LRCEditView extends FrameLayout {
         mPaint.setTextSize(UnitHelper.dipToPx(14));
         mPaint.setAntiAlias(true);
         mTimeLineDrawable = mResources.getDrawable(R.drawable.bg_time_line);
+        mSelectionDrawable = mResources.getDrawable(R.drawable.ic_lyric_indicator);
 
         mStartTag = mLayoutInflater.inflate(R.layout.group_time_tag, this, false);
         addView(mStartTag);
         mEndTag = mLayoutInflater.inflate(R.layout.group_time_tag, this, false);
         addView(mEndTag);
+
+        mSelectionStart = 0;
+        mSelectionEnd = 0;
     }
 
     private int mDuration;
@@ -118,11 +126,21 @@ public class LRCEditView extends FrameLayout {
         return minutesString + ":" + secondsString + "." + percentString;
     }
 
+    private void drawSelectionIndicator(Canvas canvas) {
+        int width = mSelectionDrawable.getIntrinsicWidth();
+        int height = mSelectionDrawable.getIntrinsicHeight();
+        int left = UnitHelper.dipToPxInt(5);
+        float timeLineHeight = mTimeLineBottom - mTimeLineTop;
+        float top = mSelectionStart / mDuration * timeLineHeight + mTimeLineTop;
+        mSelectionDrawable.setBounds(left, (int) top, left + width, (int) (top + height));
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         mWidth = getWidth();
         mHeight = getHeight();
         drawTimeLine(canvas);
+        drawSelectionIndicator(canvas);
     }
 
     @Override
@@ -142,6 +160,8 @@ public class LRCEditView extends FrameLayout {
                     }
                 }
                 if (hasViewSelected) {
+                    LyricLine lyricLine = (LyricLine) selectedView.getTag();
+                    mSelectionStart = mSelectionEnd = (int) lyricLine.millis;
                     for (View view : mLyricViews) {
                         if (view != selectedView) {
                             view.setSelected(false);
@@ -159,7 +179,7 @@ public class LRCEditView extends FrameLayout {
         mWidth = right - left;
         mHeight = bottom - top;
         mTimeLineLeft = UnitHelper.dipToPxInt(20);
-        mTimeLineRight = mTimeLineLeft + UnitHelper.dipToPxInt(2);
+        mTimeLineRight = mTimeLineLeft + UnitHelper.dipToPxInt(1);
         mTimeLineTop = UnitHelper.dipToPxInt(20);
         mTimeLineBottom = mHeight - UnitHelper.dipToPxInt(20);
         mStartTag.setTranslationX(mTimeLineRight);
