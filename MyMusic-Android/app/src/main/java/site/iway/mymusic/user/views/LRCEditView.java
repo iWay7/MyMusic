@@ -164,17 +164,18 @@ public class LRCEditView extends ExtendedFrameLayout {
             mSelectedView.setSelected(false);
         }
 
-        View view = mLayoutInflater.inflate(R.layout.group_lyric_line, this, false);
-        ExtendedTextView timeTag = view.findViewById(R.id.timeTag);
-        ExtendedTextView text = view.findViewById(R.id.text);
+        mSelectedView = mLayoutInflater.inflate(R.layout.group_lyric_line, this, false);
+        ExtendedTextView timeTag = mSelectedView.findViewById(R.id.timeTag);
+        ExtendedTextView text = mSelectedView.findViewById(R.id.text);
         timeTag.setText(timeToString(lyricLine.millis));
         String combinedText = lyricLine.combineLineTexts();
         if (StringHelper.nullOrWhiteSpace(combinedText))
             combinedText = "     ";
         text.setText(combinedText);
-        view.setTag(lyricLine);
-        view.setSelected(true);
-        addView(view);
+        mSelectedView.setTag(lyricLine);
+        addView(mSelectedView);
+        mSelectedView.setSelected(true);
+        mSelectedView.bringToFront();
     }
 
     public String generateLrcFile() {

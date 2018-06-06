@@ -251,8 +251,6 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
                 }
                 intent.putExtra(InputLyricTextActivity.LYRIC_LINES, set.toArray(new String[0]));
                 startActivityForResult(intent, REQUEST_EDIT_TEXT);
-            } else {
-                Toaster.show("请选择要编辑的行~");
             }
         }
     }
