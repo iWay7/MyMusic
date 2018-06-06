@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.view.ViewParent;
+import android.widget.ScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import site.iway.androidhelpers.ExtendedFrameLayout;
 import site.iway.androidhelpers.ExtendedTextView;
 import site.iway.androidhelpers.UnitHelper;
 import site.iway.androidhelpers.ViewHelper;
@@ -22,7 +24,12 @@ import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.utils.LyricManager.LyricLine;
 
-public class LRCEditView extends FrameLayout {
+public class LRCEditView extends ExtendedFrameLayout {
+
+    public interface OnEditActionListener {
+
+        public void onRequestAdjustPosition(int position);
+    }
 
     public LRCEditView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -39,21 +46,21 @@ public class LRCEditView extends FrameLayout {
         init(context);
     }
 
+    private OnEditActionListener mListener;
+
+    public void setListener(OnEditActionListener listener) {
+        mListener = listener;
+    }
+
     private Resources mResources;
     private LayoutInflater mLayoutInflater;
     private Paint mPaint;
 
     private Drawable mTimeLineDrawable;
-    private Drawable mSelectionDrawable;
-    private View mStartTag;
-    private View mEndTag;
-    private int mSelectionStart;
-    private int mSelectionEnd;
-
+    private Drawable mPositionDrawable;
 
     private void init(Context context) {
         setWillNotDraw(false);
-
         mResources = context.getResources();
         mLayoutInflater = LayoutInflater.from(context);
         mPaint = new Paint();
@@ -61,34 +68,29 @@ public class LRCEditView extends FrameLayout {
         mPaint.setTextSize(UnitHelper.dipToPx(14));
         mPaint.setAntiAlias(true);
         mTimeLineDrawable = mResources.getDrawable(R.drawable.bg_time_line);
-        mSelectionDrawable = mResources.getDrawable(R.drawable.ic_lyric_indicator);
-
-        mStartTag = mLayoutInflater.inflate(R.layout.group_time_tag, this, false);
-        addView(mStartTag);
-        mEndTag = mLayoutInflater.inflate(R.layout.group_time_tag, this, false);
-        addView(mEndTag);
-
-        mSelectionStart = 0;
-        mSelectionEnd = 0;
+        mPositionDrawable = mResources.getDrawable(R.drawable.ic_lyric_indicator);
     }
 
     private int mDuration;
 
     public void setDuration(int duration) {
         mDuration = duration;
-        ExtendedTextView endTag = mEndTag.findViewById(R.id.timeTag);
-        endTag.setText(timeToString(duration));
         requestLayout();
     }
 
-    public void addLyricLine(LyricLine lines) {
+    private int mPosition;
 
+    public void mPosition(int position) {
+        if (mPosition != position) {
+            mPosition = position;
+            invalidate();
+        }
     }
-
-    private List<View> mLyricViews = new ArrayList<>();
 
     public void addLyricLines(List<LyricLine> lines) {
         for (LyricLine lyricLine : lines) {
+            if (lyricLine.millis > mDuration)
+                return;
             ViewGroup viewGroup = (ViewGroup) mLayoutInflater.inflate(R.layout.group_lyric_line, this, false);
             ExtendedTextView timeTag = viewGroup.findViewById(R.id.timeTag);
             ExtendedTextView text = viewGroup.findViewById(R.id.text);
@@ -98,9 +100,107 @@ public class LRCEditView extends FrameLayout {
                 combinedText = "     ";
             text.setText(combinedText);
             viewGroup.setTag(lyricLine);
-            mLyricViews.add(viewGroup);
             addView(viewGroup);
         }
+    }
+
+    public void addLyricLine(LyricLine line) {
+        List<LyricLine> array = new ArrayList<>();
+        array.add(line);
+        addLyricLines(array);
+    }
+
+    public void removeSelectedLyricLine() {
+        removeView(mSelectedView);
+    }
+
+    public String getSelectedLyricLineText() {
+        if (mSelectedView != null) {
+            LyricLine lyricLine = (LyricLine) mSelectedView.getTag();
+            return lyricLine.combineLineTexts();
+        }
+        return null;
+    }
+
+    private static final int ACTION_NONE = -1;
+    private static final int ACTION_ADJUST_POSITION = 0;
+    private static final int ACTION_DRAG_LYRIC_LINE = 1;
+
+    private int mAction;
+
+    private float mDragStartY;
+    private float mDragStartTranslationY;
+    private View mSelectedView;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        if (action == MotionEvent.ACTION_DOWN) {
+            mAction = ACTION_NONE;
+            float x = event.getX();
+            float y = event.getY();
+            if (x >= 0 && x <= mTimeLineLeft && y >= mTimeLineTop && y <= mTimeLineBottom) {
+                mAction = ACTION_ADJUST_POSITION;
+                mListener.onRequestAdjustPosition((int) ((y - mTimeLineTop) / mTimeLineHeight * mDuration));
+            } else {
+                mSelectedView = null;
+                int childCount = getChildCount();
+                for (int childIndex = childCount - 1; childIndex >= 0; childIndex--) {
+                    View childView = getChildAt(childIndex);
+                    childView.setSelected(false);
+                }
+                for (int childIndex = childCount - 1; childIndex >= 0; childIndex--) {
+                    View childView = getChildAt(childIndex);
+                    if (ViewHelper.isMotionEventInView(event, childView)) {
+                        childView.setSelected(true);
+                        childView.bringToFront();
+                        mSelectedView = childView;
+                        break;
+                    }
+                }
+                if (mSelectedView != null) {
+                    mAction = ACTION_DRAG_LYRIC_LINE;
+                    ViewParent parent = getParent();
+                    while (parent != null) {
+                        if (parent instanceof ScrollView) {
+                            parent.requestDisallowInterceptTouchEvent(true);
+                        }
+                        parent = parent.getParent();
+                    }
+                    mDragStartY = y;
+                    mDragStartTranslationY = mSelectedView.getTranslationY();
+                }
+            }
+        } else if (action == MotionEvent.ACTION_MOVE) {
+            if (mAction == ACTION_DRAG_LYRIC_LINE) {
+                float offsetY = event.getY() - mDragStartY;
+                float targetTranslationY = mDragStartTranslationY + offsetY;
+                float minTranslationY = mTimeLineTop - UnitHelper.dipToPx(12.5f);
+                float maxTranslationY = mTimeLineBottom - UnitHelper.dipToPx(12.5f);
+                if (targetTranslationY < minTranslationY) {
+                    targetTranslationY = minTranslationY;
+                }
+                if (targetTranslationY > maxTranslationY) {
+                    targetTranslationY = maxTranslationY;
+                }
+                mSelectedView.setTranslationY(targetTranslationY);
+                LyricLine lyricLine = (LyricLine) mSelectedView.getTag();
+                lyricLine.millis = (long) ((targetTranslationY - minTranslationY) / mTimeLineHeight * mDuration);
+                ExtendedTextView timeTag = mSelectedView.findViewById(R.id.timeTag);
+                timeTag.setText(timeToString(lyricLine.millis));
+            }
+        } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+            if (mAction == ACTION_DRAG_LYRIC_LINE) {
+                ViewParent parent = getParent();
+                while (parent != null) {
+                    if (parent instanceof ScrollView) {
+                        parent.requestDisallowInterceptTouchEvent(true);
+                    }
+                    parent = parent.getParent();
+                }
+            }
+        }
+        return true;
     }
 
     private int mWidth;
@@ -110,6 +210,7 @@ public class LRCEditView extends FrameLayout {
     private int mTimeLineRight;
     private int mTimeLineTop;
     private int mTimeLineBottom;
+    private int mTimeLineHeight;
 
     private void drawTimeLine(Canvas canvas) {
         mTimeLineDrawable.setBounds(mTimeLineLeft, mTimeLineTop, mTimeLineRight, mTimeLineBottom);
@@ -124,15 +225,18 @@ public class LRCEditView extends FrameLayout {
         String secondsString = seconds < 10 ? "0" + seconds : "" + seconds;
         String percentString = percent < 10 ? "0" + percent : "" + percent;
         return minutesString + ":" + secondsString + "." + percentString;
+
     }
 
-    private void drawSelectionIndicator(Canvas canvas) {
-        int width = mSelectionDrawable.getIntrinsicWidth();
-        int height = mSelectionDrawable.getIntrinsicHeight();
-        int left = UnitHelper.dipToPxInt(5);
-        float timeLineHeight = mTimeLineBottom - mTimeLineTop;
-        float top = mSelectionStart / mDuration * timeLineHeight + mTimeLineTop;
-        mSelectionDrawable.setBounds(left, (int) top, left + width, (int) (top + height));
+    private void drawPosition(Canvas canvas) {
+        int left = mTimeLineLeft - UnitHelper.dipToPxInt(12f);
+        int timeLineHeight = mTimeLineBottom - mTimeLineTop;
+        int top = (int) (1f * mPosition / mDuration * timeLineHeight + mTimeLineTop - 1f * mPositionDrawable.getIntrinsicWidth() / 2);
+        int right = left + mPositionDrawable.getIntrinsicWidth();
+        int bottom = top + mPositionDrawable.getIntrinsicHeight();
+        mPositionDrawable.setBounds(left, top, right, bottom);
+        mPositionDrawable.draw(canvas);
+        invalidate();
     }
 
     @Override
@@ -140,37 +244,7 @@ public class LRCEditView extends FrameLayout {
         mWidth = getWidth();
         mHeight = getHeight();
         drawTimeLine(canvas);
-        drawSelectionIndicator(canvas);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int action = event.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                boolean hasViewSelected = false;
-                View selectedView = null;
-                for (View view : mLyricViews) {
-                    if (ViewHelper.isMotionEventInView(event, view)) {
-                        view.setSelected(true);
-                        view.bringToFront();
-                        hasViewSelected = true;
-                        selectedView = view;
-                        break;
-                    }
-                }
-                if (hasViewSelected) {
-                    LyricLine lyricLine = (LyricLine) selectedView.getTag();
-                    mSelectionStart = mSelectionEnd = (int) lyricLine.millis;
-                    for (View view : mLyricViews) {
-                        if (view != selectedView) {
-                            view.setSelected(false);
-                        }
-                    }
-                }
-                break;
-        }
-        return true;
+        drawPosition(canvas);
     }
 
     @Override
@@ -178,21 +252,20 @@ public class LRCEditView extends FrameLayout {
         super.onLayout(changed, left, top, right, bottom);
         mWidth = right - left;
         mHeight = bottom - top;
-        mTimeLineLeft = UnitHelper.dipToPxInt(20);
+        mTimeLineLeft = UnitHelper.dipToPxInt(24);
         mTimeLineRight = mTimeLineLeft + UnitHelper.dipToPxInt(1);
         mTimeLineTop = UnitHelper.dipToPxInt(20);
         mTimeLineBottom = mHeight - UnitHelper.dipToPxInt(20);
-        mStartTag.setTranslationX(mTimeLineRight);
-        mStartTag.setTranslationY(mTimeLineTop - mStartTag.getHeight() / 2);
-        mEndTag.setTranslationX(mTimeLineRight);
-        mEndTag.setTranslationY(mTimeLineBottom - mStartTag.getHeight() / 2);
-        for (View view : mLyricViews) {
+        mTimeLineHeight = mTimeLineBottom - mTimeLineTop;
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View view = getChildAt(i);
             view.setTranslationX(mTimeLineRight);
             LyricLine lyricLine = (LyricLine) view.getTag();
-            float percent = lyricLine.millis * 1.0f / mDuration;
-            float timeLineHeight = mTimeLineBottom - mTimeLineTop;
-            float translationY = timeLineHeight * percent + mTimeLineTop - mStartTag.getHeight() / 2;
+            float percent = 1f * lyricLine.millis / mDuration;
+            float translationY = 1f * mTimeLineHeight * percent + mTimeLineTop - UnitHelper.dipToPx(12.5f);
             view.setTranslationY(translationY);
         }
     }
+
 }

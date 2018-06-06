@@ -21,23 +21,73 @@
             android:layout_height="28dp"
             android:layout_gravity="center" />
 
-        <site.iway.androidhelpers.ExtendedScrollView
+        <site.iway.androidhelpers.ExtendedLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <site.iway.androidhelpers.ExtendedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <site.iway.androidhelpers.ExtendedLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <site.iway.mymusic.user.views.LRCEditView
+                        android:id="@+id/lrcEditView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:enableTouchSelect="true" />
+
+                </site.iway.androidhelpers.ExtendedLinearLayout>
+
+            </site.iway.androidhelpers.ExtendedScrollView>
+
+            <include layout="@layout/divider_line_horizontal_fill" />
 
             <site.iway.androidhelpers.ExtendedLinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="40dp"
+                android:background="@drawable/bg_com_rect"
+                android:orientation="horizontal">
 
-                <site.iway.mymusic.user.views.LRCEditView
-                    android:id="@+id/lrcEditView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <site.iway.androidhelpers.ExtendedImageView
+                    android:id="@+id/playPause"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_com_rect"
+                    android:padding="2dp"
+                    android:src="@drawable/icon_play" />
+
+                <include layout="@layout/divider_line_vertical_indent" />
+
+                <site.iway.androidhelpers.ExtendedImageView
+                    android:id="@+id/remove"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_com_rect"
+                    android:padding="4dp"
+                    android:src="@drawable/icon_remove" />
+
+                <include layout="@layout/divider_line_vertical_indent" />
+
+                <site.iway.androidhelpers.ExtendedImageView
+                    android:id="@+id/add"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_com_rect"
+                    android:padding="4dp"
+                    android:src="@drawable/icon_add" />
 
             </site.iway.androidhelpers.ExtendedLinearLayout>
 
-        </site.iway.androidhelpers.ExtendedScrollView>
+        </site.iway.androidhelpers.ExtendedLinearLayout>
 
         <include layout="@layout/group_error" />
 

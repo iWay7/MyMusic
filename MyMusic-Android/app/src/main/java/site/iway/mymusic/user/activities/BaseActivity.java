@@ -380,7 +380,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     }
 
     @Override
-    protected final void onDestroy() {
+    protected void onDestroy() {
         UIThread.unregister(this);
         super.onDestroy();
     }
