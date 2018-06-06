@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import java.io.FileInputStream;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,9 @@ import site.iway.androidhelpers.ViewSwapper;
 import site.iway.javahelpers.TextRW;
 import site.iway.javahelpers.URLCodec;
 import site.iway.mymusic.R;
+import site.iway.mymusic.net.RPCBaseReq;
+import site.iway.mymusic.net.RPCCallback;
+import site.iway.mymusic.net.mymusic.models.SaveLyricReq;
 import site.iway.mymusic.user.views.LRCEditView;
 import site.iway.mymusic.user.views.LRCEditView.OnEditActionListener;
 import site.iway.mymusic.utils.Constants;
@@ -26,8 +30,9 @@ import site.iway.mymusic.utils.LyricManager;
 import site.iway.mymusic.utils.LyricManager.LyricLine;
 import site.iway.mymusic.utils.PlayTask;
 import site.iway.mymusic.utils.Player;
+import site.iway.mymusic.utils.Toaster;
 
-public class EditLyricActivity extends BaseActivity implements OnClickListener, OnEditActionListener {
+public class EditLyricActivity extends BaseActivity implements OnClickListener, OnEditActionListener, RPCCallback {
 
     public static final String SONG_FILE_NAME = "SONG_FILE_NAME";
     public static final String SONG_LYRIC_URL = "SONG_LYRIC_URL";
@@ -36,6 +41,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
     private LRCEditView mLrcEditView;
     private ExtendedImageView mPlayPause;
     private ExtendedImageView mRemove;
+    private ExtendedImageView mEdit;
     private ExtendedImageView mAdd;
 
     private static final int INDEX_LOADING = 0;
@@ -149,6 +155,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
                         mViewSwapper.setDisplayedChild(INDEX_CONTENT);
                         mPlayPause.setOnClickListener(EditLyricActivity.this);
                         mRemove.setOnClickListener(EditLyricActivity.this);
+                        mEdit.setOnClickListener(EditLyricActivity.this);
                         mAdd.setOnClickListener(EditLyricActivity.this);
                         mPositionUpdater.start(false);
                     }
@@ -174,6 +181,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
         mLrcEditView = (LRCEditView) findViewById(R.id.lrcEditView);
         mPlayPause = (ExtendedImageView) findViewById(R.id.playPause);
         mRemove = (ExtendedImageView) findViewById(R.id.remove);
+        mEdit = (ExtendedImageView) findViewById(R.id.edit);
         mAdd = (ExtendedImageView) findViewById(R.id.add);
 
         mTitleBarBack.setOnClickListener(this);
@@ -195,6 +203,9 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
     }
 
     private static final int REQUEST_ADD_TEXT = 0;
+    private static final int REQUEST_EDIT_TEXT = 1;
+
+    private SaveLyricReq mSaveLyricReq;
 
     @Override
     public void onClick(View v) {
@@ -223,7 +234,45 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
             intent.putExtra(InputLyricTextActivity.LYRIC_LINES, set.toArray(new String[0]));
             startActivityForResult(intent, REQUEST_ADD_TEXT);
         } else if (v == mTitleBarButton) {
+            disableUserInteract();
+            showLoadingView();
+            mSaveLyricReq = new SaveLyricReq();
+            mSaveLyricReq.fileName = mIntent.getStringExtra(SONG_FILE_NAME);
+            mSaveLyricReq.lyric = mLrcEditView.generateLrcFile();
+            mSaveLyricReq.minDelayTime = 300;
+            mSaveLyricReq.start(this);
+        } else if (v == mEdit) {
+            if (mLrcEditView.hasSelectedView()) {
+                Intent intent = new Intent(this, InputLyricTextActivity.class);
+                intent.putExtra(InputLyricTextActivity.DEFAULT_TEXT, mLrcEditView.getSelectedLyricLineText());
+                Set<String> set = new HashSet<>();
+                for (LyricLine lyricLine : mLyricManager.getLyricLines()) {
+                    set.addAll(lyricLine.sourceTextLines);
+                }
+                intent.putExtra(InputLyricTextActivity.LYRIC_LINES, set.toArray(new String[0]));
+                startActivityForResult(intent, REQUEST_EDIT_TEXT);
+            } else {
+                Toaster.show("请选择要编辑的行~");
+            }
+        }
+    }
 
+    @Override
+    public void onRequestOK(RPCBaseReq req) {
+        if (req == mSaveLyricReq) {
+            hideLoadingView();
+            finish(RESULT_OK);
+            enableUserInteract();
+        }
+
+    }
+
+    @Override
+    public void onRequestER(RPCBaseReq req) {
+        if (req == mSaveLyricReq) {
+            hideLoadingView();
+            Toaster.show("网络错误，请重试！");
+            enableUserInteract();
         }
     }
 
@@ -232,14 +281,23 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case REQUEST_ADD_TEXT:
-                String[] lines = data.getStringArrayExtra(InputLyricTextActivity.RESULT_LINES);
+                if (resultCode == InputLyricTextActivity.RESULT_OK) {
+                    String[] lines = data.getStringArrayExtra(InputLyricTextActivity.RESULT_LINES);
+                    mLrcEditView.addLyricLineText(Arrays.asList(lines));
+                }
+                break;
+            case REQUEST_EDIT_TEXT:
+                if (resultCode == InputLyricTextActivity.RESULT_OK) {
+                    String[] lines = data.getStringArrayExtra(InputLyricTextActivity.RESULT_LINES);
+                    mLrcEditView.setSelectedLyricLineText(Arrays.asList(lines));
+                }
                 break;
         }
     }
 
     @Override
     public void onBackPressed() {
-        finish();
+        finish(RESULT_CANCELED);
     }
 
     @Override

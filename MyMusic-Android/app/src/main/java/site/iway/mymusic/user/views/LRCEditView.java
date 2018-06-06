@@ -11,9 +11,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.ScrollView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import site.iway.androidhelpers.ExtendedFrameLayout;
@@ -104,14 +106,33 @@ public class LRCEditView extends ExtendedFrameLayout {
         }
     }
 
-    public void addLyricLine(LyricLine line) {
-        List<LyricLine> array = new ArrayList<>();
-        array.add(line);
-        addLyricLines(array);
+    public void removeSelectedLyricLine() {
+        if (mSelectedView == null) {
+            return;
+        }
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
+        alphaAnimation.setDuration(300);
+        alphaAnimation.setAnimationListener(new AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                removeView(mSelectedView);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        mSelectedView.startAnimation(alphaAnimation);
     }
 
-    public void removeSelectedLyricLine() {
-        removeView(mSelectedView);
+    public boolean hasSelectedView() {
+        return mSelectedView != null;
     }
 
     public String getSelectedLyricLineText() {
@@ -120,6 +141,57 @@ public class LRCEditView extends ExtendedFrameLayout {
             return lyricLine.combineLineTexts();
         }
         return null;
+    }
+
+    public void setSelectedLyricLineText(List<String> lines) {
+        if (mSelectedView != null) {
+            LyricLine lyricLine = (LyricLine) mSelectedView.getTag();
+            lyricLine.sourceTextLines = lines;
+            String combinedText = lyricLine.combineLineTexts();
+            if (StringHelper.nullOrWhiteSpace(combinedText))
+                combinedText = "     ";
+            ExtendedTextView text = mSelectedView.findViewById(R.id.text);
+            text.setText(combinedText);
+        }
+    }
+
+    public void addLyricLineText(List<String> lines) {
+        LyricLine lyricLine = new LyricLine();
+        lyricLine.millis = mPosition;
+        lyricLine.sourceTextLines = lines;
+
+        if (mSelectedView != null) {
+            mSelectedView.setSelected(false);
+        }
+
+        View view = mLayoutInflater.inflate(R.layout.group_lyric_line, this, false);
+        ExtendedTextView timeTag = view.findViewById(R.id.timeTag);
+        ExtendedTextView text = view.findViewById(R.id.text);
+        timeTag.setText(timeToString(lyricLine.millis));
+        String combinedText = lyricLine.combineLineTexts();
+        if (StringHelper.nullOrWhiteSpace(combinedText))
+            combinedText = "     ";
+        text.setText(combinedText);
+        view.setTag(lyricLine);
+        view.setSelected(true);
+        addView(view);
+    }
+
+    public String generateLrcFile() {
+        StringBuilder stringBuilder = new StringBuilder();
+        int childCount = getChildCount();
+        for (int childIndex = 0; childIndex < childCount; childIndex++) {
+            View childView = getChildAt(childIndex);
+            LyricLine lyricLine = (LyricLine) childView.getTag();
+            for (String text : lyricLine.sourceTextLines) {
+                stringBuilder.append("[")
+                        .append(timeToString(lyricLine.millis))
+                        .append("]")
+                        .append(text)
+                        .append("\n");
+            }
+        }
+        return stringBuilder.toString();
     }
 
     private static final int ACTION_NONE = -1;

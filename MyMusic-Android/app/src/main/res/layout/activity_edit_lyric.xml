@@ -77,6 +77,17 @@
                 <include layout="@layout/divider_line_vertical_indent" />
 
                 <site.iway.androidhelpers.ExtendedImageView
+                    android:id="@+id/edit"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_com_rect"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_edit" />
+
+                <include layout="@layout/divider_line_vertical_indent" />
+
+                <site.iway.androidhelpers.ExtendedImageView
                     android:id="@+id/add"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
