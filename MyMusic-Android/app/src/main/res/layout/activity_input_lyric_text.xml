@@ -9,7 +9,7 @@
     <site.iway.androidhelpers.ExtendedEditText
         android:id="@+id/editor"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_margin="12dp"
         android:background="@drawable/bg_edit_lyric"
         android:gravity="left|top"
@@ -19,34 +19,5 @@
         android:textColor="#333333"
         android:textColorHint="#999999"
         android:textSize="14sp" />
-
-    <site.iway.androidhelpers.ExtendedFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginBottom="12dp"
-        android:layout_weight="1">
-
-        <site.iway.androidhelpers.ExtendedListView
-            android:id="@+id/quickSelectList"
-            style="@style/MyListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_com_rect" />
-
-        <site.iway.androidhelpers.ExtendedView
-            android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:layout_gravity="top"
-            android:background="@drawable/bg_gradient_0" />
-
-        <site.iway.androidhelpers.ExtendedView
-            android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/bg_gradient_1" />
-
-    </site.iway.androidhelpers.ExtendedFrameLayout>
 
 </site.iway.androidhelpers.ExtendedLinearLayout>

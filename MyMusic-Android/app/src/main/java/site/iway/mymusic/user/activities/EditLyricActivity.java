@@ -227,11 +227,6 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
         } else if (v == mAdd) {
             Intent intent = new Intent(this, InputLyricTextActivity.class);
             intent.putExtra(InputLyricTextActivity.DEFAULT_TEXT, mLrcEditView.getSelectedLyricLineText());
-            Set<String> set = new HashSet<>();
-            for (LyricLine lyricLine : mLyricManager.getLyricLines()) {
-                set.addAll(lyricLine.sourceTextLines);
-            }
-            intent.putExtra(InputLyricTextActivity.LYRIC_LINES, set.toArray(new String[0]));
             startActivityForResult(intent, REQUEST_ADD_TEXT);
         } else if (v == mTitleBarButton) {
             disableUserInteract();
@@ -245,11 +240,6 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
             if (mLrcEditView.hasSelectedView()) {
                 Intent intent = new Intent(this, InputLyricTextActivity.class);
                 intent.putExtra(InputLyricTextActivity.DEFAULT_TEXT, mLrcEditView.getSelectedLyricLineText());
-                Set<String> set = new HashSet<>();
-                for (LyricLine lyricLine : mLyricManager.getLyricLines()) {
-                    set.addAll(lyricLine.sourceTextLines);
-                }
-                intent.putExtra(InputLyricTextActivity.LYRIC_LINES, set.toArray(new String[0]));
                 startActivityForResult(intent, REQUEST_EDIT_TEXT);
             }
         }

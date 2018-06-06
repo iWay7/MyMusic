@@ -12,16 +12,13 @@ import site.iway.mymusic.R;
 public class InputLyricTextActivity extends BaseActivity implements OnClickListener {
 
     public static final String DEFAULT_TEXT = "DEFAULT_TEXT";
-    public static final String LYRIC_LINES = "LYRIC_LINES";
     public static final String RESULT_LINES = "RESULT_LINES";
 
 
     private ExtendedEditText mEditor;
-    private ExtendedListView mQuickSelectList;
 
     private void setViews() {
         mEditor = (ExtendedEditText) findViewById(R.id.editor);
-        mQuickSelectList = (ExtendedListView) findViewById(R.id.quickSelectList);
 
         mEditor.setText(mIntent.getStringExtra(DEFAULT_TEXT));
 
