@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import site.iway.androidhelpers.ExtendedEditText;
-import site.iway.androidhelpers.ExtendedListView;
+import site.iway.androidhelpers.WindowHelper;
 import site.iway.mymusic.R;
 
 public class InputLyricTextActivity extends BaseActivity implements OnClickListener {
@@ -21,11 +21,19 @@ public class InputLyricTextActivity extends BaseActivity implements OnClickListe
         mEditor = (ExtendedEditText) findViewById(R.id.editor);
 
         mEditor.setText(mIntent.getStringExtra(DEFAULT_TEXT));
+        mEditor.setSelection(mEditor.getText().length());
 
         mTitleBarBack.setOnClickListener(this);
         mTitleBarText.setText("编辑");
         mTitleBarButton.setText("完成");
         mTitleBarButton.setOnClickListener(this);
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                WindowHelper.showSoftInput(mEditor);
+            }
+        }, 500);
     }
 
     @Override
