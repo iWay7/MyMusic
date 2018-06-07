@@ -15,12 +15,12 @@ import android.graphics.Shader.TileMode;
 import android.graphics.Xfermode;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
 import site.iway.androidhelpers.UITimer;
 import site.iway.androidhelpers.UnitHelper;
+import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.utils.LyricManager;
 import site.iway.mymusic.utils.LyricManager.LyricLine;
@@ -105,14 +105,11 @@ public class LRCView extends View implements LyricStateListener {
             mLyricTask = new LyricTask(url, this);
             mLyricTask.start();
         }
-        invalidate();
     }
 
     private float mEdgeFadingHeight;
     private LinearGradient mEdgeFadingTopShader;
     private LinearGradient mEdgeFadingBottomShader;
-
-    private boolean mSizeChanged;
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -121,66 +118,54 @@ public class LRCView extends View implements LyricStateListener {
             mLyricManager.setDisplayWidth(w);
             mLyricManager.setDisplayHeight(h);
             mLyricManager.computePositions();
-            invalidate();
         }
         if (VERSION.SDK_INT > VERSION_CODES.LOLLIPOP && w > 0 && h > 0) {
             mEdgeFadingHeight = h * mEdgeFadingPercent / 100;
             mEdgeFadingTopShader = new LinearGradient(0, 0, 0, mEdgeFadingHeight, mNormalColor & 0x00ffffff, mNormalColor, TileMode.CLAMP);
             mEdgeFadingBottomShader = new LinearGradient(0, 0, 0, mEdgeFadingHeight, mNormalColor, mNormalColor & 0x00ffffff, TileMode.CLAMP);
         }
-        mSizeChanged = true;
     }
 
 
-    private UITimer mUITimer = new UITimer(200) {
+    private UITimer mUITimer = new UITimer(100) {
 
         private ObjectAnimator mObjectAnimator;
         private LyricLine mLastLyricLine;
 
+
+
         @Override
         public void doOnUIThread() {
-            if (mSizeChanged) {
-                if (mObjectAnimator != null) {
-                    mObjectAnimator.cancel();
-                    mObjectAnimator = null;
-                }
-                mLastLyricLine = null;
-                mSizeChanged = false;
-            }
-            if (mLyricManager == null) {
-                setScrollY(0);
-            } else {
-                Player player = Player.getInstance();
-                PlayTask playTask = player.getPlayTask();
-                int position = playTask == null ? 0 : playTask.getPosition();
-                mLyricManager.computeCurrentLine(position);
-                LyricLine currentLyricLine = mLyricManager.getCurrentLine();
-                if (currentLyricLine != mLastLyricLine) {
-                    if (mObjectAnimator != null) {
-                        mObjectAnimator.cancel();
-                    }
-                    LyricLine currentLine = mLyricManager.getCurrentLine();
-                    if (currentLine != null) {
-                        int viewHeight = getHeight();
-                        int targetScroll = currentLine.middleY - viewHeight / 2;
-                        int currentScroll = getScrollY();
-                        int visibility = getVisibility();
-                        if (viewHeight > 0 && visibility == View.VISIBLE) {
-                            if (currentScroll == targetScroll) {
-                                invalidate();
-                            } else {
-                                mObjectAnimator = ObjectAnimator.ofInt(LRCView.this, "scrollY", currentScroll, targetScroll);
-                                mObjectAnimator.setDuration(300);
-                                mObjectAnimator.start();
-                            }
-                        } else {
-                            setScrollY(targetScroll);
+            int viewWidth = getWidth();
+            int viewHeight = getHeight();
+            int visibility = getVisibility();
+            float alpha = getAlpha();
+            if (viewWidth > 0 & viewHeight > 0 && visibility == View.VISIBLE && alpha > 0) {
+                if (mLyricManager == null) {
+                    setScrollY(0);
+                } else {
+                    Player player = Player.getInstance();
+                    PlayTask playTask = player.getPlayTask();
+                    int position = playTask == null ? 0 : playTask.getPosition();
+                    mLyricManager.computeCurrentLine(position);
+                    LyricLine currentLyricLine = mLyricManager.getCurrentLine();
+                    if (currentLyricLine != mLastLyricLine) {
+                        if (mObjectAnimator != null) {
+                            mObjectAnimator.cancel();
                         }
-                    } else {
-                        setScrollY(0);
+                        if (currentLyricLine != null) {
+                            int targetScroll = currentLyricLine.middleY - viewHeight / 2;
+                            int currentScroll = getScrollY();
+                            mObjectAnimator = ObjectAnimator.ofInt(LRCView.this, "scrollY", currentScroll, targetScroll);
+                            mObjectAnimator.setDuration(300);
+                            mObjectAnimator.start();
+                        } else {
+                            setScrollY(0);
+                        }
                     }
+                    mLastLyricLine = currentLyricLine;
                 }
-                mLastLyricLine = currentLyricLine;
+                invalidate();
             }
         }
 
@@ -236,7 +221,7 @@ public class LRCView extends View implements LyricStateListener {
                 mLyricManager.drawHighLight(canvas);
             }
         } else {
-            if (!TextUtils.isEmpty(mEmptyText)) {
+            if (!StringHelper.nullOrEmpty(mEmptyText)) {
                 mPaint.getTextBounds(mEmptyText, 0, mEmptyText.length(), mTempRect);
                 mPaint.setColor(mNormalColor);
                 int textWidth = mTempRect.width();

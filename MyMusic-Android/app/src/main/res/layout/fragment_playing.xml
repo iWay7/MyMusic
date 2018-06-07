@@ -189,14 +189,13 @@
         <site.iway.androidhelpers.ExtendedLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:gravity="center">
 
             <site.iway.androidhelpers.ExtendedTextView
                 android:id="@+id/position"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:text="00:00"
@@ -206,7 +205,7 @@
             <site.iway.mymusic.user.views.PlayProgressView
                 android:id="@+id/playProgress"
                 android:layout_width="0dp"
-                android:layout_height="15dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 app:progressBgDrawable="@drawable/bg_play_progress_bg"
                 app:progressDrawableHeight="2dp"
@@ -220,6 +219,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
                 android:gravity="center"
                 android:text="00:00"
                 android:textColor="#80ffffff"
@@ -275,8 +275,8 @@
                 android:layout_height="64dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                app:outAnimation="@anim/fade_out_300"
-                app:inAnimation="@anim/fade_in_300">
+                app:inAnimation="@anim/fade_in_300"
+                app:outAnimation="@anim/fade_out_300">
 
                 <site.iway.androidhelpers.ExtendedImageView
                     android:layout_width="match_parent"
