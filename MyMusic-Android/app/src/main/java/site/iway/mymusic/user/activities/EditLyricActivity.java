@@ -14,6 +14,7 @@ import java.util.List;
 import site.iway.androidhelpers.ExtendedImageView;
 import site.iway.androidhelpers.UITimer;
 import site.iway.androidhelpers.ViewSwapper;
+import site.iway.javahelpers.StringHelper;
 import site.iway.javahelpers.TextRW;
 import site.iway.javahelpers.URLCodec;
 import site.iway.mymusic.R;
@@ -116,22 +117,24 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
             }
             FileCache lyricCache = FileCache.getLyric();
             String lyricUrl = mIntent.getStringExtra(SONG_LYRIC_URL);
-            if (lyricCache.exists(lyricUrl)) {
-                configLyricLines(lyricUrl);
-            } else {
-                lyricCache.download(lyricUrl);
-                do {
-                    try {
-                        Thread.sleep(333);
-                    } catch (Exception e) {
-                        break;
-                    }
-                }
-                while (lyricCache.isDownloading(lyricUrl));
+            if (!StringHelper.nullOrEmpty(lyricUrl)) {
                 if (lyricCache.exists(lyricUrl)) {
                     configLyricLines(lyricUrl);
                 } else {
-                    mErrorOccured = true;
+                    lyricCache.download(lyricUrl);
+                    do {
+                        try {
+                            Thread.sleep(333);
+                        } catch (Exception e) {
+                            break;
+                        }
+                    }
+                    while (lyricCache.isDownloading(lyricUrl));
+                    if (lyricCache.exists(lyricUrl)) {
+                        configLyricLines(lyricUrl);
+                    } else {
+                        mErrorOccured = true;
+                    }
                 }
             }
             runOnUiThread(new Runnable() {
@@ -147,7 +150,9 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
                         int duration = mMediaPlayer.getDuration();
                         mLrcEditView.setListener(EditLyricActivity.this);
                         mLrcEditView.setDuration(duration);
-                        mLrcEditView.addLyricLines(mLyricManager.getLyricLines());
+                        if (mLyricManager != null) {
+                            mLrcEditView.addLyricLines(mLyricManager.getLyricLines());
+                        }
                         ViewGroup.LayoutParams layoutParams = mLrcEditView.getLayoutParams();
                         layoutParams.height = duration / 1000 * 40;
                         mViewSwapper.setDisplayedChild(INDEX_CONTENT);
@@ -184,7 +189,9 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
 
         mTitleBarBack.setOnClickListener(this);
         mTitleBarText.setText("调整歌词");
-
+        if (StringHelper.nullOrEmpty(mIntent.getStringExtra(SONG_LYRIC_URL))) {
+            mTitleBarText.setText("添加歌词");
+        }
         mThread.start();
     }
 

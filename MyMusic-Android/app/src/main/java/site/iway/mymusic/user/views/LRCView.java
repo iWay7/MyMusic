@@ -105,6 +105,7 @@ public class LRCView extends View implements LyricStateListener {
             mLyricTask = new LyricTask(url, this);
             mLyricTask.start();
         }
+        invalidate();
     }
 
     private float mEdgeFadingHeight;

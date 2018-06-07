@@ -11,7 +11,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import site.iway.androidhelpers.ExtendedImageView;
 import site.iway.androidhelpers.ExtendedListView;
+import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.ViewSwapper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
@@ -35,15 +38,23 @@ public class LyricListActivity extends BaseActivity implements OnClickListener, 
 
     private ViewSwapper mViewSwapper;
     private ExtendedListView mListView;
+    private ExtendedImageView mEmptyImage;
+    private ExtendedTextView mEmptyText;
 
     private void setViews() {
         mViewSwapper = (ViewSwapper) findViewById(R.id.viewSwapper);
         mListView = (ExtendedListView) findViewById(R.id.listView);
+        mEmptyImage = (ExtendedImageView) findViewById(R.id.emptyImage);
+        mEmptyText = (ExtendedTextView) findViewById(R.id.emptyText);
 
         mTitleBarBack.setOnClickListener(this);
         mTitleBarText.setText("所有歌词");
 
         mListView.setOnItemClickListener(this);
+
+        mEmptyImage.setImageResource(R.drawable.icon_add_big);
+        mEmptyImage.setOnClickListener(this);
+        mEmptyText.setText("没有歌词，点击添加");
     }
 
     private GetSongInfoReq mGetSongInfoReq;
@@ -102,10 +113,24 @@ public class LyricListActivity extends BaseActivity implements OnClickListener, 
         }
     }
 
+    private static final int REQUEST_ADD_LYRIC = 0;
+
     @Override
     public void onClick(View v) {
         if (v == mTitleBarBack) {
             onBackPressed();
+        } else if (v == mEmptyImage) {
+            Intent intent = new Intent(this, EditLyricActivity.class);
+            intent.putExtra(ViewLyricActivity.SONG_FILE_NAME, mIntent.getStringExtra(FILE_NAME));
+            startActivityForResult(intent, REQUEST_ADD_LYRIC);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_ADD_LYRIC && resultCode == EditLyricActivity.RESULT_OK) {
+            UIThread.event(Constants.EV_LYRIC_CHANGED);
         }
     }
 

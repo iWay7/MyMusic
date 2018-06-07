@@ -123,6 +123,7 @@ public class LRCEditView extends ExtendedFrameLayout {
             @Override
             public void onAnimationEnd(Animation animation) {
                 removeView(mSelectedView);
+                mSelectedView = null;
             }
 
             @Override
