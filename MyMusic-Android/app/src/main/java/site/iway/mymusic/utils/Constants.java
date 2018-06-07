@@ -16,9 +16,10 @@ public final class Constants {
 
     public static final String SERVICE_URL_BASE = "http://home.iway.site:8888/mm/";
     public static final String MUSIC_URL_BASE = SERVICE_URL_BASE + "GetSong?fileName=";
+    public static final String LYRIC_URL_BASE = SERVICE_URL_BASE + "GetLyric?fileName=";
 
     public static final String EV_PLAY_LIST_MODE_CHANGED = "EV_PLAY_LIST_MODE_CHANGED";
-
+    public static final String EV_LYRIC_CHANGED = "EV_LYRIC_CHANGED";
     public static final String EV_PLAYER_TASK_CHANGED = "EV_PLAYER_TASK_CHANGED";
 
     public static final String EV_REQUEST_VIEW_PLAY_LIST = "EV_REQUEST_VIEW_PLAY_LIST";

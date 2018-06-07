@@ -20,6 +20,7 @@ import site.iway.mymusic.net.mymusic.models.GetSongInfoReq;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoRes;
 import site.iway.mymusic.net.mymusic.models.common.SongInfo;
 import site.iway.mymusic.user.views.LyricsAdapter;
+import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.Lyric;
 import site.iway.mymusic.utils.Song;
 
@@ -53,6 +54,7 @@ public class LyricListActivity extends BaseActivity implements OnClickListener, 
         mGetSongInfoReq = new GetSongInfoReq();
         mGetSongInfoReq.minDelayTime = 300;
         mGetSongInfoReq.query = song.artist + " " + song.name;
+        mGetSongInfoReq.fileName = fileName;
         mGetSongInfoReq.tag = song;
         mGetSongInfoReq.start(this);
     }
@@ -114,6 +116,17 @@ public class LyricListActivity extends BaseActivity implements OnClickListener, 
         intent.putExtra(ViewLyricActivity.SONG_FILE_NAME, mIntent.getStringExtra(FILE_NAME));
         intent.putExtra(ViewLyricActivity.SONG_LYRIC_URL, lyricsAdapter.getItem(position).url);
         startActivity(intent);
+    }
+
+    @Override
+    public void onEvent(String event, Object data) {
+        super.onEvent(event, data);
+        switch (event) {
+            case Constants.EV_LYRIC_CHANGED:
+                mViewSwapper.setDisplayedChild(INDEX_LOADING);
+                loadData();
+                break;
+        }
     }
 
     @Override

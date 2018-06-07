@@ -101,11 +101,11 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     private void refreshViews() {
         PlayTask playTask = mPlayer.getPlayTask();
         if (playTask != null) {
-            String musicFileName = playTask.getFileName();
-            Song song = new Song(musicFileName);
+            String fileName = playTask.getFileName();
+            Song song = new Song(fileName);
             mTitleBarText.setText(song.name);
             mArtist.setText(song.artist);
-            loadImage(song);
+            loadImageAndLyric(fileName);
         } else {
             mTitleBarText.setText(R.string.app_name);
             mArtist.setText(null);
@@ -168,14 +168,16 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
 
     private GetSongInfoReq mLastFetchSongInfo;
 
-    private void loadImage(Song song) {
+    private void loadImageAndLyric(String fileName) {
         if (mLastFetchSongInfo != null) {
             mLastFetchSongInfo.cancel();
             mLastFetchSongInfo = null;
         }
         mLastFetchSongInfo = new GetSongInfoReq();
         mLastFetchSongInfo.minDelayTime = 300;
+        Song song = new Song(fileName);
         mLastFetchSongInfo.query = song.artist + " " + song.name;
+        mLastFetchSongInfo.fileName = fileName;
         mLastFetchSongInfo.tag = song;
         mLastFetchSongInfo.start(this);
 
@@ -362,6 +364,12 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
                 break;
             case Constants.EV_PLAY_LIST_MODE_CHANGED:
                 refreshPlayMode();
+                break;
+            case Constants.EV_LYRIC_CHANGED:
+                PlayTask playTask = mPlayer.getPlayTask();
+                if (playTask != null) {
+                    loadImageAndLyric(playTask.getFileName());
+                }
                 break;
         }
     }

@@ -58,6 +58,14 @@ public class FileCache {
         return file.exists();
     }
 
+    public boolean delete(String url) {
+        File rootCacheDir = mContext.getCacheDir();
+        File cacheDir = new File(rootCacheDir, mDirectory);
+        String fileName = getFileName(url);
+        File file = new File(cacheDir, fileName);
+        return file.delete();
+    }
+
     public boolean isDownloading(String url) {
         synchronized (mListAccessLock) {
             return mDownloadingList.contains(url);

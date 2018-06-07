@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 
 import java.io.FileInputStream;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import site.iway.androidhelpers.ExtendedImageView;
 import site.iway.androidhelpers.UITimer;
@@ -27,7 +25,6 @@ import site.iway.mymusic.user.views.LRCEditView.OnEditActionListener;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.FileCache;
 import site.iway.mymusic.utils.LyricManager;
-import site.iway.mymusic.utils.LyricManager.LyricLine;
 import site.iway.mymusic.utils.PlayTask;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Toaster;
@@ -36,6 +33,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
 
     public static final String SONG_FILE_NAME = "SONG_FILE_NAME";
     public static final String SONG_LYRIC_URL = "SONG_LYRIC_URL";
+    public static final String RESULT_TEXT = "RESULT_TEXT";
 
     private ViewSwapper mViewSwapper;
     private LRCEditView mLrcEditView;
@@ -249,7 +247,9 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
     public void onRequestOK(RPCBaseReq req) {
         if (req == mSaveLyricReq) {
             hideLoadingView();
-            finish(RESULT_OK);
+            Intent data = new Intent();
+            data.putExtra(RESULT_TEXT, mLrcEditView.generateLrcFile());
+            finish(RESULT_OK, data);
             enableUserInteract();
         }
 

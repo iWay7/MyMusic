@@ -16,6 +16,8 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ScrollView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import site.iway.androidhelpers.ExtendedFrameLayout;
@@ -180,10 +182,15 @@ public class LRCEditView extends ExtendedFrameLayout {
 
     public String generateLrcFile() {
         StringBuilder stringBuilder = new StringBuilder();
+        List<LyricLine> list = new ArrayList<>();
         int childCount = getChildCount();
         for (int childIndex = 0; childIndex < childCount; childIndex++) {
             View childView = getChildAt(childIndex);
             LyricLine lyricLine = (LyricLine) childView.getTag();
+            list.add(lyricLine);
+        }
+        Collections.sort(list);
+        for (LyricLine lyricLine : list) {
             for (String text : lyricLine.sourceTextLines) {
                 stringBuilder.append("[")
                         .append(timeToString(lyricLine.millis))

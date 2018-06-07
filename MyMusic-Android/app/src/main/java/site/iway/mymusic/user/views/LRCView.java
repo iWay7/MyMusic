@@ -147,7 +147,7 @@ public class LRCView extends View implements LyricStateListener {
                 mSizeChanged = false;
             }
             if (mLyricManager == null) {
-                invalidate();
+                setScrollY(0);
             } else {
                 Player player = Player.getInstance();
                 PlayTask playTask = player.getPlayTask();
@@ -165,9 +165,13 @@ public class LRCView extends View implements LyricStateListener {
                         int currentScroll = getScrollY();
                         int visibility = getVisibility();
                         if (viewHeight > 0 && visibility == View.VISIBLE) {
-                            mObjectAnimator = ObjectAnimator.ofInt(LRCView.this, "scrollY", currentScroll, targetScroll);
-                            mObjectAnimator.setDuration(300);
-                            mObjectAnimator.start();
+                            if (currentScroll == targetScroll) {
+                                invalidate();
+                            } else {
+                                mObjectAnimator = ObjectAnimator.ofInt(LRCView.this, "scrollY", currentScroll, targetScroll);
+                                mObjectAnimator.setDuration(300);
+                                mObjectAnimator.start();
+                            }
                         } else {
                             setScrollY(targetScroll);
                         }

@@ -52,12 +52,12 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
     private void refreshViews() {
         PlayTask playTask = mPlayer.getPlayTask();
         if (playTask != null) {
-            String musicFileName = playTask.getFileName();
-            Song song = new Song(musicFileName);
-            loadImage(song);
+            String fileName = playTask.getFileName();
+            loadImage(fileName);
+            Song song = new Song(fileName);
             mSongName.setText(song.name);
             mSongArtist.setText(song.artist);
-        }  else {
+        } else {
             mSongCover.loadFromURLSource(null);
             mSongName.setText(null);
             mSongArtist.setText(null);
@@ -139,14 +139,16 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
 
     private GetSongInfoReq mLastFetchSongInfo;
 
-    private void loadImage(Song song) {
+    private void loadImage(String musicFileName) {
         if (mLastFetchSongInfo != null) {
             mLastFetchSongInfo.cancel();
             mLastFetchSongInfo = null;
         }
         mLastFetchSongInfo = new GetSongInfoReq();
         mLastFetchSongInfo.minDelayTime = 300;
+        Song song = new Song(musicFileName);
         mLastFetchSongInfo.query = song.artist + " " + song.name;
+        mLastFetchSongInfo.fileName = musicFileName;
         mLastFetchSongInfo.start(this);
     }
 
