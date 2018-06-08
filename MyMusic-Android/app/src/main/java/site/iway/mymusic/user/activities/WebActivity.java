@@ -44,7 +44,7 @@ public class WebActivity extends BaseActivity implements OnClickListener {
     }
 
     protected void loadUrl(String url) {
-        mWebFragment.loadUrl(mIntent.getStringExtra(URL));
+        mWebFragment.loadUrl(url);
     }
 
     protected void loadHtml(String html) {
@@ -74,6 +74,7 @@ public class WebActivity extends BaseActivity implements OnClickListener {
         mWebFragment.setTitleBarActions(mTitleBarActions);
         mWebFragment.setTitleBarSplitter(mTitleBarSplitter);
         mWebFragment.setTitleBarText(mTitleBarText);
+
         if (!StringHelper.nullOrWhiteSpace(mIntent.getStringExtra(URL))) {
             loadUrl(mIntent.getStringExtra(URL));
         }
