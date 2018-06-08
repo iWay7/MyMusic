@@ -11,10 +11,6 @@ import site.iway.javahelpers.StringHelper;
 
 public class FileCache {
 
-    public interface UrlGenerator {
-        public String generate(String fileName);
-    }
-
     private static final String EXTENSION = ".url";
 
     private final Context mContext;
@@ -46,37 +42,33 @@ public class FileCache {
         cleanTempFiles();
     }
 
-    private String getFileName(String url) {
+    public File getFile(String url) {
+        File rootCacheDir = mContext.getCacheDir();
+        File cacheDir = new File(rootCacheDir, mDirectory);
+        String fileName = getFileName(url);
+        return new File(cacheDir, fileName);
+    }
+
+    public String getFileName(String url) {
         return StringHelper.md5(url) + EXTENSION;
     }
 
+    public String getFilePath(String url) {
+        return getFile(url).toString();
+    }
+
     public boolean exists(String url) {
-        File rootCacheDir = mContext.getCacheDir();
-        File cacheDir = new File(rootCacheDir, mDirectory);
-        String fileName = getFileName(url);
-        File file = new File(cacheDir, fileName);
-        return file.exists();
+        return getFile(url).exists();
     }
 
     public boolean delete(String url) {
-        File rootCacheDir = mContext.getCacheDir();
-        File cacheDir = new File(rootCacheDir, mDirectory);
-        String fileName = getFileName(url);
-        File file = new File(cacheDir, fileName);
-        return file.delete();
+        return getFile(url).delete();
     }
 
     public boolean isDownloading(String url) {
         synchronized (mListAccessLock) {
             return mDownloadingList.contains(url);
         }
-    }
-
-    public String getFilePath(String url) {
-        File rootCacheDir = mContext.getCacheDir();
-        File cacheDir = new File(rootCacheDir, mDirectory);
-        String fileName = getFileName(url);
-        return new File(cacheDir, fileName).toString();
     }
 
     public void download(final String url) {
