@@ -4,16 +4,16 @@ import site.iway.mymusic.config.Environment;
 
 import java.io.File;
 
-public class GetSongServlet extends GetFileServlet {
+public class GetLyricServlet extends GetFileServlet {
 
     @Override
     public File getFile(String fileName) {
-        return new File(Environment.MUSIC_ROOT + fileName);
+        return new File(Environment.LYRIC_ROOT + fileName);
     }
 
     @Override
     public String getContentType() {
-        return "audio/mpeg";
+        return "text/plain";
     }
 
 }

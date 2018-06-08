@@ -60,7 +60,7 @@ public abstract class BasicServlet extends HttpServlet {
         putJSONResponse(resp, rpcRes);
     }
 
-    protected void putJSONResponseFAIL(HttpServletResponse resp, RPCRes resObject) throws ServletException, IOException {
+    protected void putJSONResponseFail(HttpServletResponse resp) throws ServletException, IOException {
         RPCRes rpcRes = new RPCRes();
         rpcRes.resultCode = RPCRes.FAIL;
         rpcRes.resultMessage = RPCRes.FAIL_STRING;
