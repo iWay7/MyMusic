@@ -11,9 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.widget.ScrollView;
 
 import java.util.ArrayList;
@@ -112,26 +109,8 @@ public class LRCEditView extends ExtendedFrameLayout {
         if (mSelectedView == null) {
             return;
         }
-        AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
-        alphaAnimation.setDuration(300);
-        alphaAnimation.setAnimationListener(new AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                removeView(mSelectedView);
-                mSelectedView = null;
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        mSelectedView.startAnimation(alphaAnimation);
+        removeView(mSelectedView);
+        mSelectedView = null;
     }
 
     public boolean hasSelectedView() {
