@@ -172,7 +172,7 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
     @Override
     public void onRequestER(RPCBaseReq req) {
         if (req == mLastFetchSongInfo) {
-            // nothing
+            mSongCover.loadFromURLSource(null);
         }
     }
 

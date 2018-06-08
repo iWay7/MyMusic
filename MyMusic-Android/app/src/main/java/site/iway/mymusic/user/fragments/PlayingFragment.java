@@ -231,7 +231,10 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     @Override
     public void onRequestER(RPCBaseReq req) {
         if (req == mLastFetchSongInfo) {
-            // nothing
+            mBackground.loadFromURLSource(null);
+            mSongArt.loadFromURLSource(null);
+            mLrc.load(null);
+            mLrcView.load(null);
         }
     }
 
