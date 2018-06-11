@@ -150,13 +150,19 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
     }
 
     @Override
-    protected void setAdapterDataFromRPCResponse(Object data) {
+    protected void setAdapterDataFromRPCResult(Object data) {
         PlayListRes playListRes = (PlayListRes) data;
-        mPlayListAdapter.setData(playListRes.fileNames);
+        if (playListRes == null) {
+            List<String> emptyList = new ArrayList<>();
+            mPlayListAdapter.setData(emptyList);
+        } else {
+            mPlayListAdapter.setData(playListRes.fileNames);
+        }
     }
 
     private void setSelectAllImage() {
-        mSelectAllImage.setImageResource(mPlayListAdapter.allSelected() ? R.drawable.icon_song_select_selected : R.drawable.icon_song_select_normal);
+        boolean allSelected = mPlayListAdapter.allSelected();
+        mSelectAllImage.setImageResource(allSelected ? R.drawable.icon_song_select_selected : R.drawable.icon_song_select_normal);
     }
 
     @Override

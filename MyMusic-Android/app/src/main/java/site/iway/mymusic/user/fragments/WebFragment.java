@@ -252,6 +252,7 @@ public class WebFragment extends BaseFragment implements OnClickListener {
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
         webSettings.setLoadWithOverviewMode(true);
+        webSettings.setDefaultTextEncodingName("UTF-8");
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }

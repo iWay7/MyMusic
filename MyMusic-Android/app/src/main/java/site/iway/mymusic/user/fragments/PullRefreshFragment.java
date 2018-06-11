@@ -51,7 +51,7 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         mRPCLoadData.start(this);
     }
 
-    protected abstract void setAdapterDataFromRPCResponse(Object data);
+    protected abstract void setAdapterDataFromRPCResult(Object data);
 
     public void doRefresh(boolean setToTop) {
         if (setToTop) {
@@ -210,7 +210,7 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         onLoadFinish();
         if (checkRPCResponse(req.response)) {
             setEmptyViewAsEmpty();
-            setAdapterDataFromRPCResponse(req.response);
+            setAdapterDataFromRPCResult(req.response);
             if (loadMoreIsEnabled()) {
                 if (!loadMoreHasMoreData(req.response)) {
                     loadMoreNoMore();
@@ -220,12 +220,14 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
             }
         } else {
             setEmptyViewAsError();
+            setAdapterDataFromRPCResult(null);
         }
     }
 
     private void onLoadAdapterDataRPCER(RPCBaseReq req) {
         onLoadFinish();
         setEmptyViewAsErrorNetwork();
+        setAdapterDataFromRPCResult(null);
     }
 
     @Override

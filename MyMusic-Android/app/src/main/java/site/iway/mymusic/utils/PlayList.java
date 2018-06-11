@@ -1,13 +1,10 @@
 package site.iway.mymusic.utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
 import site.iway.androidhelpers.UIThread;
-import site.iway.javahelpers.HanziPinyinHelper;
 
 public class PlayList extends ArrayList<String> {
 
@@ -38,6 +35,9 @@ public class PlayList extends ArrayList<String> {
     }
 
     public void replace(List<String> items) {
+        if (items == null) {
+            items = new ArrayList<>();
+        }
         clear();
         addAll(items);
     }
