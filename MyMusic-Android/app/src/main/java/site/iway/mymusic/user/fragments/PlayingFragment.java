@@ -179,6 +179,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
         mLastFetchSongInfo.query = song.artist + " " + song.name;
         mLastFetchSongInfo.fileName = fileName;
         mLastFetchSongInfo.tag = song;
+        mLastFetchSongInfo.cacheEnabled = true;
         mLastFetchSongInfo.start(this);
 
     }

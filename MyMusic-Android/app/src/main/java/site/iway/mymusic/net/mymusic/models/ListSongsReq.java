@@ -50,6 +50,7 @@ public class ListSongsReq extends MyMusicReq {
                 }
             });
         }
+        super.onFinish();
     }
 
 }

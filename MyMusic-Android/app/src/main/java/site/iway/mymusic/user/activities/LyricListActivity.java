@@ -67,6 +67,7 @@ public class LyricListActivity extends BaseActivity implements OnClickListener, 
         mGetSongInfoReq.query = song.artist + " " + song.name;
         mGetSongInfoReq.fileName = fileName;
         mGetSongInfoReq.tag = song;
+        mGetSongInfoReq.cacheEnabled = true;
         mGetSongInfoReq.start(this);
     }
 

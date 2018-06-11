@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import java.io.FileInputStream;
+
 import site.iway.androidhelpers.ExtendedTextView;
 import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.ViewSwapper;
-import site.iway.javahelpers.HttpTextReader;
+import site.iway.javahelpers.StringHelper;
+import site.iway.javahelpers.TextRW;
 import site.iway.javahelpers.URLCodec;
 import site.iway.mymusic.R;
 import site.iway.mymusic.utils.Constants;
@@ -27,6 +30,76 @@ public class ViewLyricActivity extends BaseActivity implements OnClickListener {
     private ViewSwapper mViewSwapper;
     private ExtendedTextView mTextView;
 
+    private Thread mThread = new Thread() {
+
+        private boolean mErrorOccured;
+        private String mLyricText;
+
+        private void configLyricLines(String url) {
+            FileInputStream inputStream = null;
+            try {
+                FileCache lyricCache = FileCache.getLyric();
+                String filePath = lyricCache.getFilePath(url);
+                inputStream = new FileInputStream(filePath);
+                mLyricText = TextRW.readAllText(inputStream);
+            } catch (Exception e) {
+                mErrorOccured = true;
+            } finally {
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (Exception e) {
+                        // nothing
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void run() {
+            try {
+                sleep(300);
+            } catch (InterruptedException e) {
+                // nothing
+            }
+            FileCache lyricCache = FileCache.getLyric();
+            String lyricUrl = mIntent.getStringExtra(SONG_LYRIC_URL);
+            if (!StringHelper.nullOrEmpty(lyricUrl)) {
+                if (lyricCache.exists(lyricUrl)) {
+                    configLyricLines(lyricUrl);
+                } else {
+                    lyricCache.download(lyricUrl);
+                    do {
+                        try {
+                            Thread.sleep(333);
+                        } catch (Exception e) {
+                            break;
+                        }
+                    }
+                    while (lyricCache.isDownloading(lyricUrl));
+                    if (lyricCache.exists(lyricUrl)) {
+                        configLyricLines(lyricUrl);
+                    } else {
+                        mErrorOccured = true;
+                    }
+                }
+            }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (isFinishing())
+                        return;
+                    if (mErrorOccured) {
+                        mViewSwapper.setDisplayedChild(INDEX_ERROR);
+                    } else {
+                        mTextView.setText(mLyricText);
+                        mViewSwapper.setDisplayedChild(INDEX_LIST);
+                    }
+                }
+            });
+        }
+    };
+
     private void setViews() {
         mViewSwapper = (ViewSwapper) findViewById(R.id.viewSwapper);
         mTextView = (ExtendedTextView) findViewById(R.id.textView);
@@ -36,35 +109,7 @@ public class ViewLyricActivity extends BaseActivity implements OnClickListener {
         mTitleBarButton.setText("调整");
         mTitleBarButton.setOnClickListener(this);
 
-        HttpTextReader httpTextReader = new HttpTextReader(mIntent.getStringExtra(SONG_LYRIC_URL)) {
-            @Override
-            public void onGetText(final String s) throws Exception {
-                sleep(300);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mViewSwapper.setDisplayedChild(INDEX_LIST);
-                        mTextView.setText(s);
-                    }
-                });
-            }
-
-            @Override
-            public void onError(Exception e) {
-                try {
-                    sleep(300);
-                } catch (InterruptedException e1) {
-                    // nothing
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mViewSwapper.setDisplayedChild(INDEX_ERROR);
-                    }
-                });
-            }
-        };
-        httpTextReader.start();
+        mThread.start();
     }
 
     @Override

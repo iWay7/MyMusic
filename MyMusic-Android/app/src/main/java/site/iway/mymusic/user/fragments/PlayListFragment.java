@@ -145,6 +145,7 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
         PlayListReq playListReq = new PlayListReq();
         playListReq.action = PlayListReq.ACTION_GET;
         playListReq.minDelayTime = 500;
+        playListReq.cacheEnabled = true;
         return playListReq;
     }
 
