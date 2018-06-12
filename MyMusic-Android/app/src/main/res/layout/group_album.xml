@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site.iway.androidhelpers.ExtendedFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/grid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <site.iway.androidhelpers.BitmapView
+        android:id="@+id/bitmapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:contentDescription="@null"
+        app:finishAnimation="@anim/fade_zoom_in_300"
+        app:scaleType="centerCrop"
+        app:useDefaultFilter="true" />
+
+</site.iway.androidhelpers.ExtendedFrameLayout>

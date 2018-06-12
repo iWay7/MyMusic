@@ -182,6 +182,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
             mTitleBarButton = (ExtendedTextView) findViewById(R.id.titleBarButton);
             mTitleBarImage = (ExtendedImageView) findViewById(R.id.titleBarImage);
             mTitleBarSplitter = (ExtendedView) findViewById(R.id.titleBarSplitter);
+            mTitleBarSplitter.setVisibility(View.GONE);
         }
     }
 

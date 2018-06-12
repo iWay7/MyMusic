@@ -30,6 +30,7 @@ import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoReq;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoRes;
 import site.iway.mymusic.net.mymusic.models.common.SongInfo;
+import site.iway.mymusic.user.activities.AlbumListActivity;
 import site.iway.mymusic.user.activities.LyricListActivity;
 import site.iway.mymusic.user.activities.SettingsActivity;
 import site.iway.mymusic.user.activities.ViewSongsActivity;
@@ -444,7 +445,15 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
                 return true;
             }
         } else if (v == mDiskContainer) {
-            return true;
+            PlayTask playTask = mPlayer.getPlayTask();
+            if (playTask == null) {
+                return false;
+            } else {
+                Intent intent = new Intent(mActivity, AlbumListActivity.class);
+                intent.putExtra(AlbumListActivity.FILE_NAME, playTask.getFileName());
+                startActivity(intent);
+                return true;
+            }
         }
         return false;
     }

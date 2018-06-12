@@ -41,6 +41,7 @@ public class MyMusicApp extends Application {
         BitmapCache.setLoaderThreadPriority(Thread.NORM_PRIORITY);
         BitmapCache.setURLStreamerClass(BitmapURLStreamerDefault.class);
         BitmapCache.setDownloadDirectoryByContext(this, Constants.DIR_NAME_IMAGE_CACHE);
+        BitmapCache.setIsDebugMode(true);
         BitmapCache.initialize(this);
         ActionTimer.initialize(this);
         ObjectSaver.initialize(cacheDir + "/" + Constants.DIR_NAME_OBJECT_CACHE, true);
