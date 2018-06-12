@@ -41,12 +41,14 @@ public class GetSongInfoServlet extends BasicServlet {
         if (albumFile.exists() || lyricFile.exists()) {
             SongInfo songInfo = new SongInfo();
             if (albumFile.exists()) {
-                songInfo.imgLink = "MY";
+                String baseUrl = "http://home.iway.site:8888/mm/GetAlbum?fileName=";
+                songInfo.imgLink = baseUrl + URLEncoder.encode(fileName, "utf-8") + "&lastModified=" + albumFile.lastModified();
             }
             if (lyricFile.exists()) {
                 Song song = new Song(fileName);
                 songInfo.lrcTitle = song.artist + " - " + song.name;
-                songInfo.lrcLink = "MY";
+                String baseUrl = "http://home.iway.site:8888/mm/GetLyric?fileName=";
+                songInfo.lrcLink = baseUrl + URLEncoder.encode(fileName, "utf-8") + "&lastModified=" + lyricFile.lastModified();
             }
             getSongInfoRes.list.add(songInfo);
         }
