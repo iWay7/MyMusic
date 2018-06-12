@@ -57,7 +57,7 @@ public class ListSongsServlet extends PlayListServlet {
     }
 
     @Override
-    protected void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         File directory = new File(Environment.MUSIC_ROOT);
         String filter = req.getParameter("filter");
         ListSongsRes listSongsRes = new ListSongsRes();

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class GetSongInfoServlet extends BasicServlet {
 
     @Override
-    protected void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String query = req.getParameter("query");
         String fileName = req.getParameter("fileName");
         String url = "http://tingapi.ting.baidu.com/v1/restserver/ting?" +
@@ -36,12 +36,18 @@ public class GetSongInfoServlet extends BasicServlet {
         BaiduMusicResponse response = readFromURLAsObject(url, BaiduMusicResponse.class);
         GetSongInfoRes getSongInfoRes = new GetSongInfoRes();
         getSongInfoRes.list = new ArrayList<>();
-        if (new File(Environment.LYRIC_ROOT, fileName).exists()) {
+        File albumFile = new File(Environment.ALBUM_ROOT, fileName);
+        File lyricFile = new File(Environment.LYRIC_ROOT, fileName);
+        if (albumFile.exists() || lyricFile.exists()) {
             SongInfo songInfo = new SongInfo();
-            songInfo.imgLink = null;
-            Song song = new Song(fileName);
-            songInfo.lrcTitle = song.artist + " - " + song.name;
-            songInfo.lrcLink = "MY";
+            if (albumFile.exists()) {
+                songInfo.imgLink = "MY";
+            }
+            if (lyricFile.exists()) {
+                Song song = new Song(fileName);
+                songInfo.lrcTitle = song.artist + " - " + song.name;
+                songInfo.lrcLink = "MY";
+            }
             getSongInfoRes.list.add(songInfo);
         }
         if (response != null && response.error_code == 22000 &&

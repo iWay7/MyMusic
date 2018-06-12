@@ -19,7 +19,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" scope="PROVIDED" name="Java EE 6" level="project" />
-    <orderEntry type="library" name="com.github.iWay7:JavaHelpers:1.0.8" level="project" />
+    <orderEntry type="library" name="com.github.iWay7:JavaHelpers:1.0.9" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.5" level="project" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

@@ -42,7 +42,7 @@ public class PlayListServlet extends BasicServlet {
     private static final String ACTION_REMOVE = "remove";
 
     @Override
-    protected void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
         if (StringHelper.nullOrWhiteSpace(action)) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parameter action is empty.");

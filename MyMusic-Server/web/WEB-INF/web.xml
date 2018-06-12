@@ -58,4 +58,22 @@
         <url-pattern>/GetLyric</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SaveAlbumServlet</servlet-name>
+        <servlet-class>site.iway.mymusic.servlets.SaveAlbumServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SaveAlbumServlet</servlet-name>
+        <url-pattern>/SaveAlbum</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetAlbumServlet</servlet-name>
+        <servlet-class>site.iway.mymusic.servlets.GetAlbumServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAlbumServlet</servlet-name>
+        <url-pattern>/GetAlbum</url-pattern>
+    </servlet-mapping>
+
 </web-app>
