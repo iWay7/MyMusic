@@ -32,6 +32,9 @@ public class GetSongInfoReq extends MyMusicReq {
             GetSongInfoRes getSongInfoRes = (GetSongInfoRes) response;
             if (getSongInfoRes.list != null) {
                 for (SongInfo songInfo : getSongInfoRes.list) {
+                    if ("MY".equals(songInfo.imgLink)) {
+                        songInfo.imgLink = Constants.ALBUM_URL_BASE + URLCodec.encode(fileName);
+                    }
                     if ("MY".equals(songInfo.lrcLink)) {
                         songInfo.lrcLink = Constants.LYRIC_URL_BASE + URLCodec.encode(fileName);
                     }

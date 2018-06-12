@@ -181,6 +181,12 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
     public void onEvent(String event, Object data) {
         super.onEvent(event, data);
         switch (event) {
+            case Constants.EV_ALBUM_CHANGED:
+                PlayTask playTask = mPlayer.getPlayTask();
+                if (playTask != null) {
+                    loadImage(playTask.getFileName());
+                }
+                break;
             case Constants.EV_PLAYER_TASK_CHANGED:
                 refreshViews();
                 break;

@@ -371,6 +371,7 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
                 refreshPlayMode();
                 break;
             case Constants.EV_LYRIC_CHANGED:
+            case Constants.EV_ALBUM_CHANGED:
                 PlayTask playTask = mPlayer.getPlayTask();
                 if (playTask != null) {
                     loadImageAndLyric(playTask.getFileName());

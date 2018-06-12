@@ -9,12 +9,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.GridView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import site.iway.androidhelpers.ExtendedImageView;
 import site.iway.androidhelpers.ExtendedTextView;
+import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.ViewSwapper;
 import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.R;
@@ -22,11 +24,14 @@ import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoReq;
 import site.iway.mymusic.net.mymusic.models.GetSongInfoRes;
+import site.iway.mymusic.net.mymusic.models.SaveAlbumReq;
 import site.iway.mymusic.net.mymusic.models.common.SongInfo;
 import site.iway.mymusic.user.dialogs.BaseDialog.OnUserActionListener;
 import site.iway.mymusic.user.dialogs.DoubleActionDialog;
 import site.iway.mymusic.user.views.AlbumAdapter;
+import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.Song;
+import site.iway.mymusic.utils.Toaster;
 
 public class AlbumListActivity extends BaseActivity implements OnClickListener, OnItemClickListener, RPCCallback, OnItemLongClickListener {
 
@@ -56,9 +61,7 @@ public class AlbumListActivity extends BaseActivity implements OnClickListener, 
         mGridView.setOnItemClickListener(this);
         mGridView.setOnItemLongClickListener(this);
 
-        mEmptyImage.setImageResource(R.drawable.icon_add_big);
-        mEmptyImage.setOnClickListener(this);
-        mEmptyText.setText("没有专辑封面，点击添加");
+        mEmptyText.setText("没有专辑封面");
 
         mAlbumAdapter = new AlbumAdapter(this);
         mGridView.setAdapter(mAlbumAdapter);
@@ -125,7 +128,6 @@ public class AlbumListActivity extends BaseActivity implements OnClickListener, 
         }
     }
 
-
     @Override
     public void onBackPressed() {
         finish();
@@ -135,13 +137,11 @@ public class AlbumListActivity extends BaseActivity implements OnClickListener, 
     public void onClick(View v) {
         if (v == mTitleBarBack) {
             onBackPressed();
-        } else if (v == mEmptyImage) {
-
         }
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         DoubleActionDialog dialog = new DoubleActionDialog(this);
         dialog.setActionLeftText("取消");
         dialog.setActionRightText("确定");
@@ -149,7 +149,34 @@ public class AlbumListActivity extends BaseActivity implements OnClickListener, 
         dialog.setOnUserActionListener(new OnUserActionListener() {
             @Override
             public void onUserAction(int action, Object data) {
+                if (action == DoubleActionDialog.ACTION_RIGHT) {
+                    disableUserInteract();
+                    showLoadingView();
+                    SaveAlbumReq saveAlbumReq = new SaveAlbumReq();
+                    saveAlbumReq.fileName = mIntent.getStringExtra(FILE_NAME);
+                    File cacheDir = getCacheDir();
+                    File imageCacheDir = new File(cacheDir, Constants.DIR_NAME_IMAGE_CACHE);
+                    String fileUrl = mAlbumAdapter.getItem(position);
+                    String fileName = StringHelper.md5(fileUrl);
+                    saveAlbumReq.file = new File(imageCacheDir, fileName);
+                    saveAlbumReq.minDelayTime = 500;
+                    saveAlbumReq.start(new RPCCallback() {
+                        @Override
+                        public void onRequestOK(RPCBaseReq req) {
+                            hideLoadingView();
+                            UIThread.event(Constants.EV_ALBUM_CHANGED);
+                            enableUserInteract();
+                            finish();
+                        }
 
+                        @Override
+                        public void onRequestER(RPCBaseReq req) {
+                            hideLoadingView();
+                            Toaster.show("网络错误，请重试！");
+                            enableUserInteract();
+                        }
+                    });
+                }
             }
         });
         dialog.show();

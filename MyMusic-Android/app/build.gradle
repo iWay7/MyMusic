@@ -10,6 +10,34 @@ android {
         versionCode 1
         versionName "1.1.0"
     }
+    signingConfigs {
+        debug {
+            keyAlias 'MyMusic-Debug'
+            keyPassword 'MyMusic-Debug'
+            storeFile file('./app.jks')
+            storePassword 'MyMusic'
+        }
+        release {
+            keyAlias 'MyMusic-Release'
+            keyPassword 'MyMusic-Release'
+            storeFile file('./app.jks')
+            storePassword 'MyMusic'
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
     sourceSets {
         main {
             jniLibs.srcDirs = ['jniLibs']
