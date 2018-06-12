@@ -38,5 +38,6 @@ public class GetSongInfoReq extends MyMusicReq {
                 }
             }
         }
+        super.onFinish();
     }
 }

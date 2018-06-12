@@ -181,6 +181,7 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
         mListSongsReq = new ListSongsReq();
         mListSongsReq.filter = filter;
         mListSongsReq.minDelayTime = 300;
+        mListSongsReq.cacheEnabled = true;
         mListSongsReq.start(this);
     }
 

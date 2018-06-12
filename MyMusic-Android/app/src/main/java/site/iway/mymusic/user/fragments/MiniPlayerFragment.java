@@ -149,6 +149,7 @@ public class MiniPlayerFragment extends BaseFragment implements RPCCallback, OnC
         Song song = new Song(musicFileName);
         mLastFetchSongInfo.query = song.artist + " " + song.name;
         mLastFetchSongInfo.fileName = musicFileName;
+        mLastFetchSongInfo.cacheEnabled = true;
         mLastFetchSongInfo.start(this);
     }
 

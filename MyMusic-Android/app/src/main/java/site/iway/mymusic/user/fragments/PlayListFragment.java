@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListAdapter;
@@ -47,7 +48,7 @@ import site.iway.mymusic.utils.Player;
  * Created by iWay on 2017/12/25.
  */
 
-public class PlayListFragment extends PullRefreshFragment implements OnClickListener, OnItemLongClickListener, OnScrollChangedListener {
+public class PlayListFragment extends PullRefreshFragment implements OnClickListener, OnItemLongClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -102,7 +103,6 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
     protected void onSetListView(ExtendedListView listView) {
         super.onSetListView(listView);
         listView.setOnItemLongClickListener(this);
-        listView.setOnScrollChangedListener(this);
     }
 
     private View mFooterView;
@@ -135,27 +135,34 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
     private PlayListAdapter mPlayListAdapter;
 
     @Override
-    protected ListAdapter createAdapterForListView() {
+    protected ListAdapter createAdapter() {
         mPlayListAdapter = new PlayListAdapter(mActivity);
         return mPlayListAdapter;
     }
 
     @Override
-    protected MyMusicReq createLoadAdapterDataRPCRequest() {
+    protected MyMusicReq loadDataCreateRequest() {
         PlayListReq playListReq = new PlayListReq();
         playListReq.action = PlayListReq.ACTION_GET;
         playListReq.minDelayTime = 500;
+        playListReq.cacheEnabled = true;
         return playListReq;
     }
 
     @Override
-    protected void setAdapterDataFromRPCResponse(Object data) {
+    protected void loadDataSetDataToAdapter(Object data) {
         PlayListRes playListRes = (PlayListRes) data;
-        mPlayListAdapter.setData(playListRes.fileNames);
+        if (playListRes == null) {
+            List<String> emptyList = new ArrayList<>();
+            mPlayListAdapter.setData(emptyList);
+        } else {
+            mPlayListAdapter.setData(playListRes.fileNames);
+        }
     }
 
     private void setSelectAllImage() {
-        mSelectAllImage.setImageResource(mPlayListAdapter.allSelected() ? R.drawable.icon_song_select_selected : R.drawable.icon_song_select_normal);
+        boolean allSelected = mPlayListAdapter.allSelected();
+        mSelectAllImage.setImageResource(allSelected ? R.drawable.icon_song_select_selected : R.drawable.icon_song_select_normal);
     }
 
     @Override
@@ -220,10 +227,10 @@ public class PlayListFragment extends PullRefreshFragment implements OnClickList
     }
 
     @Override
-    public void onScrollChanged(View view, int i, int i1, int i2, int i3) {
-        ListView listView = (ListView) view;
-        mPlayListAdapter.setFirstVisibleItem(listView.getFirstVisiblePosition());
-        mPlayListAdapter.setLastVisibleItem(listView.getLastVisiblePosition());
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        super.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
+        mPlayListAdapter.setFirstVisibleItem(view.getFirstVisiblePosition());
+        mPlayListAdapter.setLastVisibleItem(view.getLastVisiblePosition());
     }
 
     @Override

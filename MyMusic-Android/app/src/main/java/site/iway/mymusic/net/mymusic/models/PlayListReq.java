@@ -58,6 +58,7 @@ public class PlayListReq extends MyMusicReq {
                 });
             }
         }
+        super.onFinish();
     }
 
     public Object tag;

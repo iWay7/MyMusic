@@ -25,6 +25,7 @@ import java.util.Set;
 
 import site.iway.androidhelpers.RPCReq;
 import site.iway.javahelpers.GsonHelper;
+import site.iway.javahelpers.ObjectSaver;
 import site.iway.javahelpers.StreamReader;
 import site.iway.javahelpers.URLCodec;
 import site.iway.mymusic.BuildConfig;
@@ -55,6 +56,7 @@ public abstract class RPCBaseReq extends RPCReq {
     public Class responseClass;
     public Object response;
     public Exception error;
+    public boolean cacheEnabled;
 
     protected byte[] mOutputData;
     protected RPCCallback mCallback;
@@ -152,9 +154,20 @@ public abstract class RPCBaseReq extends RPCReq {
         doInput(connection);
     }
 
+    private String buildCacheKey() {
+        String key = url;
+        if (mOutputData != null) {
+            key += "|" + new String(mOutputData, CHARSET);
+        }
+        return key;
+    }
+
     @Override
     protected void onFinish() {
-        // nothing
+        if (cacheEnabled) {
+            String key = buildCacheKey();
+            ObjectSaver.save(key, response);
+        }
     }
 
     @Override
@@ -170,12 +183,20 @@ public abstract class RPCBaseReq extends RPCReq {
             Log.d(TAG, "E: " + e);
         }
         error = e;
+        if (cacheEnabled) {
+            String key = buildCacheKey();
+            response = ObjectSaver.read(key);
+        }
     }
 
     @Override
     protected void onErrorUI() {
         if (mCallback != null) {
-            mCallback.onRequestER(this);
+            if (cacheEnabled && response != null) {
+                mCallback.onRequestOK(this);
+            } else {
+                mCallback.onRequestER(this);
+            }
         }
     }
 
