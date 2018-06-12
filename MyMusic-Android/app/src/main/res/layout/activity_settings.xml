@@ -44,6 +44,16 @@
             app:ListActionItemDesc="正在计算..."
             app:ListActionItemTitle="清除歌词缓存" />
 
+        <include layout="@layout/divider_line_horizontal_indent" />
+
+        <site.iway.mymusic.user.views.ListActionItem
+            android:id="@+id/goNetworkCache"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_com_rect"
+            app:ListActionItemDesc="正在计算..."
+            app:ListActionItemTitle="清除网络缓存" />
+
         <include layout="@layout/divider_line_horizontal_fill" />
 
     </site.iway.androidhelpers.ExtendedLinearLayout>

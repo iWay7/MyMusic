@@ -36,29 +36,29 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
     protected ViewSwapper mEmptyOrErrorView;
     protected ListAdapter mListAdapter;
 
-    protected abstract ListAdapter createAdapterForListView();
+    protected abstract ListAdapter createAdapter();
 
-    protected abstract RPCBaseReq createLoadAdapterDataRPCRequest();
+    protected abstract RPCBaseReq loadDataCreateRequest();
 
-    protected boolean willLoadDataAfterViewCreated() {
+    protected boolean loadDataImmediately() {
         return true;
     }
 
     protected RPCBaseReq mRPCLoadData;
 
-    protected void loadAdapterDataByRPCRequest() {
-        mRPCLoadData = createLoadAdapterDataRPCRequest();
+    protected void loadDataDo() {
+        mRPCLoadData = loadDataCreateRequest();
         mRPCLoadData.start(this);
     }
 
-    protected abstract void setAdapterDataFromRPCResult(Object data);
+    protected abstract void loadDataSetDataToAdapter(Object data);
 
     public void doRefresh(boolean setToTop) {
         if (setToTop) {
             mPullRefreshListView.setSelection(0);
         }
         mPullRefreshLayout.setRefreshing(true);
-        loadAdapterDataByRPCRequest();
+        loadDataDo();
     }
 
     public void doRefresh() {
@@ -144,7 +144,7 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         mPullRefreshListView = (ExtendedListView) mRootView.findViewById(R.id.pullRefreshListView);
         mEmptyOrErrorView = (ViewSwapper) mRootView.findViewById(R.id.emptyOrErrorView);
         mPullRefreshLayout.setOnRefreshListener(this);
-        mListAdapter = createAdapterForListView();
+        mListAdapter = createAdapter();
         onSetListView(mPullRefreshListView);
         onSetHeaderView(mPullRefreshListView);
         onSetFooterView(mPullRefreshListView);
@@ -158,8 +158,8 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         mPullRefreshListView.setAdapter(mListAdapter);
         mPullRefreshListView.setOnItemClickListener(this);
         mPullRefreshListView.setEmptyView(mEmptyOrErrorView);
-        if (willLoadDataAfterViewCreated()) {
-            loadAdapterDataByRPCRequest();
+        if (loadDataImmediately()) {
+            loadDataDo();
         }
     }
 
@@ -201,7 +201,7 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
             mRPCLoadData.cancel();
         if (loadMoreIsEnabled())
             loadMoreCancel();
-        loadAdapterDataByRPCRequest();
+        loadDataDo();
     }
 
     protected abstract boolean checkRPCResponse(Object data);
@@ -210,24 +210,24 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         onLoadFinish();
         if (checkRPCResponse(req.response)) {
             setEmptyViewAsEmpty();
-            setAdapterDataFromRPCResult(req.response);
+            loadDataSetDataToAdapter(req.response);
             if (loadMoreIsEnabled()) {
                 if (!loadMoreHasMoreData(req.response)) {
-                    loadMoreNoMore();
+                    loadMoreShowNoMore();
                 } else {
                     mCanLoadMore = true;
                 }
             }
         } else {
             setEmptyViewAsError();
-            setAdapterDataFromRPCResult(null);
+            loadDataSetDataToAdapter(null);
         }
     }
 
     private void onLoadAdapterDataRPCER(RPCBaseReq req) {
         onLoadFinish();
         setEmptyViewAsErrorNetwork();
-        setAdapterDataFromRPCResult(null);
+        loadDataSetDataToAdapter(null);
     }
 
     @Override
@@ -283,7 +283,7 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
         if (mCanLoadMore == false) {
             return;
         }
-        loadMoreLoading();
+        loadMoreShowLoading();
         mLoadMorePage += nextPage ? 1 : 0;
         mRPCLoadMore = loadMoreCreateRequest(mLoadMorePage);
         mRPCLoadMore.start(this);
@@ -295,38 +295,37 @@ public abstract class PullRefreshFragment extends BaseFragment implements OnRefr
             mRPCLoadMore.cancel();
             mRPCLoadMore = null;
         }
-        mRPCLoadMore = null;
         mCanLoadMore = false;
     }
 
-    protected void loadMoreLoading() {
+    protected void loadMoreShowLoading() {
         mLoadMorePageFlipper.setDisplayedChild(0);
     }
 
-    protected void loadMoreNoMore() {
+    protected void loadMoreShowNoMore() {
         mLoadMorePageFlipper.setDisplayedChild(2);
         mCanLoadMore = false;
     }
 
-    protected void loadMoreError() {
+    protected void loadMoreShowError() {
         mLoadMorePageFlipper.setDisplayedChild(1);
     }
 
     protected void loadMoreOnRPCOK(RPCBaseReq req) {
         if (checkRPCResponse(req.response)) {
             if (!loadMoreHasMoreData(req.response)) {
-                loadMoreNoMore();
+                loadMoreShowNoMore();
                 mCanLoadMore = false;
             }
             loadMoreAddDataToAdapter(req.response);
             mRPCLoadMore = null;
         } else {
-            loadMoreError();
+            loadMoreShowError();
         }
     }
 
     protected void loadMoreOnRPCER(RPCBaseReq req) {
-        loadMoreError();
+        loadMoreShowError();
     }
 
     @Override

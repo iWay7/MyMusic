@@ -24,6 +24,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
     private ListActionItem mGoImageCache;
     private ListActionItem mGoSongCache;
     private ListActionItem mGoLyricCache;
+    private ListActionItem mGoNetworkCache;
     private ListActionItem mGoPlayListSortType;
     private ListActionItem mGoSearchSortType;
     private ListActionItem mGoAbout;
@@ -163,10 +164,36 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         }
     };
 
+    private FolderScanner mObjectsScanner = new FolderScanner() {
+        private long mFileSize;
+
+        @Override
+        protected void onDetectFile(File file) {
+            mFileSize += file.length();
+        }
+
+        @Override
+        protected void onCompleted(File file) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (!isFinishing()) {
+                        mGoNetworkCache.setDesc(getFileSize(mFileSize));
+                        if (mFileSize == 0)
+                            mGoNetworkCache.setOnClickListener(mNoNeedCleanClickListener);
+                        else
+                            mGoNetworkCache.setOnClickListener(SettingsActivity.this);
+                    }
+                }
+            });
+        }
+    };
+
     private void setViews() {
         mGoImageCache = (ListActionItem) findViewById(R.id.goImageCache);
         mGoSongCache = (ListActionItem) findViewById(R.id.goSongCache);
         mGoLyricCache = (ListActionItem) findViewById(R.id.goLyricCache);
+        mGoNetworkCache = (ListActionItem) findViewById(R.id.goNetworkCache);
         mGoPlayListSortType = (ListActionItem) findViewById(R.id.goPlayListSortType);
         mGoSearchSortType = (ListActionItem) findViewById(R.id.goSearchSortType);
         mGoAbout = (ListActionItem) findViewById(R.id.goAbout);
@@ -176,6 +203,8 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         mMP3Scanner.start();
         mLyricScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_LYRIC_CACHE));
         mLyricScanner.start();
+        mObjectsScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_OBJECT_CACHE));
+        mObjectsScanner.start();
         mTitleBarText.setText("设置");
         mTitleBarBack.setOnClickListener(this);
         mGoSearchSortType.setOnClickListener(this);
@@ -301,6 +330,42 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
                             }
                         };
                         folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_LYRIC_CACHE));
+                        folderScanner.start();
+                    }
+                }
+            });
+            dialog.setActionLeftText("取消");
+            dialog.setActionRightText("确定");
+            dialog.show();
+        } else if (v == mGoNetworkCache) {
+            DoubleActionDialog dialog = new DoubleActionDialog(this);
+            dialog.setMessageText("确定要清理网络缓存吗？");
+            dialog.setOnUserActionListener(new OnUserActionListener() {
+                @Override
+                public void onUserAction(int action, Object data) {
+                    if (action == DoubleActionDialog.ACTION_RIGHT) {
+                        disableUserInteract();
+                        showLoadingView();
+                        FolderScanner folderScanner = new FolderScanner() {
+                            @Override
+                            protected void onDetectFile(File file) {
+                                file.delete();
+                            }
+
+                            @Override
+                            protected void onAllCompleted() {
+                                mHandler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        hideLoadingView();
+                                        enableUserInteract();
+                                        mGoNetworkCache.setDesc("0 B");
+                                        mGoNetworkCache.setOnClickListener(mNoNeedCleanClickListener);
+                                    }
+                                }, 300);
+                            }
+                        };
+                        folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_OBJECT_CACHE));
                         folderScanner.start();
                     }
                 }
