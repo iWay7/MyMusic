@@ -6,7 +6,6 @@ import site.iway.mymusic.protocol.res.RPCRes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,8 +18,6 @@ public abstract class BasicServlet extends HttpServlet {
 
     protected static final Charset CHARSET = Charset.forName("utf-8");
     protected static final Gson GSON = new Gson();
-
-    private static final String SIGN_KEY = "553afd92738fd27c984c5b5ba8b4ad4d";
 
     protected byte[] readFromURL(String url) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
@@ -65,13 +62,6 @@ public abstract class BasicServlet extends HttpServlet {
         rpcRes.resultCode = RPCRes.FAIL;
         rpcRes.resultMessage = RPCRes.FAIL_STRING;
         putJSONResponse(resp, rpcRes);
-    }
-
-    protected abstract void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doRequest(req, resp);
     }
 
 }
