@@ -160,6 +160,16 @@ public class LRCEditView extends ExtendedFrameLayout {
         mSelectedView.bringToFront();
     }
 
+    private boolean mDownSelected;
+
+    public void setDownSelected(boolean downSelected) {
+        mDownSelected = downSelected;
+    }
+
+    public boolean isDownSelected() {
+        return mDownSelected;
+    }
+
     public String generateLrcFile() {
         StringBuilder stringBuilder = new StringBuilder();
         List<LyricLine> list = new ArrayList<>();
@@ -167,7 +177,9 @@ public class LRCEditView extends ExtendedFrameLayout {
         for (int childIndex = 0; childIndex < childCount; childIndex++) {
             View childView = getChildAt(childIndex);
             LyricLine lyricLine = (LyricLine) childView.getTag();
-            list.add(lyricLine);
+            if (lyricLine.millis <= mDuration) {
+                list.add(lyricLine);
+            }
         }
         Collections.sort(list);
         for (LyricLine lyricLine : list) {
@@ -189,7 +201,6 @@ public class LRCEditView extends ExtendedFrameLayout {
     private int mAction;
 
     private float mDragStartY;
-    private float mDragStartTranslationY;
     private View mSelectedView;
 
     @Override
@@ -227,27 +238,43 @@ public class LRCEditView extends ExtendedFrameLayout {
                         }
                         parent = parent.getParent();
                     }
+                    LyricLine selectedLyricLine = (LyricLine) mSelectedView.getTag();
+                    for (int childIndex = 0; childIndex < childCount; childIndex++) {
+                        View childView = getChildAt(childIndex);
+                        childView.setTag(R.id.lyricViewDragStart, childView.getTranslationY());
+                        LyricLine lyricLine = (LyricLine) childView.getTag();
+                        if (mDownSelected)
+                            childView.setTag(R.id.lyricViewWillDrag, lyricLine.millis >= selectedLyricLine.millis);
+                        else
+                            childView.setTag(R.id.lyricViewWillDrag, lyricLine.millis == selectedLyricLine.millis);
+                    }
                     mDragStartY = y;
-                    mDragStartTranslationY = mSelectedView.getTranslationY();
                 }
             }
         } else if (action == MotionEvent.ACTION_MOVE) {
             if (mAction == ACTION_DRAG_LYRIC_LINE) {
                 float offsetY = event.getY() - mDragStartY;
-                float targetTranslationY = mDragStartTranslationY + offsetY;
-                float minTranslationY = mTimeLineTop - UnitHelper.dipToPx(12.5f);
-                float maxTranslationY = mTimeLineBottom - UnitHelper.dipToPx(12.5f);
-                if (targetTranslationY < minTranslationY) {
-                    targetTranslationY = minTranslationY;
+                int childCount = getChildCount();
+                for (int childIndex = 0; childIndex < childCount; childIndex++) {
+                    View childView = getChildAt(childIndex);
+                    if ((boolean) childView.getTag(R.id.lyricViewWillDrag)) {
+                        float targetTranslationY = (float) childView.getTag(R.id.lyricViewDragStart) + offsetY;
+                        float minTranslationY = mTimeLineTop - UnitHelper.dipToPx(12.5f);
+                        float maxTranslationY = mTimeLineBottom - UnitHelper.dipToPx(12.5f);
+                        if (targetTranslationY < minTranslationY) {
+                            targetTranslationY = minTranslationY;
+                        }
+                        if (targetTranslationY > maxTranslationY) {
+                            targetTranslationY = maxTranslationY;
+                        }
+                        childView.setTranslationY(targetTranslationY);
+                        LyricLine lyricLine = (LyricLine) childView.getTag();
+                        lyricLine.millis = (long) ((targetTranslationY - minTranslationY) / mTimeLineHeight * mDuration);
+                        ExtendedTextView timeTag = childView.findViewById(R.id.timeTag);
+                        timeTag.setText(timeToString(lyricLine.millis));
+                    }
+
                 }
-                if (targetTranslationY > maxTranslationY) {
-                    targetTranslationY = maxTranslationY;
-                }
-                mSelectedView.setTranslationY(targetTranslationY);
-                LyricLine lyricLine = (LyricLine) mSelectedView.getTag();
-                lyricLine.millis = (long) ((targetTranslationY - minTranslationY) / mTimeLineHeight * mDuration);
-                ExtendedTextView timeTag = mSelectedView.findViewById(R.id.timeTag);
-                timeTag.setText(timeToString(lyricLine.millis));
             }
         } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
             if (mAction == ACTION_DRAG_LYRIC_LINE) {

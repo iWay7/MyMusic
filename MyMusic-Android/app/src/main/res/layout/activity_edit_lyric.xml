@@ -66,6 +66,17 @@
                 <include layout="@layout/divider_line_vertical_indent" />
 
                 <site.iway.androidhelpers.ExtendedImageView
+                    android:id="@+id/selectDown"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_com_rect"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_select_to_current_normal" />
+
+                <include layout="@layout/divider_line_vertical_indent" />
+
+                <site.iway.androidhelpers.ExtendedImageView
                     android:id="@+id/remove"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

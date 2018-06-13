@@ -19,7 +19,7 @@ import site.iway.mymusic.utils.WordWrapper.CharWidthMeasurer;
 
 public class LyricManager {
 
-    private static final Pattern mPattern = Pattern.compile("\\[[0-9]{2}\\:[0-9]{2}\\.[0-9]{2}\\]");
+    private static final Pattern mPattern = Pattern.compile("\\[[0-9]{2}\\:[0-9]{2}\\.[0-9]{2,3}\\]");
 
     public static class LyricLine implements Comparable<LyricLine> {
 
@@ -53,11 +53,15 @@ public class LyricManager {
     private long getMillis(String time) {
         String mm = time.substring(1, 3);
         String ss = time.substring(4, 6);
-        String xx = time.substring(7, 9);
+        String millis = "";
+        if (time.length() == 10)
+            millis = time.substring(7, 9) + "0";
+        if (time.length() == 11)
+            millis = time.substring(7, 10);
         int mmInt = Integer.parseInt(mm);
         int ssInt = Integer.parseInt(ss);
-        int xxInt = Integer.parseInt(xx);
-        return mmInt * 60 * 1000 + ssInt * 1000 + xxInt * 10;
+        int millisInt = Integer.parseInt(millis);
+        return mmInt * 60 * 1000 + ssInt * 1000 + millisInt;
     }
 
     private void addLine(long millis, String lineText) {

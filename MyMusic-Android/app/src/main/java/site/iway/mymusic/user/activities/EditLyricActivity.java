@@ -39,6 +39,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
     private ViewSwapper mViewSwapper;
     private LRCEditView mLrcEditView;
     private ExtendedImageView mPlayPause;
+    private ExtendedImageView mSelectDown;
     private ExtendedImageView mRemove;
     private ExtendedImageView mEdit;
     private ExtendedImageView mAdd;
@@ -157,6 +158,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
                         layoutParams.height = duration / 1000 * 40;
                         mViewSwapper.setDisplayedChild(INDEX_CONTENT);
                         mPlayPause.setOnClickListener(EditLyricActivity.this);
+                        mSelectDown.setOnClickListener(EditLyricActivity.this);
                         mRemove.setOnClickListener(EditLyricActivity.this);
                         mEdit.setOnClickListener(EditLyricActivity.this);
                         mAdd.setOnClickListener(EditLyricActivity.this);
@@ -183,6 +185,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
         mViewSwapper = (ViewSwapper) findViewById(R.id.viewSwapper);
         mLrcEditView = (LRCEditView) findViewById(R.id.lrcEditView);
         mPlayPause = (ExtendedImageView) findViewById(R.id.playPause);
+        mSelectDown = (ExtendedImageView) findViewById(R.id.selectDown);
         mRemove = (ExtendedImageView) findViewById(R.id.remove);
         mEdit = (ExtendedImageView) findViewById(R.id.edit);
         mAdd = (ExtendedImageView) findViewById(R.id.add);
@@ -227,6 +230,11 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
                 }
                 mMediaPlayer.start();
             }
+        } else if (v == mSelectDown) {
+            mLrcEditView.setDownSelected(!mLrcEditView.isDownSelected());
+            int drawableSelected = R.drawable.ic_select_to_current_selected;
+            int drawableNormal = R.drawable.ic_select_to_current_normal;
+            mSelectDown.setImageResource(mLrcEditView.isDownSelected() ? drawableSelected : drawableNormal);
         } else if (v == mRemove) {
             mLrcEditView.removeSelectedLyricLine();
         } else if (v == mAdd) {

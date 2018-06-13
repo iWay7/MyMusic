@@ -4,4 +4,7 @@
     <item name="contentViewPriority" type="id" />
     <item name="contentViewAddTime" type="id" />
 
+    <item name="lyricViewDragStart" type="id" />
+    <item name="lyricViewWillDrag" type="id" />
+
 </resources>
