@@ -6,10 +6,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import site.iway.androidhelpers.BitmapCache;
-import site.iway.androidhelpers.BitmapInfo;
-import site.iway.androidhelpers.BitmapInfoListener;
+import site.iway.androidhelpers.BitmapCallback;
+import site.iway.androidhelpers.BitmapRequest;
 import site.iway.androidhelpers.BitmapSource;
-import site.iway.androidhelpers.BitmapSourceURL;
 import site.iway.androidhelpers.ImageViewer;
 import site.iway.androidhelpers.ViewSwapper;
 import site.iway.mymusic.R;
@@ -40,13 +39,14 @@ public class ViewImageActivity extends BaseActivity {
         mViewSwapper = (ViewSwapper) findViewById(R.id.viewSwapper);
         mImageViewer = (ImageViewer) findViewById(R.id.imageViewer);
 
-        BitmapSource bitmapSource = new BitmapSourceURL(mIntent.getStringExtra(IMAGE_URL));
-        BitmapInfoListener bitmapInfoListener = new BitmapInfoListener() {
+        BitmapSource bitmapSource = new BitmapSource(BitmapSource.TYPE_URL, mIntent.getStringExtra(IMAGE_URL), null);
+        BitmapRequest bitmapRequest = new BitmapRequest(bitmapSource, new BitmapCallback() {
             @Override
-            public void onBitmapInfoChange(BitmapInfo bitmapInfo) {
-                switch (bitmapInfo.getProgress()) {
-                    case BitmapInfo.GET_BITMAP:
-                        mBitmap = Bitmap.createBitmap(bitmapInfo.getBitmap());
+            public void onBitmapLoadProgressChange(BitmapRequest bitmapRequest) {
+                switch (bitmapRequest.getProgress()) {
+                    case BitmapRequest.GET_BITMAP:
+                        Bitmap bitmap = BitmapCache.get(bitmapRequest.getSource());
+                        mBitmap = Bitmap.createBitmap(bitmap);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -55,7 +55,7 @@ public class ViewImageActivity extends BaseActivity {
                             }
                         });
                         break;
-                    case BitmapInfo.GET_ERROR:
+                    case BitmapRequest.GET_ERROR:
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -65,8 +65,8 @@ public class ViewImageActivity extends BaseActivity {
                         break;
                 }
             }
-        };
-        BitmapCache.get(bitmapSource, bitmapInfoListener);
+        });
+        BitmapCache.requestNow(bitmapRequest);
     }
 
     @Override

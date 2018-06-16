@@ -27,7 +27,7 @@ import site.iway.androidhelpers.RPCReq;
 import site.iway.javahelpers.GsonHelper;
 import site.iway.javahelpers.ObjectSaver;
 import site.iway.javahelpers.StreamReader;
-import site.iway.javahelpers.URLCodec;
+import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.BuildConfig;
 
 import static site.iway.javahelpers.GsonHelper.TYPE_NORMAL_AND_EXPOSE_BASED_FIELDS;
@@ -85,11 +85,11 @@ public abstract class RPCBaseReq extends RPCReq {
             JsonElement value = entry.getValue();
             if (value instanceof JsonPrimitive) {
                 query.append("&");
-                String keyEncoded = URLCodec.encode(key);
+                String keyEncoded = StringHelper.urlEncode(key);
                 query.append(keyEncoded);
                 query.append("=");
                 String valueString = value.getAsString();
-                String valueStringEncoded = URLCodec.encode(valueString);
+                String valueStringEncoded = StringHelper.urlEncode(valueString);
                 query.append(valueStringEncoded);
             }
         }

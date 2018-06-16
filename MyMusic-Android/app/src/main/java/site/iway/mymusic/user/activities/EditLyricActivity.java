@@ -16,7 +16,6 @@ import site.iway.androidhelpers.UITimer;
 import site.iway.androidhelpers.ViewSwapper;
 import site.iway.javahelpers.StringHelper;
 import site.iway.javahelpers.TextRW;
-import site.iway.javahelpers.URLCodec;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
@@ -96,7 +95,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
                 // nothing
             }
             String fileName = mIntent.getStringExtra(SONG_FILE_NAME);
-            String fileUrl = Constants.MUSIC_URL_BASE + URLCodec.encode(fileName);
+            String fileUrl = Constants.MUSIC_URL_BASE + StringHelper.urlEncode(fileName);
             FileCache musicCache = FileCache.getMusic();
             if (musicCache.exists(fileUrl)) {
                 configMediaPlayer(fileUrl);

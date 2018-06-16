@@ -4,7 +4,7 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
 
-import site.iway.javahelpers.URLCodec;
+import site.iway.javahelpers.StringHelper;
 
 public class PlayTask extends Thread implements OnCompletionListener, OnErrorListener {
 
@@ -69,7 +69,7 @@ public class PlayTask extends Thread implements OnCompletionListener, OnErrorLis
         } catch (Exception e) {
             // nothing
         }
-        String url = Constants.MUSIC_URL_BASE + URLCodec.encode(mFileName);
+        String url = Constants.MUSIC_URL_BASE + StringHelper.urlEncode(mFileName);
         FileCache musicCache = FileCache.getMusic();
         if (musicCache.exists(url)) {
             updateTaskState(STATE_DATA_READY);

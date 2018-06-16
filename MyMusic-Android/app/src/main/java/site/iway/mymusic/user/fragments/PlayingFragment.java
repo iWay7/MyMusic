@@ -24,6 +24,7 @@ import site.iway.androidhelpers.UITimer;
 import site.iway.androidhelpers.ViewSwapper;
 import site.iway.androidhelpers.WindowHelper;
 import site.iway.javahelpers.Scale;
+import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
@@ -186,6 +187,13 @@ public class PlayingFragment extends BaseFragment implements RPCCallback, OnClic
     }
 
     private BitmapFilter mBitmapFilter = new BitmapFilter() {
+        private String uuid = StringHelper.uuid();
+
+        @Override
+        public String id() {
+            return uuid;
+        }
+
         @Override
         public Bitmap filter(Bitmap bitmap) {
             float viewWidth = mBackground.getWidth();

@@ -12,7 +12,6 @@ import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.ViewSwapper;
 import site.iway.javahelpers.StringHelper;
 import site.iway.javahelpers.TextRW;
-import site.iway.javahelpers.URLCodec;
 import site.iway.mymusic.R;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.FileCache;
@@ -139,7 +138,7 @@ public class ViewLyricActivity extends BaseActivity implements OnClickListener {
         if (requestCode == REQUEST_ADJUST_LYRIC && resultCode == EditLyricActivity.RESULT_OK) {
             mTextView.setText(data.getStringExtra(EditLyricActivity.RESULT_TEXT));
             String fileName = mIntent.getStringExtra(SONG_FILE_NAME);
-            String fileUrl = Constants.LYRIC_URL_BASE + URLCodec.encode(fileName);
+            String fileUrl = Constants.LYRIC_URL_BASE + StringHelper.urlEncode(fileName);
             mIntent.putExtra(SONG_LYRIC_URL, fileUrl);
             FileCache fileCache = FileCache.getLyric();
             fileCache.delete(fileUrl);
