@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 
 import site.iway.androidhelpers.BitmapCache;
 import site.iway.androidhelpers.BitmapCallback;
+import site.iway.androidhelpers.BitmapFilter;
 import site.iway.androidhelpers.BitmapRequest;
 import site.iway.androidhelpers.BitmapSource;
 import site.iway.androidhelpers.ImageViewer;
@@ -39,7 +40,10 @@ public class ViewImageActivity extends BaseActivity {
         mViewSwapper = (ViewSwapper) findViewById(R.id.viewSwapper);
         mImageViewer = (ImageViewer) findViewById(R.id.imageViewer);
 
-        BitmapSource bitmapSource = new BitmapSource(BitmapSource.TYPE_URL, mIntent.getStringExtra(IMAGE_URL), null);
+        int type = BitmapSource.TYPE_URL;
+        String content = mIntent.getStringExtra(IMAGE_URL);
+        BitmapFilter filter = null;
+        BitmapSource bitmapSource = new BitmapSource(type, content, filter);
         BitmapRequest bitmapRequest = new BitmapRequest(bitmapSource, new BitmapCallback() {
             @Override
             public void onBitmapLoadProgressChange(BitmapRequest bitmapRequest) {
