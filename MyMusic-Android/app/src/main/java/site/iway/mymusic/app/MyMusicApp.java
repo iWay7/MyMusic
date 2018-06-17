@@ -6,7 +6,6 @@ import java.io.File;
 
 import site.iway.androidhelpers.ActionTimer;
 import site.iway.androidhelpers.BitmapCache;
-import site.iway.androidhelpers.BuildConfig;
 import site.iway.androidhelpers.RPCEngine;
 import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.UnitHelper;
@@ -32,7 +31,6 @@ public class MyMusicApp extends Application {
         File cacheDir = getCacheDir();
 
         UnitHelper.initialize(this);
-        BitmapCache.setIsDebugMode(BuildConfig.DEBUG);
         BitmapCache.setContext(this);
         BitmapCache.setMaxRAMUsageForSingleBitmap(16 * 1024 * 1024);
         BitmapCache.setDownloadDirectory(Constants.DIR_NAME_IMAGE_CACHE);
