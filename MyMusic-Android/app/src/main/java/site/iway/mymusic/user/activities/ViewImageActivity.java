@@ -7,9 +7,9 @@ import android.view.View.OnClickListener;
 
 import site.iway.androidhelpers.BitmapCache;
 import site.iway.androidhelpers.BitmapCallback;
-import site.iway.androidhelpers.BitmapFilter;
 import site.iway.androidhelpers.BitmapRequest;
 import site.iway.androidhelpers.BitmapSource;
+import site.iway.androidhelpers.BitmapSourceURL;
 import site.iway.androidhelpers.ImageViewer;
 import site.iway.androidhelpers.ViewSwapper;
 import site.iway.mymusic.R;
@@ -40,17 +40,15 @@ public class ViewImageActivity extends BaseActivity {
         mViewSwapper = (ViewSwapper) findViewById(R.id.viewSwapper);
         mImageViewer = (ImageViewer) findViewById(R.id.imageViewer);
 
-        int type = BitmapSource.TYPE_URL;
-        String content = mIntent.getStringExtra(IMAGE_URL);
-        BitmapFilter filter = null;
-        BitmapSource bitmapSource = new BitmapSource(type, content, filter);
+        String imageUrl = mIntent.getStringExtra(IMAGE_URL);
+
+        BitmapSource bitmapSource = new BitmapSourceURL(imageUrl);
         BitmapRequest bitmapRequest = new BitmapRequest(bitmapSource, new BitmapCallback() {
             @Override
             public void onBitmapLoadProgressChange(BitmapRequest bitmapRequest) {
                 switch (bitmapRequest.getProgress()) {
                     case BitmapRequest.GET_BITMAP:
-                        Bitmap bitmap = BitmapCache.get(bitmapRequest.getSource());
-                        mBitmap = Bitmap.createBitmap(bitmap);
+                        mBitmap = BitmapCache.get(bitmapRequest.getSource());
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
