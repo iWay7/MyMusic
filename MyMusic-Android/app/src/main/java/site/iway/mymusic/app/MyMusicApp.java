@@ -11,6 +11,7 @@ import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.UnitHelper;
 import site.iway.javahelpers.HanziPinyinHelper;
 import site.iway.javahelpers.ObjectSaver;
+import site.iway.mymusic.BuildConfig;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.FileCache;
 import site.iway.mymusic.utils.Player;
@@ -31,6 +32,8 @@ public class MyMusicApp extends Application {
         File cacheDir = getCacheDir();
 
         UnitHelper.initialize(this);
+
+        BitmapCache.setLogEnabled(BuildConfig.DEBUG);
         BitmapCache.setContext(this);
         BitmapCache.setMaxRAMUsageForSingleBitmap(16 * 1024 * 1024);
         BitmapCache.setDownloadDirectory(Constants.DIR_NAME_IMAGE_CACHE);
