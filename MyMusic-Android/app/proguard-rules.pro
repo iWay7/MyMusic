@@ -19,3 +19,19 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keepattributes **
+
+-keep class !site.iway.mymusic.** { *; }
+-dontwarn !site.iway.mymusic.**
+-dontshrink
+-dontoptimize
+-ignorewarnings
+
+-keepclassmembernames class * extends site.iway.mymusic.net.RPCBaseReq {
+    @com.google.gson.annotations.Expose <fields>;
+}
+
+-keep class * implements java.io.Serializable {
+    *;
+}
