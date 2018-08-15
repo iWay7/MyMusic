@@ -16,7 +16,6 @@ import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.FileCache;
 import site.iway.mymusic.utils.Player;
 import site.iway.mymusic.utils.Settings;
-import site.iway.mymusic.utils.Toaster;
 
 /**
  * Created by iWay on 2017/12/25.
@@ -45,7 +44,6 @@ public class MyMusicApp extends Application {
         HanziPinyinHelper.initialize();
 
         Settings.initialize(filesDir + "/" + Constants.FILE_NAME_SETTINGS, "sPBocrqJKgBiSag3");
-        Toaster.initialize(this);
         FileCache.initialize(this);
         Player.initialize(this);
     }
