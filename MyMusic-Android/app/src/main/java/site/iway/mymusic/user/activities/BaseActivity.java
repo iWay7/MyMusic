@@ -101,10 +101,8 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
 
     public static final int CONTENT_VIEW_PRIORITY_BASE = 0;
     public static final int CONTENT_VIEW_PRIORITY_NORMAL = 1;
-    public static final int CONTENT_VIEW_PRIORITY_FLOATING_OBJECT = 125;
-    public static final int CONTENT_VIEW_PRIORITY_DIALOG = 126;
     public static final int CONTENT_VIEW_PRIORITY_LOADING_VIEW = 127;
-    public static final int CONTENT_VIEW_PRIORITY_SIMULATED_TOAST = 128;
+    public static final int CONTENT_VIEW_PRIORITY_TOAST_VIEW = 128;
 
     private void adjustContentViewOrders() {
         List<View> childViews = new ArrayList<>();
@@ -282,7 +280,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         );
         flp.gravity = Gravity.CENTER;
         toastView.setLayoutParams(flp);
-        addContentViewInternal(toastView, CONTENT_VIEW_PRIORITY_SIMULATED_TOAST);
+        addContentViewInternal(toastView, CONTENT_VIEW_PRIORITY_TOAST_VIEW);
         AlphaAnimation animation = new AlphaAnimation(0, 1);
         animation.setDuration(500);
         animation.setRepeatCount(1);
