@@ -34,6 +34,7 @@ public class MyMusicApp extends Application {
 
         BitmapCache.setLogEnabled(BuildConfig.DEBUG);
         BitmapCache.setContext(this);
+        BitmapCache.setLoaderCount(4);
         BitmapCache.setMaxRAMUsageForSingleBitmap(16 * 1024 * 1024);
         BitmapCache.setDownloadDirectory(Constants.DIR_NAME_IMAGE_CACHE);
         BitmapCache.initialize();

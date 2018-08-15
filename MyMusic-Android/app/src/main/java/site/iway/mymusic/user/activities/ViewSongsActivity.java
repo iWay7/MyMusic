@@ -193,7 +193,7 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
             if (listSongsRes.resultCode == ListSongsRes.OK) {
                 showList(listSongsRes.fileNames, listSongsRes.playList, listSongsReq.filter);
             } else {
-                simulateToast("搜索错误，请重试！");
+                showToastView("搜索错误，请重试！");
             }
             mListSongsReq = null;
         }
@@ -203,7 +203,7 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
     public void onRequestER(RPCBaseReq req) {
         if (req == mListSongsReq) {
             hideLoading();
-            simulateToast("网络错误，请重试！");
+            showToastView("网络错误，请重试！");
             mListSongsReq = null;
         }
     }

@@ -260,7 +260,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         }
     }
 
-    public void simulateToast(String message, final long timeout) {
+    public void showToastView(String message, final long timeout) {
         if (isFinishing()) {
             return;
         }
@@ -306,8 +306,8 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         toastView.startAnimation(animation);
     }
 
-    public void simulateToast(String message) {
-        simulateToast(message, 2000);
+    public void showToastView(String message) {
+        showToastView(message, 2000);
     }
 
     public void setCloseAnimEnabled(boolean closeAnimEnabled) {

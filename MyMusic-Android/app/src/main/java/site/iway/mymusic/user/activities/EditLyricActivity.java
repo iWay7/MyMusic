@@ -272,7 +272,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
     public void onRequestER(RPCBaseReq req) {
         if (req == mSaveLyricReq) {
             hideLoadingView();
-            simulateToast("网络错误，请重试！");
+            showToastView("网络错误，请重试！");
             enableUserInteract();
         }
     }

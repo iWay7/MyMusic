@@ -171,7 +171,7 @@ public class AlbumListActivity extends BaseActivity implements OnClickListener, 
                         @Override
                         public void onRequestER(RPCBaseReq req) {
                             hideLoadingView();
-                            simulateToast("网络错误，请重试！");
+                            showToastView("网络错误，请重试！");
                             enableUserInteract();
                         }
                     });

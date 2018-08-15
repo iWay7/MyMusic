@@ -84,7 +84,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
     private OnClickListener mNoNeedCleanClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            simulateToast("没有缓存，无需清理~");
+            showToastView("没有缓存，无需清理~");
         }
     };
 
