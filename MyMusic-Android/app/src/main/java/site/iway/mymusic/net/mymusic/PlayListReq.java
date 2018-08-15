@@ -35,7 +35,6 @@ public class PlayListReq extends MyMusicReq {
             PlayListRes playListRes = (PlayListRes) response;
             if (playListRes.fileNames != null) {
                 Collections.sort(playListRes.fileNames, new Comparator<String>() {
-
                     @Override
                     public int compare(String o1, String o2) {
                         switch (Settings.getPlayListSortType()) {

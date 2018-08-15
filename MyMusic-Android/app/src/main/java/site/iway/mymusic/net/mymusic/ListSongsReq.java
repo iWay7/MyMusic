@@ -28,7 +28,6 @@ public class ListSongsReq extends MyMusicReq {
         if (response != null) {
             ListSongsRes listSongRes = (ListSongsRes) response;
             Collections.sort(listSongRes.fileNames, new Comparator<String>() {
-
                 @Override
                 public int compare(String o1, String o2) {
                     switch (Settings.getSearchSortType()) {
