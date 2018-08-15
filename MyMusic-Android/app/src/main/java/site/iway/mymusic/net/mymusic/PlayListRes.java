@@ -1,8 +1,6 @@
-package site.iway.mymusic.net.mymusic.models;
+package site.iway.mymusic.net.mymusic;
 
 import java.util.List;
-
-import site.iway.mymusic.net.mymusic.MyMusicRes;
 
 /**
  * Created by iWay on 2017/12/26.

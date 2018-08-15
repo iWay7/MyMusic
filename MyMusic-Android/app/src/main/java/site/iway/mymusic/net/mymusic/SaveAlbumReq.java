@@ -1,4 +1,4 @@
-package site.iway.mymusic.net.mymusic.models;
+package site.iway.mymusic.net.mymusic;
 
 import android.util.Base64;
 
@@ -7,8 +7,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-
-import site.iway.mymusic.net.mymusic.MyMusicReq;
 
 public class SaveAlbumReq extends MyMusicReq {
 

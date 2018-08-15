@@ -1,4 +1,4 @@
-package site.iway.mymusic.net.mymusic.models;
+package site.iway.mymusic.net.mymusic;
 
 import com.google.gson.annotations.Expose;
 
@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import site.iway.javahelpers.HanziPinyinHelper;
-import site.iway.mymusic.net.mymusic.MyMusicReq;
 import site.iway.mymusic.utils.Settings;
 import site.iway.mymusic.utils.Song;
 

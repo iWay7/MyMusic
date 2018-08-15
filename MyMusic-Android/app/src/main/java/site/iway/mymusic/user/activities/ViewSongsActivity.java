@@ -18,8 +18,8 @@ import site.iway.androidhelpers.LoadingView;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
-import site.iway.mymusic.net.mymusic.models.ListSongsReq;
-import site.iway.mymusic.net.mymusic.models.ListSongsRes;
+import site.iway.mymusic.net.mymusic.ListSongsReq;
+import site.iway.mymusic.net.mymusic.ListSongsRes;
 import site.iway.mymusic.user.views.SongsAdapter;
 
 /**

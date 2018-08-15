@@ -19,7 +19,7 @@ import site.iway.javahelpers.TextRW;
 import site.iway.mymusic.R;
 import site.iway.mymusic.net.RPCBaseReq;
 import site.iway.mymusic.net.RPCCallback;
-import site.iway.mymusic.net.mymusic.models.SaveLyricReq;
+import site.iway.mymusic.net.mymusic.SaveLyricReq;
 import site.iway.mymusic.user.views.LRCEditView;
 import site.iway.mymusic.user.views.LRCEditView.OnEditActionListener;
 import site.iway.mymusic.utils.Constants;

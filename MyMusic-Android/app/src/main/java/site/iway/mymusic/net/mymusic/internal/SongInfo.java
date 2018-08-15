@@ -1,4 +1,4 @@
-package site.iway.mymusic.net.mymusic.models.common;
+package site.iway.mymusic.net.mymusic.internal;
 
 import java.io.Serializable;
 

@@ -1,10 +1,9 @@
-package site.iway.mymusic.net.mymusic.models;
+package site.iway.mymusic.net.mymusic;
 
 import com.google.gson.annotations.Expose;
 
 import site.iway.javahelpers.StringHelper;
-import site.iway.mymusic.net.mymusic.MyMusicReq;
-import site.iway.mymusic.net.mymusic.models.common.SongInfo;
+import site.iway.mymusic.net.mymusic.internal.SongInfo;
 import site.iway.mymusic.utils.Constants;
 
 /**

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by iWay on 2018/3/25.
  */
 
-public class MyMusicRes implements Serializable {
+public abstract class MyMusicRes implements Serializable {
 
     public static final int UNKNOWN = -1;
     public static final String UNKNOWN_STRING = "结果未知";

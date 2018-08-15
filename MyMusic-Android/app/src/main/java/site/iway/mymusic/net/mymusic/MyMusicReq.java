@@ -9,7 +9,7 @@ import site.iway.mymusic.utils.Constants;
  * Created by iWay on 2018/3/25.
  */
 
-public class MyMusicReq extends RPCBaseReq {
+public abstract class MyMusicReq extends RPCBaseReq {
 
     public MyMusicReq() {
         url = Constants.SERVICE_URL_BASE;
