@@ -29,6 +29,7 @@ import site.iway.androidhelpers.ExtendedTextView;
 import site.iway.androidhelpers.ExtendedView;
 import site.iway.androidhelpers.ExtendedWebView;
 import site.iway.androidhelpers.LoadingView;
+import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.R;
 import site.iway.mymusic.user.dialogs.BaseDialog.OnUserActionListener;
 import site.iway.mymusic.user.dialogs.DoubleActionDialog;
@@ -99,6 +100,8 @@ public class WebFragment extends BaseFragment implements OnClickListener {
     private boolean mErrorOccurred;
     private String mUrl;
     private String mData;
+    private String mMimeType;
+    private String mEncoding;
     private String mOnBackPressedEvent;
 
     public void extendWebViewTop(int height) {
@@ -270,42 +273,48 @@ public class WebFragment extends BaseFragment implements OnClickListener {
         setViews(savedInstanceState);
     }
 
-    private Runnable mLoadUrlRunnable;
+    private Runnable mLoadRunnable;
 
     public void loadUrl(String url) {
         mUrl = url;
-        if (mLoadUrlRunnable != null) {
-            mHandler.removeCallbacks(mLoadUrlRunnable);
+        mData = null;
+        mMimeType = null;
+        mEncoding = null;
+        if (mLoadRunnable != null) {
+            mHandler.removeCallbacks(mLoadRunnable);
         }
-        mLoadUrlRunnable = new Runnable() {
+        mLoadRunnable = new Runnable() {
             @Override
             public void run() {
                 doBeforeLoadUrl(mWebView);
                 mLoadingView.setVisibility(View.VISIBLE);
                 mErrorContainer.setVisibility(View.GONE);
                 mWebView.loadUrl(mUrl);
-                mLoadUrlRunnable = null;
+                mLoadRunnable = null;
             }
         };
-        mHandler.postDelayed(mLoadUrlRunnable, 150);
+        mHandler.postDelayed(mLoadRunnable, 150);
     }
 
-    public void loadData(String data) {
+    public void loadData(String data, String mimeType, String encoding) {
+        mUrl = null;
         mData = data;
-        if (mLoadUrlRunnable != null) {
-            mHandler.removeCallbacks(mLoadUrlRunnable);
+        mMimeType = mimeType;
+        mEncoding = encoding;
+        if (mLoadRunnable != null) {
+            mHandler.removeCallbacks(mLoadRunnable);
         }
-        mLoadUrlRunnable = new Runnable() {
+        mLoadRunnable = new Runnable() {
             @Override
             public void run() {
                 doBeforeLoadUrl(mWebView);
                 mLoadingView.setVisibility(View.VISIBLE);
                 mErrorContainer.setVisibility(View.GONE);
-                mWebView.loadData(mData, "text/html", "UTF-8");
-                mLoadUrlRunnable = null;
+                mWebView.loadData(mData, mMimeType, mEncoding);
+                mLoadRunnable = null;
             }
         };
-        mHandler.postDelayed(mLoadUrlRunnable, 150);
+        mHandler.postDelayed(mLoadRunnable, 150);
     }
 
     public boolean willHandleOnBackPressed() {
@@ -327,10 +336,11 @@ public class WebFragment extends BaseFragment implements OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == mRefreshButton) {
-            if (mUrl != null && !mUrl.equals("")) {
+            if (!StringHelper.nullOrWhiteSpaceOrControlChars(mUrl)) {
                 loadUrl(mUrl);
-            } else {
-                loadData(mData);
+            }
+            if (!StringHelper.nullOrWhiteSpaceOrControlChars(mData)) {
+                loadData(mData, mMimeType, mEncoding);
             }
         }
     }
