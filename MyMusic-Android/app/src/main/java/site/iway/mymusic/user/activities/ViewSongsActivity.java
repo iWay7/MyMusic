@@ -21,7 +21,6 @@ import site.iway.mymusic.net.RPCCallback;
 import site.iway.mymusic.net.mymusic.models.ListSongsReq;
 import site.iway.mymusic.net.mymusic.models.ListSongsRes;
 import site.iway.mymusic.user.views.SongsAdapter;
-import site.iway.mymusic.utils.Toaster;
 
 /**
  * Created by iWay on 2017/12/25.
@@ -194,7 +193,7 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
             if (listSongsRes.resultCode == ListSongsRes.OK) {
                 showList(listSongsRes.fileNames, listSongsRes.playList, listSongsReq.filter);
             } else {
-                Toaster.show("搜索错误，请重试！");
+                simulateToast("搜索错误，请重试！");
             }
             mListSongsReq = null;
         }
@@ -204,7 +203,7 @@ public class ViewSongsActivity extends BaseActivity implements OnClickListener, 
     public void onRequestER(RPCBaseReq req) {
         if (req == mListSongsReq) {
             hideLoading();
-            Toaster.show("网络错误，请重试！");
+            simulateToast("网络错误，请重试！");
             mListSongsReq = null;
         }
     }

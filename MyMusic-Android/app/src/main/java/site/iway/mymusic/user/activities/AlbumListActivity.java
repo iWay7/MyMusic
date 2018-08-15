@@ -31,7 +31,6 @@ import site.iway.mymusic.user.dialogs.DoubleActionDialog;
 import site.iway.mymusic.user.views.AlbumAdapter;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.Song;
-import site.iway.mymusic.utils.Toaster;
 
 public class AlbumListActivity extends BaseActivity implements OnClickListener, OnItemClickListener, RPCCallback, OnItemLongClickListener {
 
@@ -172,7 +171,7 @@ public class AlbumListActivity extends BaseActivity implements OnClickListener, 
                         @Override
                         public void onRequestER(RPCBaseReq req) {
                             hideLoadingView();
-                            Toaster.show("网络错误，请重试！");
+                            simulateToast("网络错误，请重试！");
                             enableUserInteract();
                         }
                     });

@@ -43,8 +43,6 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
     public static final String CLOSE_ANIMATION_ENTER = "CLOSE_ANIMATION_ENTER";
     public static final String CLOSE_ANIMATION_EXIT = "CLOSE_ANIMATION_EXIT";
 
-    public static BaseActivity sRunningInstance;
-
     protected ViewGroup mContentViewContainer;
     protected View mTitleBarPad;
     protected View mTitleBarRoot;
@@ -99,12 +97,6 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
             }
         });
         UIThread.register(this);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        sRunningInstance = this;
     }
 
     public static final int CONTENT_VIEW_PRIORITY_BASE = 0;

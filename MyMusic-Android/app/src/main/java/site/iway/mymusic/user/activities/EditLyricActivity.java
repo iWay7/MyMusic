@@ -27,7 +27,6 @@ import site.iway.mymusic.utils.FileCache;
 import site.iway.mymusic.utils.LyricManager;
 import site.iway.mymusic.utils.PlayTask;
 import site.iway.mymusic.utils.Player;
-import site.iway.mymusic.utils.Toaster;
 
 public class EditLyricActivity extends BaseActivity implements OnClickListener, OnEditActionListener, RPCCallback {
 
@@ -273,7 +272,7 @@ public class EditLyricActivity extends BaseActivity implements OnClickListener, 
     public void onRequestER(RPCBaseReq req) {
         if (req == mSaveLyricReq) {
             hideLoadingView();
-            Toaster.show("网络错误，请重试！");
+            simulateToast("网络错误，请重试！");
             enableUserInteract();
         }
     }

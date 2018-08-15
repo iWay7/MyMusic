@@ -17,7 +17,6 @@ import site.iway.mymusic.user.dialogs.ListActionDialog;
 import site.iway.mymusic.user.views.ListActionItem;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.Settings;
-import site.iway.mymusic.utils.Toaster;
 
 public class SettingsActivity extends BaseActivity implements OnClickListener {
 
@@ -85,7 +84,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
     private OnClickListener mNoNeedCleanClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toaster.show("没有缓存，无需清理~");
+            simulateToast("没有缓存，无需清理~");
         }
     };
 
