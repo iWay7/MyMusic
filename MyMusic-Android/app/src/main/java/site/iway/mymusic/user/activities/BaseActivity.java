@@ -1,13 +1,13 @@
 package site.iway.mymusic.user.activities;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -38,7 +38,7 @@ import site.iway.mymusic.R;
 /**
  * Created by iWay on 8/3/15.
  */
-public abstract class BaseActivity extends FragmentActivity implements UIEventHandler {
+public abstract class BaseActivity extends Activity implements UIEventHandler {
 
     public static final String CLOSE_ANIMATION_ENTER = "CLOSE_ANIMATION_ENTER";
     public static final String CLOSE_ANIMATION_EXIT = "CLOSE_ANIMATION_EXIT";
@@ -68,7 +68,7 @@ public abstract class BaseActivity extends FragmentActivity implements UIEventHa
         super.onCreate(savedInstanceState);
         mHandler = new Handler();
         mIntent = getIntent();
-        mFragmentManager = getSupportFragmentManager();
+        mFragmentManager = getFragmentManager();
         mLayoutInflater = getLayoutInflater();
         mContentResolver = getContentResolver();
         mResources = getResources();
