@@ -1,8 +1,10 @@
 package site.iway.mymusic.user.activities;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
@@ -31,6 +33,17 @@ public class MainActivity extends BaseActivity {
         mPlayListFragment = new PlayListFragment();
         mPlayingFragment = new PlayingFragment();
         mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setAdapter(new PagerAdapter() {
+            @Override
+            public int getCount() {
+                return 0;
+            }
+
+            @Override
+            public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
+                return false;
+            }
+        });
         mViewPager.setAdapter(new FragmentPagerAdapter(mFragmentManager) {
             @Override
             public Fragment getItem(int position) {

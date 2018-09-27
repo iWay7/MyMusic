@@ -44,7 +44,7 @@ public class MyMusicApp extends Application {
         RPCEngine.initialize(2);
         HanziPinyinHelper.initialize();
 
-        Settings.initialize(filesDir + "/" + Constants.FILE_NAME_SETTINGS, "sPBocrqJKgBiSag3");
+        Settings.initialize(filesDir + "/" + Constants.FILE_NAME_SETTINGS, "sPBocrqJKgBiSagg4vfhshcx");
         FileCache.initialize(this);
         Player.initialize(this);
     }

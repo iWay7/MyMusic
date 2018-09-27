@@ -336,10 +336,10 @@ public class WebFragment extends BaseFragment implements OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == mRefreshButton) {
-            if (!StringHelper.nullOrWhiteSpaceOrControlChars(mUrl)) {
+            if (!StringHelper.nullOrBlank(mUrl)) {
                 loadUrl(mUrl);
             }
-            if (!StringHelper.nullOrWhiteSpaceOrControlChars(mData)) {
+            if (!StringHelper.nullOrBlank(mData)) {
                 loadData(mData, mMimeType, mEncoding);
             }
         }

@@ -14,6 +14,7 @@ import com.google.gson.JsonPrimitive;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -164,9 +165,10 @@ public abstract class RPCBaseReq extends RPCReq {
 
     @Override
     protected void onFinish() {
-        if (cacheEnabled) {
+        if (cacheEnabled && response instanceof Serializable) {
             String key = buildCacheKey();
-            ObjectSaver.save(key, response);
+            Serializable value = (Serializable) response;
+            ObjectSaver.save(key, value);
         }
     }
 

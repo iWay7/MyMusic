@@ -75,10 +75,10 @@ public class WebActivity extends BaseActivity implements OnClickListener {
         mWebFragment.setTitleBarSplitter(mTitleBarSplitter);
         mWebFragment.setTitleBarText(mTitleBarText);
 
-        if (!StringHelper.nullOrWhiteSpace(mIntent.getStringExtra(URL))) {
+        if (!StringHelper.nullOrBlank(mIntent.getStringExtra(URL))) {
             loadUrl(mIntent.getStringExtra(URL));
         }
-        if (!StringHelper.nullOrWhiteSpace(mIntent.getStringExtra(HTML))) {
+        if (!StringHelper.nullOrBlank(mIntent.getStringExtra(HTML))) {
             loadHtml(mIntent.getStringExtra(HTML));
         }
     }

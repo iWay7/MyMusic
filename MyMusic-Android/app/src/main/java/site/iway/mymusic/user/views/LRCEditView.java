@@ -97,7 +97,7 @@ public class LRCEditView extends ExtendedFrameLayout {
             ExtendedTextView text = viewGroup.findViewById(R.id.text);
             timeTag.setText(timeToString(lyricLine.millis));
             String combinedText = lyricLine.combineLineTexts();
-            if (StringHelper.nullOrWhiteSpace(combinedText))
+            if (StringHelper.nullOrBlank(combinedText))
                 combinedText = "     ";
             text.setText(combinedText);
             viewGroup.setTag(lyricLine);
@@ -130,7 +130,7 @@ public class LRCEditView extends ExtendedFrameLayout {
             LyricLine lyricLine = (LyricLine) mSelectedView.getTag();
             lyricLine.sourceTextLines = lines;
             String combinedText = lyricLine.combineLineTexts();
-            if (StringHelper.nullOrWhiteSpace(combinedText))
+            if (StringHelper.nullOrBlank(combinedText))
                 combinedText = "     ";
             ExtendedTextView text = mSelectedView.findViewById(R.id.text);
             text.setText(combinedText);
@@ -151,7 +151,7 @@ public class LRCEditView extends ExtendedFrameLayout {
         ExtendedTextView text = mSelectedView.findViewById(R.id.text);
         timeTag.setText(timeToString(lyricLine.millis));
         String combinedText = lyricLine.combineLineTexts();
-        if (StringHelper.nullOrWhiteSpace(combinedText))
+        if (StringHelper.nullOrBlank(combinedText))
             combinedText = "     ";
         text.setText(combinedText);
         mSelectedView.setTag(lyricLine);

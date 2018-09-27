@@ -7,10 +7,10 @@ package site.iway.mymusic.utils;
 public class Song {
 
     public Song(String fileName) {
-        int splitterIndex = fileName.indexOf('-');
-        artist = fileName.substring(0, splitterIndex - 1);
+        int splitterIndex = fileName.indexOf(" - ");
+        artist = fileName.substring(0, splitterIndex);
         int totalLength = fileName.length();
-        name = fileName.substring(splitterIndex + 2, totalLength - 4);
+        name = fileName.substring(splitterIndex + 3, totalLength - 4);
     }
 
     public final String artist;
