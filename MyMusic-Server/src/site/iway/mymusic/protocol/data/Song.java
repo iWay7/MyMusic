@@ -7,10 +7,10 @@ package site.iway.mymusic.protocol.data;
 public class Song extends RPCData {
 
     public Song(String fileName) {
-        int splitterIndex = fileName.indexOf('-');
-        artist = fileName.substring(0, splitterIndex - 1);
-        int totalLength = fileName.length();
-        name = fileName.substring(splitterIndex + 2, totalLength - 4);
+        int splitterIndex = fileName.indexOf(" - ");
+        artist = fileName.substring(0, splitterIndex);
+        int dotIndex = fileName.lastIndexOf('.');
+        name = fileName.substring(splitterIndex + 3, dotIndex);
     }
 
     public String name;
