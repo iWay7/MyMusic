@@ -17,7 +17,7 @@ public abstract class GetFileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String fileName = req.getParameter("fileName");
-        if (StringHelper.nullOrWhiteSpace(fileName)) {
+        if (StringHelper.nullOrBlank(fileName)) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parameter fileName is empty.");
             return;
         }

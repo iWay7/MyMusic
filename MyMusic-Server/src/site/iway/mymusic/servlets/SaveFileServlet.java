@@ -1,13 +1,12 @@
 package site.iway.mymusic.servlets;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import site.iway.javahelpers.StringHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.Base64;
-import java.util.Base64.Decoder;
 
 public abstract class SaveFileServlet extends BasicServlet {
 
@@ -16,12 +15,11 @@ public abstract class SaveFileServlet extends BasicServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String fileName = req.getHeader("File-Name");
-        if (StringHelper.nullOrWhiteSpace(fileName)) {
+        if (StringHelper.nullOrBlank(fileName)) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Header File-Name is empty.");
             return;
         }
-        Decoder decoder = Base64.getDecoder();
-        byte[] fileNameBytes = decoder.decode(fileName);
+        byte[] fileNameBytes = Base64.decodeBase64(fileName);
         fileName = new String(fileNameBytes, CHARSET);
         File file = getRoot();
         if (!file.exists() && !file.mkdirs()) {

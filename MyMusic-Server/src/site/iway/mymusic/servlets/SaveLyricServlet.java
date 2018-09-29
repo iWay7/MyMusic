@@ -16,12 +16,12 @@ public class SaveLyricServlet extends BasicServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String fileName = req.getParameter("fileName");
-        if (StringHelper.nullOrWhiteSpace(fileName)) {
+        if (StringHelper.nullOrBlank(fileName)) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parameter action is empty.");
             return;
         }
         String lyric = req.getParameter("lyric");
-        if (StringHelper.nullOrWhiteSpace(lyric)) {
+        if (StringHelper.nullOrBlank(lyric)) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parameter lyric is empty.");
             return;
         }

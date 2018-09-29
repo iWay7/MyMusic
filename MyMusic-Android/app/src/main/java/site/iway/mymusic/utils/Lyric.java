@@ -3,10 +3,10 @@ package site.iway.mymusic.utils;
 public class Lyric {
 
     public Lyric(String lyricName, String lyricUrl) {
-        int blankIndex = lyricName.indexOf("-");
+        int blankIndex = lyricName.indexOf(" - ");
         if (blankIndex > -1) {
-            artist = lyricName.substring(0, blankIndex - 1);
-            name = lyricName.substring(blankIndex + 2);
+            artist = lyricName.substring(0, blankIndex);
+            name = lyricName.substring(blankIndex + 3);
         } else {
             artist = null;
             name = lyricName;

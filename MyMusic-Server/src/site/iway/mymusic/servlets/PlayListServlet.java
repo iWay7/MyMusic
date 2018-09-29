@@ -44,7 +44,7 @@ public class PlayListServlet extends BasicServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        if (StringHelper.nullOrWhiteSpace(action)) {
+        if (StringHelper.nullOrBlank(action)) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parameter action is empty.");
             return;
         }
@@ -59,7 +59,7 @@ public class PlayListServlet extends BasicServlet {
             case ACTION_ADD:
             case ACTION_REMOVE:
                 String fileNamesParam = req.getParameter("fileNames");
-                if (StringHelper.nullOrWhiteSpace(action)) {
+                if (StringHelper.nullOrBlank(action)) {
                     resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parameter fileNames is empty.");
                     break;
                 }
