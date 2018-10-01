@@ -25,7 +25,6 @@ public class PlayList extends ArrayList<String> {
         if (mPlayMode != playMode) {
             mPlayMode = playMode;
             Settings.setPlayerPlayMode(mPlayMode);
-            Settings.commit();
             UIThread.event(Constants.EV_PLAY_LIST_MODE_CHANGED, mPlayMode);
         }
     }

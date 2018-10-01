@@ -17,7 +17,6 @@ public class Settings extends PrefsStatic {
             UUID uuid = UUID.randomUUID();
             String uuidString = uuid.toString();
             putString(SETTING_UUID, uuidString);
-            commit();
             return uuidString;
         }
     }

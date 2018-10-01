@@ -20,7 +20,6 @@ import site.iway.mymusic.utils.Settings;
 /**
  * Created by iWay on 2017/12/25.
  */
-
 public class MyMusicApp extends Application {
 
     @Override

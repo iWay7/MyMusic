@@ -394,7 +394,6 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
                             Settings.setPlayListSortType(Settings.SORT_BY_SONG_NAME);
                             break;
                     }
-                    Settings.commit();
                     UIThread.event(Constants.EV_PLAY_LIST_SORT_TYPE_CHANGED);
                 }
             });
@@ -421,7 +420,6 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
                             Settings.setSearchSortType(Settings.SORT_BY_SONG_NAME);
                             break;
                     }
-                    Settings.commit();
                     UIThread.event(Constants.EV_SEARCH_SORT_TYPE_CHANGED);
                 }
             });

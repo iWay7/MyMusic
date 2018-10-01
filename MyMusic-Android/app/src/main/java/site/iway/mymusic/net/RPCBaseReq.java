@@ -187,7 +187,7 @@ public abstract class RPCBaseReq extends RPCReq {
         error = e;
         if (cacheEnabled) {
             String key = buildCacheKey();
-            response = ObjectSaver.read(key);
+            response = ObjectSaver.read(key, responseClass);
         }
     }
 
