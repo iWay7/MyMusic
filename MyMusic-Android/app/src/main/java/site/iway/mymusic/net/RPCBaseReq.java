@@ -26,7 +26,7 @@ import java.util.Set;
 
 import site.iway.androidhelpers.RPCReq;
 import site.iway.javahelpers.GsonHelper;
-import site.iway.javahelpers.ObjectSaver;
+import site.iway.javahelpers.ObjectStore;
 import site.iway.javahelpers.StreamReader;
 import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.BuildConfig;
@@ -168,7 +168,7 @@ public abstract class RPCBaseReq extends RPCReq {
         if (cacheEnabled && response instanceof Serializable) {
             String key = buildCacheKey();
             Serializable value = (Serializable) response;
-            ObjectSaver.save(key, value);
+            ObjectStore.write(key, value);
         }
     }
 
@@ -187,7 +187,7 @@ public abstract class RPCBaseReq extends RPCReq {
         error = e;
         if (cacheEnabled) {
             String key = buildCacheKey();
-            response = ObjectSaver.read(key, responseClass);
+            response = ObjectStore.read(key, responseClass);
         }
     }
 

@@ -10,7 +10,7 @@ import site.iway.androidhelpers.RPCEngine;
 import site.iway.androidhelpers.UIThread;
 import site.iway.androidhelpers.UnitHelper;
 import site.iway.javahelpers.HanziPinyinHelper;
-import site.iway.javahelpers.ObjectSaver;
+import site.iway.javahelpers.ObjectStore;
 import site.iway.mymusic.BuildConfig;
 import site.iway.mymusic.utils.Constants;
 import site.iway.mymusic.utils.FileCache;
@@ -38,7 +38,7 @@ public class MyMusicApp extends Application {
         BitmapCache.setDownloadDirectory(Constants.DIR_NAME_IMAGE_CACHE);
         BitmapCache.initialize();
         ActionTimer.initialize(this);
-        ObjectSaver.initialize(cacheDir + "/" + Constants.DIR_NAME_OBJECT_CACHE, true);
+        ObjectStore.initialize(cacheDir + "/" + Constants.DIR_NAME_OBJECT_CACHE, true);
         UIThread.initialize();
         RPCEngine.initialize(2);
         HanziPinyinHelper.initialize();
