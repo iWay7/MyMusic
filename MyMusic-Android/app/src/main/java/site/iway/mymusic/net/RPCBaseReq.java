@@ -12,6 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
@@ -26,10 +27,11 @@ import java.util.Set;
 
 import site.iway.androidhelpers.RPCReq;
 import site.iway.javahelpers.GsonHelper;
-import site.iway.javahelpers.ObjectStore;
+import site.iway.javahelpers.SerializableRW;
 import site.iway.javahelpers.StreamReader;
 import site.iway.javahelpers.StringHelper;
 import site.iway.mymusic.BuildConfig;
+import site.iway.mymusic.utils.Constants;
 
 import static site.iway.javahelpers.GsonHelper.TYPE_NORMAL_AND_EXPOSE_BASED_FIELDS;
 import static site.iway.javahelpers.GsonHelper.TYPE_ONLY_EXPOSE_BASED_FIELDS;
@@ -54,8 +56,8 @@ public abstract class RPCBaseReq extends RPCReq {
 
     public int connectTimeout = 20 * 1000;
     public int readTimeout = 20 * 1000;
-    public Class responseClass;
-    public Object response;
+    public Class<? extends Serializable> responseClass;
+    public Serializable response;
     public Exception error;
     public boolean cacheEnabled;
 
@@ -155,20 +157,22 @@ public abstract class RPCBaseReq extends RPCReq {
         doInput(connection);
     }
 
-    private String buildCacheKey() {
+    private String buildCacheFilePath() {
+        String cacheDirectory = Constants.CACHE_DIRECTORY + File.separator +
+                Constants.DIR_NAME_OBJECT_CACHE + File.separator;
         String key = url;
         if (mOutputData != null) {
             key += "|" + new String(mOutputData, CHARSET);
         }
-        return key;
+        key = StringHelper.md5(key);
+        return cacheDirectory + key;
     }
 
     @Override
     protected void onFinish() {
-        if (cacheEnabled && response instanceof Serializable) {
-            String key = buildCacheKey();
-            Serializable value = (Serializable) response;
-            ObjectStore.write(key, value);
+        if (cacheEnabled) {
+            String cacheFilePath = buildCacheFilePath();
+            SerializableRW.write(cacheFilePath, null, response);
         }
     }
 
@@ -186,8 +190,12 @@ public abstract class RPCBaseReq extends RPCReq {
         }
         error = e;
         if (cacheEnabled) {
-            String key = buildCacheKey();
-            response = ObjectStore.read(key, responseClass);
+            String cacheFilePath = buildCacheFilePath();
+            Serializable serializable = SerializableRW.read(cacheFilePath, null);
+            Class serializableClass = serializable.getClass();
+            if (responseClass.isAssignableFrom(serializableClass)) {
+                response = serializable;
+            }
         }
     }
 

@@ -202,7 +202,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
         mMP3Scanner.start();
         mLyricScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_LYRIC_CACHE));
         mLyricScanner.start();
-        mObjectsScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_OBJECT_CACHE));
+        mObjectsScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_OBJECT_STORE));
         mObjectsScanner.start();
         mTitleBarText.setText("设置");
         mTitleBarBack.setOnClickListener(this);
@@ -364,7 +364,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
                                 }, 300);
                             }
                         };
-                        folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_OBJECT_CACHE));
+                        folderScanner.addFolders(new File(getCacheDir(), Constants.DIR_NAME_OBJECT_STORE));
                         folderScanner.start();
                     }
                 }

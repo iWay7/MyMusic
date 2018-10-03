@@ -29,8 +29,10 @@ public class MyMusicApp extends Application {
         File filesDir = getFilesDir();
         File cacheDir = getCacheDir();
 
-        UnitHelper.initialize(this);
+        Constants.FILES_DIRECTORY = filesDir.getAbsolutePath();
+        Constants.CACHE_DIRECTORY = cacheDir.getAbsolutePath();
 
+        UnitHelper.initialize(this);
         BitmapCache.setLogEnabled(BuildConfig.DEBUG);
         BitmapCache.setContext(this);
         BitmapCache.setLoaderCount(4);
@@ -38,7 +40,7 @@ public class MyMusicApp extends Application {
         BitmapCache.setDownloadDirectory(Constants.DIR_NAME_IMAGE_CACHE);
         BitmapCache.initialize();
         ActionTimer.initialize(this);
-        ObjectStore.initialize(cacheDir + "/" + Constants.DIR_NAME_OBJECT_CACHE, true);
+        ObjectStore.initialize(cacheDir + "/" + Constants.DIR_NAME_OBJECT_STORE, true, "sPBocrqJKgBiSagg4vfhshcx");
         UIThread.initialize();
         RPCEngine.initialize(2);
         HanziPinyinHelper.initialize();
