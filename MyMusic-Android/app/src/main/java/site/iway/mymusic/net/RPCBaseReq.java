@@ -26,6 +26,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import site.iway.androidhelpers.RPCReq;
+import site.iway.javahelpers.FileSystemHelper;
 import site.iway.javahelpers.GsonHelper;
 import site.iway.javahelpers.SerializableRW;
 import site.iway.javahelpers.StreamReader;
@@ -160,15 +161,8 @@ public abstract class RPCBaseReq extends RPCReq {
     private String buildCacheFilePath() {
         String cacheDirectoryPath = Constants.CACHE_DIRECTORY + File.separator +
                 Constants.DIR_NAME_OBJECT_CACHE + File.separator;
-        File cacheDirectoryFile = new File(cacheDirectoryPath);
-        if (cacheDirectoryFile.exists()) {
-            if (!cacheDirectoryFile.isDirectory()) {
-                throw new RuntimeException("Cache directory is a file.");
-            }
-        } else {
-            if (!cacheDirectoryFile.mkdirs()) {
-                throw new RuntimeException("Create cache directory failed.");
-            }
+        if (!FileSystemHelper.createDirectory(cacheDirectoryPath)) {
+            throw new RuntimeException("Create cache directory failed.");
         }
         String key = url;
         if (mOutputData != null) {
