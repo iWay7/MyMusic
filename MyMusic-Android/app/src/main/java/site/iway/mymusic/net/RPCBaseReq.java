@@ -158,14 +158,24 @@ public abstract class RPCBaseReq extends RPCReq {
     }
 
     private String buildCacheFilePath() {
-        String cacheDirectory = Constants.CACHE_DIRECTORY + File.separator +
+        String cacheDirectoryPath = Constants.CACHE_DIRECTORY + File.separator +
                 Constants.DIR_NAME_OBJECT_CACHE + File.separator;
+        File cacheDirectoryFile = new File(cacheDirectoryPath);
+        if (cacheDirectoryFile.exists()) {
+            if (!cacheDirectoryFile.isDirectory()) {
+                throw new RuntimeException("Cache directory is a file.");
+            }
+        } else {
+            if (!cacheDirectoryFile.mkdirs()) {
+                throw new RuntimeException("Create cache directory failed.");
+            }
+        }
         String key = url;
         if (mOutputData != null) {
             key += "|" + new String(mOutputData, CHARSET);
         }
         key = StringHelper.md5(key);
-        return cacheDirectory + key;
+        return cacheDirectoryPath + key;
     }
 
     @Override
