@@ -73,8 +73,7 @@ public abstract class RPCBaseReq extends RPCReq {
     protected String buildQuery() {
         JsonObject jsonObject = (JsonObject) GSON_REQ.toJsonTree(this);
         Set<Entry<String, JsonElement>> set = jsonObject.entrySet();
-        List<Entry<String, JsonElement>> items = new ArrayList<>();
-        items.addAll(set);
+        List<Entry<String, JsonElement>> items = new ArrayList<>(set);
         Collections.sort(items, new Comparator<Entry<String, JsonElement>>() {
             @Override
             public int compare(Entry<String, JsonElement> o1, Entry<String, JsonElement> o2) {
